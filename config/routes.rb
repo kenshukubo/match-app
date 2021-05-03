@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   authenticated :user do
     scope module: :user do
       resources :social_profiles, only: :destroy
+      resource :user_profile, only: [:edit, :update, :show]
     end
   end
 
