@@ -8,10 +8,16 @@ Rails.application.routes.draw do
     confirmations:      "users/confirmations"
   }
 
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords'
-  }
+  # devise_for :admins, controllers: {
+  #   sessions:      'admins/sessions',
+  #   passwords:     'admins/passwords'
+  # }
+
+  authenticated :user do
+    scope module: :user do
+      resources :social_profiles, only: :destroy
+    end
+  end
 
   root 'static_pages#home'
 end
