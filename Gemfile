@@ -20,6 +20,7 @@ gem 'mini_magick'
 gem 'rmagick'
 gem 'fog-aws'
 gem 'stripe'
+gem 'annotate'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
