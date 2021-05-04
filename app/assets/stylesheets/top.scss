@@ -1,0 +1,33 @@
+.container{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.top-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-desc{
+  color: #fff;
+}
+
+.top-title{
+  font-size: 64px;
+  color: #fff;
+  margin-bottom: 32px;
+}
+
+.top-signup-btn{
+  color: #fff100;
+  padding: 12px 24px;
+  border: 2px solid #fff100;
+  font-weight: 900;
+  &:hover{
+    opacity: .7;
+    transition: .3s;
+  }
+}
