@@ -4,31 +4,31 @@
   margin: 0 auto;
 }
 
-.top-background{
+.top__background{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.top-main{
+.top__main{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.top-desc{
+.top__desc{
   color: #fff;
   font-family: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
 }
 
-.top-title{
+.top__title{
   font-size: 64px;
   color: #fff;
   margin-bottom: 54px;
   font-family: '游明朝','Yu Mincho',YuMincho,'Hiragino Mincho Pro',serif;
 }
 
-.top-btn{
+.top__btn{
   width: 180px;
   text-align: center;
   padding: 12px 24px;
@@ -39,13 +39,13 @@
   }
 }
 
-.top-signup-btn{
+.top__signup-btn{
   color: #fff100;
   border: 2px solid #fff100;
   margin-bottom: 16px;
 }
 
-.top-signin-btn{
+.top__signin-btn{
   color: #fff;
   border: 2px solid #fff;
 }

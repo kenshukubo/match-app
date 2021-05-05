@@ -1,16 +1,16 @@
 <div class="container">
   <div class="top">
-    <div class="top-background">
-      <div class="top-main">
-        <p class="top-desc">今日・すぐに・合コンができる</p>
-        <h1 class="top-title">MatchApp</h1>
-        <%= link_to "新規登録はこちら", new_user_registration_path, class:"top-signup-btn top-btn" %>
-        <%= link_to "ログイン", new_user_session_path, class:"top-signin-btn top-btn" %>
+    <div class="top__background">
+      <div class="top__main">
+        <p class="top__desc">今日・すぐに・合コンができる</p>
+        <h1 class="top__title">MatchApp</h1>
+        <%= link_to "新規登録はこちら", new_user_registration_path, class:"top__signup-btn top__btn" %>
+        <%= link_to "ログイン", new_user_session_path, class:"top__signin-btn top__btn" %>
       </div>
     </div>
   </div>
   <style>
-    .top-background{
+    .top__background{
       background-image: url("<%= asset_path('top.png') %>");
       width: 100%;
       height:400px;
