@@ -1,4 +1,16 @@
 header{
-  height: 50px;
+  height: auto;
   border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+.header__title{
+  padding: 0 12px;
+}
+
+.header__icon-img{
+  width: 48px;
+  height: 40px;
+  margin: 4px;
+  display: flex;
+  align-items: center;
 }
