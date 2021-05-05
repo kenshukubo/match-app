@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      パスワード再発行
+    </h1>
+    <%= form_for(resource, as: resource_name, url: user_password_path, html: { method: :post }) do |f| %>
+      <div class="form">
+        <div class="field">
+          <%= f.email_field :email, type: "text", :placeholder => "example@matchapp.jp", required: "required" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="button-wrapper">
+          <%= f.submit "メールを送信", class:"app-button conversion" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="single-page">
+    <h1>
+      ログインする
+    </h1>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form">
+        <div class="field">
+          <div class="label">
+            <label>
+              メールアドレス
+            </label>
+          </div>
+          <%= f.email_field :email, type: "text", :placeholder => "example@matchapp.jp", required: "required" %>
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              パスワード
+            </label>
+          </div>
+          <%= f.password_field :password, type: "text", :placeholder => "パスワード", required: "required" %>
+        </div>
+
+        <div class="field">
+          <div class="button-wrapper">
+            <%= f.submit "ログインする", class:"app-button conversion" %>
+          </div>
+        </div>
+
+        <div>
+          <%= link_to "パスワードをお忘れの方", new_password_path(resource_name), class:"forget-password-link"  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
