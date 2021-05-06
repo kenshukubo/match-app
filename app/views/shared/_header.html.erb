@@ -1,9 +1,38 @@
 <header>
   <div class="container">
-    <div class="header__title">
-      <%= link_to root_path do %>
-        <%= image_tag "header-icon", class:"header__icon-img" %>
+    <div class="header-title">
+      <%= link_to root_path, class:"header-icon-wrapper" do %>
+        <%= image_tag "header-icon", class:"header-icon-img" %>
       <% end %>
+      <%# <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"" %>
     </div>
+
+    <button type="button" class="drawer-toggle drawer-hamburger">
+      <span class="sr-only">toggle navigation</span>
+      <span class="drawer-hamburger-icon"></span>
+    </button>
+
+    <nav class="drawer-nav" role="navigation">
+      <ul class="drawer-menu">
+        <li>
+          <a class="drawer-brand" href="#">
+            <button type="button" class="drawer-toggle drawer-hamburger">
+              <span class="sr-only">toggle navigation</span>
+              <span class="drawer-hamburger-icon"></span>
+            </button>
+          </a>
+        </li>
+        <li><a class="drawer-menu-item" href="#">Nav1</a></li>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
+
+<script>
+$(document).ready(function() {
+  $('.drawer').drawer();
+});
+</script>

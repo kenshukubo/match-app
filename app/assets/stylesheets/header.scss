@@ -3,14 +3,32 @@ header{
   border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
-.header__title{
+header > .container{
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.header-title{
+  display: flex;
+  align-items: center;
   padding: 0 12px;
 }
 
-.header__icon-img{
+.header-icon-img{
   width: 48px;
   height: 40px;
   margin: 4px;
   display: flex;
   align-items: center;
+}
+
+.drawer-hamburger{
+  position: unset!important;
+  z-index: 1!important;
+}
+
+.drawer-brand{
+  display: flex!important;
+  justify-content: flex-end!important;
 }
