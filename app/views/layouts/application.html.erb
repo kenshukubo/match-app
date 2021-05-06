@@ -7,13 +7,11 @@
   <body class="drawer drawer--right">
     <%= render "shared/header" %>
     <% if flash.any? %>
-        <% flash.each do |key, value| %>
-          <div class="flash alert-<%= key %>">
-            <%= content_tag(:div, value, class: "#{key}") %>
-          </div>
-        <% end %>
-    <% else %>
-      <div id="ie-alert__wrapper"></div>
+      <% flash.each do |key, value| %>
+        <div class="flash alert-<%= key %>">
+          <%= content_tag(:div, value, class: "#{key}") %>
+        </div>
+      <% end %>
     <% end %>
 
     <%= yield %>
