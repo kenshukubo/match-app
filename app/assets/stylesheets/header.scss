@@ -26,6 +26,9 @@ header > .container{
 .drawer-hamburger{
   position: unset!important;
   z-index: 1!important;
+  display: flex!important;
+  align-items: center!important;
+  width: 32px!important;
 }
 
 .drawer-brand{
