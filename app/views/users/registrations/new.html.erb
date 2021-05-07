@@ -32,6 +32,10 @@
           <%= f.password_field :password_confirmation, type:"password", :placeholder => "確認用のパスワード", required: "required" %>
         </div>
 
+        <div>
+          <%= link_to "確認メールが届かない", new_user_confirmation_path, class:"forget-link"  %>
+        </div>
+
         <div class="regist-attention-text-wrapper">
           <p>
             ※利用規約、プライバシーポリシーに同意の上ご利用ください
@@ -43,6 +47,7 @@
             <%= f.submit "上記に同意して登録する", class:"app-button conversion" %>
           </div>
         </div>
+
       </div>
     <% end %>
   </div>

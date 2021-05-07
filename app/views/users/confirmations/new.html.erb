@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      確認メールを送信する
+    </h1>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "shared/error_messages", resource: resource %>
+      <div class="form">
+        <div class="field">
+          <%= f.email_field :email, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="button-wrapper">
+          <%= f.submit "メールを送信", class:"app-button conversion" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

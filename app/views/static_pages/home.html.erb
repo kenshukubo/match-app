@@ -1,13 +1,17 @@
 <div class="container">
   <div class="top">
-    <div class="top__background">
-      <div class="top__main">
-        <p class="top__desc">今日・すぐに・合コンができる</p>
-        <h1 class="top__title">MatchApp</h1>
-        <%= link_to "新規登録はこちら", new_user_registration_path, class:"top__signup-btn top__btn" %>
-        <%= link_to "ログイン", new_user_session_path, class:"top__signin-btn top__btn" %>
+    <% unless current_user %>
+      <div class="top__background">
+        <div class="top__main">
+          <p class="top__desc">今日・すぐに・合コンができる</p>
+          <h1 class="top__title">MatchApp</h1>
+          <%= link_to "新規登録はこちら", new_user_registration_path, class:"top__signup-btn top__btn" %>
+          <%= link_to "ログイン", new_user_session_path, class:"top__signin-btn top__btn" %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      
+    <% end %>
   </div>
 </div>
 
