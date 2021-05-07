@@ -13,7 +13,7 @@
               メールアドレス
             </label>
           </div>
-          <%= f.email_field :email, type: "text", :placeholder => "example@matchapp.jp", required: "required" %>
+          <%= f.email_field :email, type: "email", :placeholder => "example@matchapp.jp", required: "required" %>
         </div>
         <div class="field">
           <div class="label">
@@ -21,7 +21,7 @@
               パスワード
             </label>
           </div>
-          <%= f.password_field :password, type: "text", :placeholder => "パスワード", required: "required" %>
+          <%= f.password_field :password, type:"password", :placeholder => "パスワード", required: "required" %>
         </div>
         <div class="field">
           <div class="label">
@@ -29,7 +29,7 @@
               確認用のパスワード
             </label>
           </div>
-          <%= f.password_field :password_confirmation, type: "text", :placeholder => "確認用のパスワード", required: "required" %>
+          <%= f.password_field :password_confirmation, type:"password", :placeholder => "確認用のパスワード", required: "required" %>
         </div>
 
         <div class="regist-attention-text-wrapper">
