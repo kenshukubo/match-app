@@ -1,0 +1,160 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      room: "部屋"
+      user_profile: "プロフィール"
+      ticket: "チケット"
+      user_tag: "タグ"
+      tag: "タグ"
+    attributes:
+      user:
+        title: "タイトル"
+        name: "名前"
+        email: "メールアドレス"
+        icon: "ユーザーアイコン"
+        introduction: "自己紹介"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "Loginを記憶"
+        user_tag: "タグ"
+      room:
+        code: "入室コード"
+        name: "部屋名"
+        description: "紹介文"
+        reserved_at: "開催予定日時"
+        end_at: "終了時刻"
+        duration: "セッションの長さ"
+      sale_profile:
+        auto_message_content: "足あとメッセージ"
+        audio: "サンプルボイス"
+        audio_duration: "サンプルボイス"
+      sale_profiles:
+        auto_message_content: "足あとメッセージ"
+        audio: "サンプルボイス"
+        audio_duration: "サンプルボイス"
+      user_profile: 
+        name: "ユーザー名"
+        introduction: "自己紹介"
+      ticket: 
+        price: "出品価格"
+        title: "出品タイトル"
+        coach_ticket_category_id: "出品カテゴリ"
+      tickets: 
+        price: "出品価格"
+        title: "出品タイトル"
+        description: "サービス内容"
+        coach_ticket_category_id: "出品カテゴリ"
+      game_post: 
+        comment: "コメント"
+    errors:
+      messages:
+        common: 
+          error: "リクエストされた処理に失敗しました"
+
+  enums:
+    user_profile:
+      list_status:
+        listed: ""
+        unlisted: "リストNG"
+      sale_status:
+        disable: 販売停止中
+        onsale: 販売中
+      face_status:
+        show: 有
+        hide: 無
+      auto_message_status:
+        no_sending: "OFF"
+        sending: "ON"
+      trial_purchase_discount_status:
+        no_discount: "OFF"
+        discounting: "ON"
+    sale_profile:
+      list_status:
+        listed: ""
+        unlisted: "リストNG"
+      sale_status:
+        disable: 販売停止中
+        onsale: 販売中
+      face_status:
+        show: 有
+        hide: 無
+      auto_message_status:
+        no_sending: "OFF"
+        sending: "ON"
+      trial_purchase_discount_status:
+        no_discount: "OFF"
+        discounting: "ON"
+      domain: 
+        game_room: GameRoom
+        game_coach: GameCoach
+      special_event_availability_status:
+        available: 有
+        not_available: 無
+    coin_history:
+      kind:
+        purchase: コイン購入
+        ticket_payment: チケット購入
+        refund_payment: チケット代の返金
+        gift_refund_payment: ギフト代の返金
+        gift_payment: ギフト購入
+        registration_reward: 新規登録キャンペーン報酬
+        line_reward: LINEアカウント連携報酬
+        purchase_with_revenue: 売上からコイン購入
+        tournament_reward: 大会報酬
+    ticket:
+      kind:
+        per_hour: 1時間
+        half_hour: 30分
+      sale_status:
+        disable: 販売停止中
+        onsale: 販売中
+      domain: 
+        game_room: GameRoom
+        game_coach: GameCoach
+    user_ticket:
+      status:
+        before_using: 未使用
+        used: 利用済み
+      purchased_ticket_kind:
+        per_hour: 1時間
+        half_hour: 30分
+    user_revenue:
+      status:
+        payout_requested: 振込申請中
+    user_payout:
+      kind:
+        google_form: グーグルフォーム
+      status:
+        requested: 申請中
+        paid: 振込済
+        pending: ペンディング
+        rejected: 申請却下（運営チャットよりご連絡ください）
+      kind:
+        bank: 銀行振込
+        amazon_gift: Amazonギフト
+        paypal: PayPal
+    user_rating:
+      kind:
+        player_rating:    出品評価
+        customer_rating:  購入評価
+      status:
+        active_rate: 有効
+        invalid_rate: 無効
+        delete_requested: 異議申立中
+    violation_report:
+      kind:
+        impersonation: なりすまし
+        contrary_to_morality: 公序良俗に反する投稿
+        slandering: 誹謗中傷
+        annoying: 迷惑行為
+        other: その他
+    game_post: 
+      kind:
+        now: "いまから (1時間後に自動締め切りとなります)"
+        today: "今日 (5時間後に自動締め切りとなります)"
+        all_time: "指定なし"
+      user_type:
+        purchase_user: "購入したい"
+        player_user: "出品しています"

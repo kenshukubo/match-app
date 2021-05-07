@@ -4,6 +4,7 @@
       パスワード再発行
     </h1>
     <%= form_for(resource, as: resource_name, url: user_password_path, html: { method: :post }) do |f| %>
+      <%= render "shared/error_messages", resource: resource %>
       <div class="form">
         <div class="field">
           <%= f.email_field :email, type: "text", :placeholder => "example@matchapp.jp", required: "required" %>

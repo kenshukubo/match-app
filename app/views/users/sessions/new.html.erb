@@ -5,6 +5,7 @@
       ログインする
     </h1>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "shared/error_messages", resource: resource %>
       <div class="form">
         <div class="field">
           <div class="label">
