@@ -58,9 +58,10 @@ ja:
       sex:
         male: 男性
         female: 女性
-      sale_status:
-        disable: 販売停止中
-        onsale: 販売中
+      job:
+        student: 学生
+        banker: 金融
+        nurse: 看護師
       face_status:
         show: 有
         hide: 無

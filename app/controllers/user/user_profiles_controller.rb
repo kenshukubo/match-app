@@ -7,5 +7,6 @@ class User::UserProfilesController < ApplicationController
   end
 
   def update
+    @user_profile = current_user.user_profile
   end
 end

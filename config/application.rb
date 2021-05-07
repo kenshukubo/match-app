@@ -28,9 +28,10 @@ module MatchApp
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
-    #
     config.time_zone = 'Tokyo'
-    config.i18n.default_locale = :ja
+    config.active_record.default_timezone = :local
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :ja    
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
