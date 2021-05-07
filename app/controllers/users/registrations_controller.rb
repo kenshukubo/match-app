@@ -12,6 +12,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    return unless @user.id.present?
+
+    begin
+      ActiveRecord::Base.transaction do
+        UserProfile.create!(
+          user: @user,
+          name: "ゲストさん",
+          identified_char: SecureRandom.uuid
+        )
+      end
+    rescue => error
+      p error
+      flash[:alert] = "ユーザーの作成に失敗しました"
+      redirect_to root_path
+      return
+    end  
   end
 
   # GET /resource/edit
