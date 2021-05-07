@@ -14,10 +14,10 @@ class User::UserProfilesController < ApplicationController
       age: user_profile_params[:age],
       job: user_profile_params[:job],
     )
-      flash[:success] = "更新が完了しました。"
+      flash[:notice] = "更新が完了しました。"
       redirect_to edit_user_profile_path
     else
-      flash[:danger] = "更新に失敗しました。"
+      flash[:alert] = "更新に失敗しました。"
       edit_user_profile_path
     end
   end
