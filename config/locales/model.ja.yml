@@ -55,9 +55,9 @@ ja:
 
   enums:
     user_profile:
-      list_status:
-        listed: ""
-        unlisted: "リストNG"
+      sex:
+        male: 男性
+        female: 女性
       sale_status:
         disable: 販売停止中
         onsale: 販売中
@@ -65,33 +65,6 @@ ja:
         show: 有
         hide: 無
       auto_message_status:
-        no_sending: "OFF"
-        sending: "ON"
-      trial_purchase_discount_status:
-        no_discount: "OFF"
-        discounting: "ON"
-    sale_profile:
-      list_status:
-        listed: ""
-        unlisted: "リストNG"
-      sale_status:
-        disable: 販売停止中
-        onsale: 販売中
-      face_status:
-        show: 有
-        hide: 無
-      auto_message_status:
-        no_sending: "OFF"
-        sending: "ON"
-      trial_purchase_discount_status:
-        no_discount: "OFF"
-        discounting: "ON"
-      domain: 
-        game_room: GameRoom
-        game_coach: GameCoach
-      special_event_availability_status:
-        available: 有
-        not_available: 無
     coin_history:
       kind:
         purchase: コイン購入
