@@ -54,11 +54,44 @@
   background: #f582ae;
 }
 
+.user-profile__preview-box-wrapper{
+  margin: 16px auto;
+  max-width: 160px;
+  border-radius: 50%;
+  position: relative;
+  min-width: 160px;
+  &:before{
+      display: block;
+      content: '';
+      padding-top: 100%;
+  }
+}
+
+.user-profile__preview-box{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  border: 1px solid #eee;
+  border-radius: 50%;
+}
+
 .user-profile__file-field{
   display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .user-profile__file-field-label{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   display: flex;
   align-items: center;

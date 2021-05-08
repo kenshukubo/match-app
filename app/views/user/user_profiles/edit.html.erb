@@ -40,6 +40,27 @@
           </div>
           <%= f.select :job, UserProfile.jobs_i18n.keys.map { |k| [UserProfile.jobs_i18n[k], k]}, {prompt: "選択してください"} %>
         </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              自分のプロフィール画像
+            </label>
+          </div>
+
+          <div class="user-profile__preview-box-wrapper">
+            <div class="user-profile__preview-box" id='preview_user_profile_img'>
+              <style>
+                #preview_user_profile_img{
+                  background-image: url("<%= current_user.user_profile.image.url.html_safe %>");
+                }
+              </style>
+            </div>
+            <label for="user_profile_img" class="user-profile__file-field-label">
+              <%= embedded_svg("upload.svg") %>
+            </label>
+            <%= f.file_field :image, class:"user-profile__file-field", id:'user_profile_img' %>
+          </div>
+        </div>
 
         <div class="field">
           <div class="button-wrapper">
@@ -51,3 +72,49 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$( document ).ready(function(){
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          url = 'url("' + e.target.result + '")';
+          $('#preview_user_profile_img').css('background-image', url);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // プロフィールアイコン画像
+    $("#user_profile_img").change(function(){
+      // $('#img_prev').removeClass('hidden');
+      var maxExceededMessage = "1-MB以下の画像をアップロードしてください。";
+      var extErrorMessage = "推奨されている画像形式はjpg, jpeg, pngです。それ以外の場合、正しく保存されないことがあります";
+      var allowedExtension = ["jpg", "jpeg", "png"];
+
+      var extName;
+      var maxFileSize = 10;
+      var sizeExceeded = false;
+      var extError = false;
+
+      $.each(this.files, function(i, file){
+        if (file.size && maxFileSize && file.size/1024/1024 > maxFileSize) {sizeExceeded=true;};
+        extName = file.name.split('.').pop();
+        if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
+      });
+      if (sizeExceeded) {
+        window.alert(maxExceededMessage);
+        $(file).val('');
+        return
+      };   
+      if (extError) {
+        window.alert(extErrorMessage);
+      };
+      readURL(this);
+    });
+
+});
+</script>
