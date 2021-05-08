@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      合コンをセッティングする
+    </h1>
+    <%= form_with model: @post, url: posts_path, local: true, method: :post do |f| %>
+      <div class="form">
+        <div class="field">
+          <div class="label">
+            <label>
+              場所
+            </label>
+          </div>
+          <%= f.text_field :place, type: "text", :placeholder => "東京駅周辺" %>
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              人数
+            </label>
+          </div>
+          <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              時間帯
+            </label>
+          </div>
+          <%= f.datetime_select :time %>〜
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              ひとこと
+            </label>
+          </div>
+          <%= f.text_field :detail, type: "text", :placeholder => "19時から暇な方一緒に飲みましょう！" %>
+        </div>
+
+        <div class="field">
+          <div class="button-wrapper">
+            <%= f.submit "次へ（メンバーを選ぶ）", class:"app-button next" %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
