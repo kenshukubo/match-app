@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :social_profiles, only: :destroy
       resource :user_profile, only: [:edit, :update, :show]
       resources :notifications, only: [:index]
+      resources :posts
       resources :teams
       resources :requests
       resource :ratings
