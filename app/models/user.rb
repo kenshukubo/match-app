@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-  devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable, :omniauthable, :confirmable, omniauth_providers: %i[line]
+  devise :invitable, :database_authenticatable, :registerable,
+        :recoverable, :rememberable, :validatable, :omniauthable, :confirmable, omniauth_providers: %i[line], invite_for: 24.hours
 
   has_one  :user_profile, dependent: :destroy
   has_one  :post, dependent: :destroy
