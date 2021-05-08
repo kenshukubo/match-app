@@ -6,32 +6,35 @@
       <% end %>
     </div>
 
-    <button type="button" class="drawer-toggle drawer-hamburger">
-      <span class="sr-only">toggle navigation</span>
-      <span class="drawer-hamburger-icon"></span>
-    </button>
+    <div class="header-right">
+      <%= image_tag "bell.png", class:"notification-img" %>
+      <button type="button" class="drawer-toggle drawer-hamburger">
+        <span class="sr-only">toggle navigation</span>
+        <span class="drawer-hamburger-icon"></span>
+      </button>
 
-    <nav class="drawer-nav" role="navigation">
-      <ul class="drawer-menu">
-        <li>
-          <a class="drawer-brand" href="#">
-            <button type="button" class="drawer-toggle drawer-hamburger">
-              <span class="sr-only">toggle navigation</span>
-              <span class="drawer-hamburger-icon"></span>
-            </button>
-          </a>
-        </li>
-        <li>
-          <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
-        </li>
-        <li>
-          <%= link_to "主催", new_post_path, class:"drawer-menu-item" %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
-        </li>
-      </ul>
-    </nav>
+      <nav class="drawer-nav" role="navigation">
+        <ul class="drawer-menu">
+          <li>
+            <a class="drawer-brand" href="#">
+              <button type="button" class="drawer-toggle drawer-hamburger">
+                <span class="sr-only">toggle navigation</span>
+                <span class="drawer-hamburger-icon"></span>
+              </button>
+            </a>
+          </li>
+          <li>
+            <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
+          </li>
+          <li>
+            <%= link_to "主催", new_post_path, class:"drawer-menu-item" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
