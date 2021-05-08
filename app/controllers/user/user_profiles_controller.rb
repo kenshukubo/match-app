@@ -13,6 +13,7 @@ class User::UserProfilesController < ApplicationController
       sex: user_profile_params[:sex],
       age: user_profile_params[:age],
       job: user_profile_params[:job],
+      image: user_profile_params[:image],
     )
       flash[:notice] = "更新が完了しました。"
       redirect_to edit_user_profile_path
