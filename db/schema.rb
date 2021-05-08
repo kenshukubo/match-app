@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_145331) do
+ActiveRecord::Schema.define(version: 2021_05_08_153002) do
 
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "target_user_id"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2021_05_08_145331) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
+  end
+
+  create_table "post_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.boolean "is_confirmed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_members_on_post_id"
+    t.index ["user_id"], name: "index_post_members_on_user_id"
   end
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -89,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_145331) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "post_members", "posts"
+  add_foreign_key "post_members", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"

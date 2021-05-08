@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one  :post, dependent: :destroy
   has_many :notifications, foreign_key: 'target_user_id', dependent: :destroy
   has_one  :user_notification, dependent: :destroy
+  has_many :post_members, dependent: :destroy
 
   def self.dummy_email(social)
     "#{social.uid}-#{social.provider}@example.com"
