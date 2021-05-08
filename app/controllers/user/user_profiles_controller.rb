@@ -15,10 +15,10 @@ class User::UserProfilesController < ApplicationController
       job: user_profile_params[:job],
       image: user_profile_params[:image],
     )
-      flash[:notice] = "更新が完了しました。"
-      redirect_to edit_user_profile_path
+      flash[:notice] = "🥳プロフィール更新完了！"
+      redirect_to root_path
     else
-      flash[:alert] = "更新に失敗しました。"
+      flash[:alert] = "更新に失敗しました"
       edit_user_profile_path
     end
   end
