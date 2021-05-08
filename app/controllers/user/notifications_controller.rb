@@ -1,4 +1,4 @@
-class User::NotificationsController < User::ApplicationController
+class User::NotificationsController < ApplicationController
 
   def index
   end

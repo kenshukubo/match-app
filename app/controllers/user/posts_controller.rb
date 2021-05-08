@@ -6,7 +6,7 @@ class User::PostsController < ApplicationController
   def create
     @post = current_user.build_post(post_params)
     if @post.save
-      redirect_to new_post_path, notice: 'メンバーを選びましょう'
+      redirect_to new_post_member_path, notice: 'メンバーを選びましょう'
     else
       redirect_to new_post_path, alert: '作成に失敗しました'
     end

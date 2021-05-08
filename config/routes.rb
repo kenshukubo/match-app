@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resource :user_profile, only: [:edit, :update, :show]
       resources :notifications, only: [:index]
       resources :posts
-      resources :teams
+      resource :post_member, only: [:new]
       resources :requests
       resource :ratings
       resource :rooms, path: :chat, only: [:show]
