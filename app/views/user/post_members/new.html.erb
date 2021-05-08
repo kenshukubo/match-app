@@ -3,5 +3,39 @@
     <h1>
       メンバーを招待する
     </h1>
+
+    <div class="lines-on-sides">
+      <span>アカウントを持っていない人を招待する</span>
+    </div>
+
+    <div class="lines-on-sides">
+      <span>すでにアカウントを持っている人を招待する</span>
+    </div>
   </div>
 </div>
+
+<style>
+.lines-on-sides{
+  position: relative;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+.lines-on-sides:before {
+  content: "";
+  display: block;
+  border-top: solid 1px #ccc;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+.lines-on-sides span {
+  background-color: #fff;
+  padding: 0 20px;
+  position: relative;
+  z-index: 1;
+  font-size: 14px;
+}
+</style>
