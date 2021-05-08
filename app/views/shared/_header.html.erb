@@ -7,7 +7,12 @@
     </div>
 
     <div class="header-right">
-      <%= image_tag "bell.png", class:"notification-img" %>
+      <div id="notification">
+          <notification />
+      </div>
+      <%= javascript_pack_tag 'notification' %>
+      <%= stylesheet_pack_tag 'notification' %>
+
       <button type="button" class="drawer-toggle drawer-hamburger">
         <span class="sr-only">toggle navigation</span>
         <span class="drawer-hamburger-icon"></span>
