@@ -13,4 +13,7 @@ class User < ApplicationRecord
     "#{social.uid}-#{social.provider}@example.com"
   end
 
+  def invite?
+    PostMember.find_by(post: self.post).present?
+  end
 end

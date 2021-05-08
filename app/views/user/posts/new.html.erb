@@ -1,12 +1,13 @@
 <div class="container">
   <div class="single-page">
     <% if current_user.post.present? %>
-      <h1>
-        すでに募集が作成されています
-      </h1>
+      <% if current_user.invite? %>
+        <h1>すでに募集が作成されています</h1>
+      <% else %>
+        <h1>作成した募集にメンバーを<%= link_to "招待", new_post_member_path, class:"post-select-link", style:"font-weight: 400;" %>しましょう！</h1>
+      <% end %>
       <div class="post-select-link-wrapper">
-        <%= link_to "募集を編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>
-        <%= link_to "募集を削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
+        募集を<%= link_to "編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
       </div>
     <% else %>
       <h1>
@@ -60,7 +61,8 @@
 <style>
 .post-select-link-wrapper{
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
 }
 .post-select-link{
   text-decoration: underline;
