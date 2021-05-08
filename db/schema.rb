@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_111207) do
+ActiveRecord::Schema.define(version: 2021_05_08_145331) do
+
+  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "target_user_id"
+    t.text "message"
+    t.string "image"
+    t.string "url"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
+  end
 
   create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -34,6 +45,16 @@ ActiveRecord::Schema.define(version: 2021_05_08_111207) do
     t.string "refresh_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "unchecked_num", default: 0, null: false
+    t.datetime "message_last_emailed_at"
+    t.datetime "message_last_lined_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_notifications_on_user_id"
   end
 
   create_table "user_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,5 +90,6 @@ ActiveRecord::Schema.define(version: 2021_05_08_111207) do
   end
 
   add_foreign_key "posts", "users"
+  add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"
 end
