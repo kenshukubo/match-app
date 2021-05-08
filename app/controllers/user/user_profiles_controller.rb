@@ -15,7 +15,11 @@ class User::UserProfilesController < ApplicationController
       job: user_profile_params[:job],
       image: user_profile_params[:image],
     )
-      flash[:notice] = "🥳プロフィール更新完了！"
+      if @user_profile.has_valid_profile?
+        flash[:notice] = "🥳プロフィール更新完了！"
+      else
+        flash[:notice] = "🤮プロフィール情報が不足しています"
+      end
       redirect_to root_path
     else
       flash[:alert] = "更新に失敗しました"
