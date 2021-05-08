@@ -25,13 +25,13 @@
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
     width: 100%;
-    border: 2px solid #8bd3dd;
+    border: 2px solid #172c66;
   }
   select{
     padding: 10px 12px;
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
-    border: 2px solid #8bd3dd;
+    border: 2px solid #172c66;
   }
 }
 
@@ -100,4 +100,8 @@
     fill: rgba(0,0,0,.1);
     width: 80px;
   }
+}
+
+.icon-field{
+  margin-bottom: 48px;
 }
