@@ -1,48 +1,68 @@
 <div class="container">
   <div class="single-page">
-    <h1>
-      合コンをセッティングする
-    </h1>
-    <%= form_with model: @post, url: posts_path, local: true, method: :post do |f| %>
-      <div class="form">
-        <div class="field">
-          <div class="label">
-            <label>
-              場所
-            </label>
+    <% if current_user.post.present? %>
+      <h1>
+        すでに募集が作成されています
+      </h1>
+      <div class="post-select-link-wrapper">
+        <%= link_to "募集を編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>
+        <%= link_to "募集を削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
+      </div>
+    <% else %>
+      <h1>
+        合コンをセッティングする
+      </h1>
+      <%= form_with model: @post, url: posts_path, local: true, method: :post do |f| %>
+        <div class="form">
+          <div class="field">
+            <div class="label">
+              <label>
+                場所
+              </label>
+            </div>
+            <%= f.text_field :place, type: "text", :placeholder => "東京駅周辺" %>
           </div>
-          <%= f.text_field :place, type: "text", :placeholder => "東京駅周辺" %>
-        </div>
-        <div class="field">
-          <div class="label">
-            <label>
-              人数
-            </label>
+          <div class="field">
+            <div class="label">
+              <label>
+                人数
+              </label>
+            </div>
+            <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
           </div>
-          <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
-        </div>
-        <div class="field">
-          <div class="label">
-            <label>
-              時間帯
-            </label>
+          <div class="field">
+            <div class="label">
+              <label>
+                時間帯
+              </label>
+            </div>
+            <%= f.datetime_select :time, minute_step: 10 %>〜
           </div>
-          <%= f.datetime_select :time %>〜
-        </div>
-        <div class="field">
-          <div class="label">
-            <label>
-              ひとこと
-            </label>
+          <div class="field">
+            <div class="label">
+              <label>
+                ひとこと
+              </label>
+            </div>
+            <%= f.text_field :detail, type: "text", :placeholder => "19時から暇な方一緒に飲みましょう！" %>
           </div>
-          <%= f.text_field :detail, type: "text", :placeholder => "19時から暇な方一緒に飲みましょう！" %>
-        </div>
 
-        <div class="field">
-          <div class="button-wrapper">
-            <%= f.submit "次へ（メンバーを選ぶ）", class:"app-button next" %>
+          <div class="field">
+            <div class="button-wrapper">
+              <%= f.submit "次へ（メンバーを選ぶ）", class:"app-button next" %>
+            </div>
           </div>
-        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
+
+<style>
+.post-select-link-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+.post-select-link{
+  text-decoration: underline;
+}
+</style>

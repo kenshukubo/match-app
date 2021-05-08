@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      合コンを編集する
+    </h1>
+    <%= form_with model: @post, url: post_path, local: true, method: :patch do |f| %>
+      <div class="form">
+        <div class="field">
+          <div class="label">
+            <label>
+              場所
+            </label>
+          </div>
+          <%= f.text_field :place, type: "text", :placeholder => "東京駅周辺" %>
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              人数
+            </label>
+          </div>
+          <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              時間帯
+            </label>
+          </div>
+          <%= f.datetime_select :time, minute_step: 10 %>〜
+        </div>
+        <div class="field">
+          <div class="label">
+            <label>
+              ひとこと
+            </label>
+          </div>
+          <%= f.text_field :detail, type: "text", :placeholder => "19時から暇な方一緒に飲みましょう！" %>
+        </div>
+
+        <div class="field">
+          <div class="button-wrapper">
+            <%= f.submit "更新する", data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"app-button conversion" %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
