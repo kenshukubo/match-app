@@ -20,14 +20,15 @@
     box-sizing: border-box;
   }
   input[type=text],input[type=password],input[type=email]{
-    padding: .67857143em 1em;
+    padding: 10px 12px;
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
     width: 100%;
     border: 2px solid #8bd3dd;
+    -webkit-appearance: none;
   }
   select{
-    padding: .67857143em 1em;
+    padding: 10px 12px;
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
     border: 2px solid #8bd3dd;
@@ -45,10 +46,26 @@
   border: 2px solid #777;
   border-radius: 4px;
   font-size: 1rem;
+  -webkit-appearance: none;
 }
 
 .conversion{
   color: #fff;
   border-color: #f582ae;
   background: #f582ae;
+}
+
+.user-profile__file-field{
+  display: none;
+}
+
+.user-profile__file-field-label{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg{
+    fill: rgba(0,0,0,.1);
+    width: 120px;
+  }
 }
