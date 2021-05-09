@@ -18,8 +18,15 @@
 
       <div v-if="!selectedMenu">
         <template v-for="(notification, index) in usuallNotifications">
-          <div :key="`notification-${index}`">
-            <span>{{notification.message}}</span>
+          <div class="notification-item" :key="`notification-${index}`">
+            <div class="notification-img-wrapper">
+              <img :src="notificationImage" class="notification-item-img">
+            </div>
+            <div class="notification-text-wrapper">
+              <div>
+                <span>{{notification.message}}</span>
+              </div>
+            </div>
           </div>
         </template>
       </div>
@@ -29,6 +36,7 @@
 <script>
 import axios from 'packs/axios'
 import bellImage from 'packs/assets/images/bell.png'
+import inviteImage from 'packs/assets/images/notifications/invite.png'
 
 export default {
   computed: {
@@ -37,11 +45,15 @@ export default {
     },
     selectedAdminNotification(){
       return !!this.selectedMenu ? 'is-active':''
+    },
+    notificationImage(){
+      return inviteImage
     }
   },
   data() {
     return {
       bellImage,
+      inviteImage,
       notificationCount: 0,
       showNotificationList: false,
       selectedMenu: "",
@@ -147,5 +159,26 @@ export default {
 
 .is-active{
   border-bottom: 2px solid #000;
+}
+
+.notification-item{
+  display: flex;
+  padding: 16px;
+  border-top: 1px solid #f2f2f2;
+}
+
+.notification-img-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.notification-item-img{
+  width: 40px;
+}
+
+.notification-text-wrapper{
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
 }
 </style>
