@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           name: "ゲストさん",
           identified_char: SecureRandom.uuid
         )
+        UserNotification.create!(user: @user)
       end
     rescue => error
       p error
