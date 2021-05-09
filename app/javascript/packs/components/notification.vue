@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-notification">
     <div class="header-notification-wrapper">
       <img :src="bellImage" class="notification-img" @click="openNotificationList">
       <span class="header-notification-dot" v-if="NotificationCount > 0"></span>
@@ -55,9 +55,14 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.header-notification{
+  position: relative;
+}
 .header-notification-wrapper{
   position: relative;
   margin-right: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .header-notification-dot{
@@ -77,8 +82,8 @@ export default {
 
 .notification-list-wrapper{
   position: absolute;
-  left: 58%;
-  top: 45px;
+  right: -54px;
+  top: 32px;
   min-width: 300px;
   padding: 8px 0;
   background-color: #fff;
