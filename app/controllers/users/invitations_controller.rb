@@ -26,6 +26,7 @@ class Users::InvitationsController < Devise::InvitationsController
         Notification.create!(
           target_user_id: @user.id,
           message: message,
+          type: "user",
         )
 
         user_notification.unchecked_num += 1

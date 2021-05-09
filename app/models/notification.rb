@@ -4,6 +4,8 @@ class Notification < ApplicationRecord
   validates :message, presence: true
   validate :duplicate_notification
 
+  enum type: { user: 0, admin: 1 }
+
   def duplicate_notification
     errors.add(:message, "が重複しています") if target_user_id.nil? && Notification.find_by(message: message).present?
   end
