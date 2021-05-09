@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_114452) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "type", default: 0
+    t.integer "kind", default: 0
     t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
   end
 
