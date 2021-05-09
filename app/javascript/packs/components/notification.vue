@@ -17,7 +17,31 @@
       </div>
 
       <div v-if="!selectedMenu">
-        <template v-for="(notification, index) in usuallNotifications">
+        <div v-if="!usuallNotifications">
+          <div class="notification-item">
+            <span>ただいま通知はありません</span>
+          </div>
+        </div>
+        <template v-else v-for="(notification, index) in usuallNotifications">
+          <div class="notification-item" :key="`notification-${index}`">
+            <div class="notification-img-wrapper">
+              <img :src="notificationImage" class="notification-item-img">
+            </div>
+            <div class="notification-text-wrapper">
+              <div>
+                <span>{{notification.message}}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div v-else>
+        <div v-if="!!adminNotifications">
+          <div class="notification-item">
+            <span>ただいま通知はありません</span>
+          </div>
+        </div>
+        <template v-else v-for="(notification, index) in adminNotifications">
           <div class="notification-item" :key="`notification-${index}`">
             <div class="notification-img-wrapper">
               <img :src="notificationImage" class="notification-item-img">
@@ -165,6 +189,7 @@ export default {
   display: flex;
   padding: 16px;
   border-top: 1px solid #f2f2f2;
+  font-size: 12px;
 }
 
 .notification-img-wrapper{
@@ -173,7 +198,7 @@ export default {
 }
 
 .notification-item-img{
-  width: 40px;
+  width: 44px;
 }
 
 .notification-text-wrapper{
