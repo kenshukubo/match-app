@@ -49,7 +49,19 @@ export default {
       adminNotifications: [],
     }
   },
+  created() {
+    this.fetchNotificationCount();
+  },
   methods: {
+    async fetchNotificationCount(){
+      var self = this;
+      try {
+        const res = await axios.get("/api/v1/notification_count")
+        self.notificationCount = res.data.notificationCount;
+      } catch(e) {
+        console.log(e)
+      }
+    },
     openNotificationList: function(){
       this.notificationCount = 0;
       if(this.showNotificationList){
@@ -64,7 +76,6 @@ export default {
       try {
         const res = await axios.get("/api/v1/usuall_notifications")
         self.usuallNotifications = res.data.usuallNotifications;
-        sels.notificationCount = res.data.notificationCount;
       } catch(e) {
         console.log(e)
       }
@@ -98,7 +109,7 @@ export default {
 .header-notification-dot{
   position: absolute;
   top: -4px;
-  right: 6px;
+  right: 0px;
   width: 12px;
   height: 12px;
   border-radius: 50%;

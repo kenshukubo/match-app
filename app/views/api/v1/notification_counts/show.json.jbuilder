@@ -1,0 +1,1 @@
+json.notificationCount @notification_count

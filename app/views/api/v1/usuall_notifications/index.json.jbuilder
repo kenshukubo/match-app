@@ -1,2 +1,1 @@
-json.notificationCount @notification_count
 json.usuallNotifications @usuall_notifications

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resource  :stripe_webhook, only: [:create]
       resources :usuall_notifications, only: [:index]
       resources :admin_notifications, only: [:index]
+      resource :notification_count, only: [:show]
     end
   end
 
