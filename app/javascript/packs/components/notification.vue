@@ -15,6 +15,14 @@
           </li>
         </ul>
       </div>
+
+      <div v-if="!selectedMenu">
+        <template v-for="(notification, index) in usuallNotifications">
+          <div :key="`notification-${index}`">
+            <span>{{notification.message}}</span>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -37,9 +45,24 @@ export default {
       NotificationCount: 0,
       showNotificationList: false,
       selectedMenu: "",
+      usuallNotifications: [],
+      adminNotifications: [],
     }
   },
+  created() {
+    this.fetchNotification();
+  },
   methods: {
+    async fetchNotification(){
+      var self = this;
+      try {
+        const res = await axios.get("/api/v1/notifications")
+        self.usuallNotifications = res.data.usuallNotifications;
+        self.adminNotifications = res.data.adminNotifications;
+      } catch(e) {
+        console.log(e)
+      }
+    },
     openNotificationList: function(){
       this.NotificationCount = 0;
       if(this.showNotificationList){

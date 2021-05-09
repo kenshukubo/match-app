@@ -1,0 +1,2 @@
+json.usuallNotifications @usuall_notifications
+json.adminNotifications @admin_notifications
