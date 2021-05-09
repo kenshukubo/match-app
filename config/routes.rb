@@ -32,7 +32,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource  :stripe_checkout_session, only: [:create]
       resource  :stripe_webhook, only: [:create]
-      resources :notifications, only: [:index]
+      resources :usuall_notifications, only: [:index]
+      resources :admin_notifications, only: [:index]
     end
   end
 

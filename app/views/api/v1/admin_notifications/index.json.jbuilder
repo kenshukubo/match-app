@@ -1,0 +1,1 @@
+json.adminNotifications @admin_notifications

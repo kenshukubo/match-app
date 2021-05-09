@@ -2,7 +2,7 @@
   <div class="header-notification">
     <div class="header-notification-wrapper">
       <img :src="bellImage" class="notification-img" @click="openNotificationList">
-      <span class="header-notification-dot" v-if="NotificationCount > 0"></span>
+      <span class="header-notification-dot" v-if="notificationCount > 0"></span>
     </div>
     <div class="notification-list-wrapper" v-if="showNotificationList">
       <div>
@@ -42,37 +42,44 @@ export default {
   data() {
     return {
       bellImage,
-      NotificationCount: 0,
+      notificationCount: 0,
       showNotificationList: false,
       selectedMenu: "",
       usuallNotifications: [],
       adminNotifications: [],
     }
   },
-  created() {
-    this.fetchNotification();
-  },
   methods: {
-    async fetchNotification(){
-      var self = this;
-      try {
-        const res = await axios.get("/api/v1/notifications")
-        self.usuallNotifications = res.data.usuallNotifications;
-        self.adminNotifications = res.data.adminNotifications;
-      } catch(e) {
-        console.log(e)
-      }
-    },
     openNotificationList: function(){
-      this.NotificationCount = 0;
+      this.notificationCount = 0;
       if(this.showNotificationList){
         this.showNotificationList = false;
       }else{
         this.showNotificationList = true;
       }
+      this.fetchNotification();
     },
-    selectNotificationType(type) {
+    async fetchNotification(){
+      var self = this;
+      try {
+        const res = await axios.get("/api/v1/usuall_notifications")
+        self.usuallNotifications = res.data.usuallNotifications;
+        sels.notificationCount = res.data.notificationCount;
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async selectNotificationType(type) {
       this.selectedMenu = type;
+      if(type == "admin"){
+        var self = this;
+        try {
+          const res = await axios.get("/api/v1/admin_notifications")
+          self.adminNotifications = res.data.adminNotifications;
+        } catch(e) {
+          console.log(e)
+        }
+      }
     },
   }
 }
