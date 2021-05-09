@@ -1,7 +1,21 @@
 <template>
-  <div class="header-notification-wrapper">
-    <img :src="bellImage" class="notification-img">
-    <span class="header-notification-dot" v-if="NotificationCount > 0"></span>
+  <div>
+    <div class="header-notification-wrapper">
+      <img :src="bellImage" class="notification-img" @click="openNotificationList">
+      <span class="header-notification-dot" v-if="NotificationCount > 0"></span>
+    </div>
+    <div class="notification-list-wrapper" v-if="showNotificationList">
+      <div>
+        <ul class="notification-menu-wrapper">
+          <li class="notification-menu">
+            <span>通知</span>
+          </li>
+          <li class="notification-menu">
+            <span>お知らせ</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -12,6 +26,16 @@ export default {
     return {
       bellImage,
       NotificationCount: 0,
+      showNotificationList: false,
+    }
+  },
+  methods: {
+    openNotificationList: function(){
+      if(this.showNotificationList){
+        this.showNotificationList = false;
+      }else{
+        this.showNotificationList = true;
+      }
     }
   }
 }
@@ -19,6 +43,7 @@ export default {
 <style scoped lang="scss">
 .header-notification-wrapper{
   position: relative;
+  margin-right: 8px;
 }
 
 .header-notification-dot{
@@ -32,7 +57,30 @@ export default {
 }
 
 .notification-img{
+  cursor: pointer;
   width: 20px;
-  margin-right: 8px;
+}
+
+.notification-list-wrapper{
+  position: absolute;
+  left: 58%;
+  top: 45px;
+  min-width: 300px;
+  padding: 8px 0;
+  background-color: #fff;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.notification-menu-wrapper{
+  display: flex;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.notification-menu{
+  width: 50%;
+  padding: 4px 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
 }
 </style>
