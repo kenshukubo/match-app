@@ -7,10 +7,10 @@
     <div class="notification-list-wrapper" v-if="showNotificationList">
       <div>
         <ul class="notification-menu-wrapper">
-          <li class="notification-menu">
+          <li class="notification-menu" :class="selectedUserNotification" @click="selectNotificationType('')">
             <span>通知</span>
           </li>
-          <li class="notification-menu">
+          <li class="notification-menu" :class="selectedAdminNotification" @click="selectNotificationType('admin')">
             <span>お知らせ</span>
           </li>
         </ul>
@@ -22,11 +22,20 @@
 import bellImage from 'packs/assets/images/bell.png'
 
 export default {
+  computed: {
+    selectedUserNotification(){
+      return !!this.selectedMenu ? '':'is-active'
+    },
+    selectedAdminNotification(){
+      return !!this.selectedMenu ? 'is-active':''
+    }
+  },
   data() {
     return {
       bellImage,
       NotificationCount: 0,
       showNotificationList: false,
+      selectedMenu: "",
     }
   },
   methods: {
@@ -36,7 +45,10 @@ export default {
       }else{
         this.showNotificationList = true;
       }
-    }
+    },
+    selectNotificationType(type) {
+      this.selectedMenu = type;
+    },
   }
 }
 </script>
@@ -82,5 +94,10 @@ export default {
   font-weight: 700;
   font-size: 14px;
   text-align: center;
+  cursor: pointer;
+}
+
+.is-active{
+  border-bottom: 2px solid #000;
 }
 </style>
