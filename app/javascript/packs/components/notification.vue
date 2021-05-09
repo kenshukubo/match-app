@@ -19,6 +19,7 @@
   </div>
 </template>
 <script>
+import axios from 'packs/axios'
 import bellImage from 'packs/assets/images/bell.png'
 
 export default {
@@ -40,6 +41,7 @@ export default {
   },
   methods: {
     openNotificationList: function(){
+      this.NotificationCount = 0;
       if(this.showNotificationList){
         this.showNotificationList = false;
       }else{
