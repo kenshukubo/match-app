@@ -22,11 +22,12 @@ class Users::InvitationsController < Devise::InvitationsController
 
         PostMember.create(user: @user, post: invite_user.post)
 
-        message = "#{invite_user.user_profile.name}に招待されました"
+        message = "#{invite_user.user_profile.name}さんに招待されました"
         Notification.create!(
           target_user_id: @user.id,
           message: message,
-          type: "user",
+          kind: "usually",
+          url: post_path(invite_user.post.id)
         )
 
         user_notification.unchecked_num += 1
