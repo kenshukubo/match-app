@@ -4,8 +4,44 @@
       メンバーを招待する
     </h1>
 
+    <% if current_user.invite_any? %>
+      <div>
+        <span>招待済みメンバー</span>
+        <ul>
+          <% @invited_members.each do |member| %>
+            <li>
+              <span><%= member.email %></span>
+              <% @post_member = PostMember.find_by(user: member, post: current_user.post) %>
+              <%= link_to "削除する", post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="lines-on-sides">
       <span>アカウントを持っていない人を招待する</span>
+    </div>
+
+    <div class="post-member-form">
+      <%= form_for(resource, as: resource_name, url: invitation_path(resource_name)) do |f| %>
+        <%= render "shared/error_messages", resource: resource %>
+        <div class="form">
+          <div class="field">
+            <div class="label">
+              <label>
+                招待する人のメールアドレス
+              </label>
+            </div>
+            <%= f.email_field :email, type: "email", :placeholder => "example@matchapp.jp", required: "required" %>
+          </div>
+          <div class="field">
+            <div class="button-wrapper">
+              <%= f.submit "送信する", class:"app-button conversion" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="lines-on-sides">
@@ -37,5 +73,9 @@
   position: relative;
   z-index: 1;
   font-size: 14px;
+}
+
+.post-member-form{
+  padding: 32px 0;
 }
 </style>

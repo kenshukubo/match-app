@@ -1,7 +1,7 @@
 <div class="container">
   <div class="single-page">
     <% if current_user.post.present? %>
-      <% if current_user.invite? %>
+      <% if current_user.all_member_invite? %>
         <h1>すでに募集が作成されています</h1>
       <% else %>
         <h1>作成した募集にメンバーを<%= link_to "招待", new_post_member_path, class:"post-select-link", style:"font-weight: 400;" %>しましょう！</h1>

@@ -13,7 +13,11 @@ class User < ApplicationRecord
     "#{social.uid}-#{social.provider}@example.com"
   end
 
-  def invite?
+  def invite_any?
     PostMember.find_by(post: self.post).present?
+  end
+
+  def all_member_invite?
+    PostMember.where(post: self.post).count == Post.find_by(user: self).number
   end
 end
