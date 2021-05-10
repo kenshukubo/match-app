@@ -38,12 +38,13 @@ class User::PostsController < ApplicationController
 
         user_ids = PostMember.where(post: @post).pluck(:user_id)
         message = "募集内容が変更されました。チェックしましょう。"
+        category = "change"
 
         user_ids.each do |user_id|
           Notification.create!(
             target_user_id: user_id,
             message: message,
-            category: "change",
+            category: category,
             url: post_path(@post.id)
           )
           user_notification = UserNotification.find_by(user_id: user_id)

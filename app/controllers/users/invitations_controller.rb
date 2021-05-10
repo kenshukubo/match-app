@@ -23,10 +23,12 @@ class Users::InvitationsController < Devise::InvitationsController
         post_member = PostMember.create(user: @user, post: invite_user.post)
 
         message = "#{invite_user.user_profile.name}さんに招待されました"
+        category = "invite"
+
         Notification.create!(
           target_user_id: @user.id,
           message: message,
-          category: "invite",
+          category: category,
           url: edit_post_member_path(post_member.id)
         )
 
