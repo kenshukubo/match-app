@@ -7,7 +7,15 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
-    @invited_members = User.includes(:post_members).where.not(post_members: {id: nil})
+    @invited_members = User
+    .includes(:post_members)
+    .where.not(post_members: {id: nil})
+    .where(post_members: {is_confirmed: false})
+
+    @confirmed_members = User
+    .includes(:post_members)
+    .where.not(post_members: {id: nil})
+    .where(post_members: {is_confirmed: true})
   end
 
   def destroy

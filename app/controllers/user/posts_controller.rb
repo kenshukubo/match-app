@@ -1,7 +1,15 @@
 class User::PostsController < ApplicationController
   def new
     @post = Post.new
-    @invited_members = User.includes(:post_members).where.not(post_members: {id: nil})
+    @invited_members = User
+    .includes(:post_members)
+    .where.not(post_members: {id: nil})
+    .where(post_members: {is_confirmed: false})
+
+    @confirmed_members = User
+    .includes(:post_members)
+    .where.not(post_members: {id: nil})
+    .where(post_members: {is_confirmed: true})
   end
 
   def create
