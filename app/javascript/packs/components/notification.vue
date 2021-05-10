@@ -25,7 +25,7 @@
         <template v-else v-for="(notification, index) in usuallNotifications">
           <div class="notification-item" :key="`notification-${index}`">
             <div class="notification-img-wrapper">
-              <img :src="notificationImage" class="notification-item-img">
+              <img :src="notificationImage(notification.category)" class="notification-item-img">
             </div>
             <div class="notification-text-wrapper">
               <div>
@@ -44,7 +44,7 @@
         <template v-else v-for="(notification, index) in adminNotifications">
           <div class="notification-item" :key="`notification-${index}`">
             <div class="notification-img-wrapper">
-              <img :src="notificationImage" class="notification-item-img">
+              <img :src="notificationImage(notification.category)" class="notification-item-img">
             </div>
             <div class="notification-text-wrapper">
               <div>
@@ -60,6 +60,7 @@
 <script>
 import axios from 'packs/axios'
 import bellImage from 'packs/assets/images/bell.png'
+import changeImage from 'packs/assets/images/notifications/change.png'
 import inviteImage from 'packs/assets/images/notifications/invite.png'
 
 export default {
@@ -70,14 +71,29 @@ export default {
     selectedAdminNotification(){
       return !!this.selectedMenu ? 'is-active':''
     },
-    notificationImage(){
-      return inviteImage
+    notificationImage: function() {
+      return function(category) {
+        switch (category){
+          case "invite":{
+            return inviteImage;
+            break
+          }
+          case "change":{
+            return changeImage;
+            break
+          }
+          default: {
+            return inviteImage;
+          }
+        }
+      }
     }
   },
   data() {
     return {
       bellImage,
       inviteImage,
+      changeImage,
       notificationCount: 0,
       showNotificationList: false,
       selectedMenu: "",
@@ -199,7 +215,7 @@ export default {
 }
 
 .notification-item-img{
-  width: 44px;
+  width: 40px;
 }
 
 .notification-text-wrapper{
