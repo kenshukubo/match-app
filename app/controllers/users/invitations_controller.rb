@@ -20,18 +20,17 @@ class Users::InvitationsController < Devise::InvitationsController
 
         invite_user = User.find(@user.invited_by_id)
 
-        PostMember.create(user: @user, post: invite_user.post)
+        post_member = PostMember.create(user: @user, post: invite_user.post)
 
         message = "#{invite_user.user_profile.name}さんに招待されました"
         Notification.create!(
           target_user_id: @user.id,
           message: message,
           kind: "usually",
-          url: post_path(invite_user.post.id)
+          url: edit_post_member_path(post_member.id)
         )
 
-        user_notification.unchecked_num += 1
-        user_notification.save!
+        user_notification.add_unchecked_notification_count
       end
     rescue => error
       p error
