@@ -4,7 +4,10 @@
       <% if current_user.all_member_invite? %>
         <h1>すでに募集が作成されています</h1>
       <% else %>
-        <h1>作成した募集にメンバーを<%= link_to "招待", new_post_member_path, class:"post-select-link", style:"font-weight: 400;" %>しましょう！</h1>
+        <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう！</h1>
+        <div class="invite-send-btn-wrapper">
+          <%= link_to "✉ 招待する", new_post_member_path, class:"invite-send-btn app-button conversion" %>
+        </div>
       <% end %>
       <div class="post-select-link-wrapper">
         募集を<%= link_to "編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
@@ -59,6 +62,16 @@
 </div>
 
 <style>
+.invite-send-btn-wrapper{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.invite-send-btn{
+  background: #001858;
+  border-color: #001858;
+}
+
 .post-select-link-wrapper{
   display: flex;
   align-items: center;

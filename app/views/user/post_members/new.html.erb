@@ -5,7 +5,7 @@
     </h1>
 
     <% if current_user.invite_any? %>
-      <div>
+      <div class="invited-member-list">
         <span>招待中メンバー</span>
         <ul>
           <% @invited_members.each do |member| %>
@@ -51,6 +51,10 @@
 </div>
 
 <style>
+.invited-member-list{
+  margin-bottom: 24px;
+}
+
 .lines-on-sides{
   position: relative;
   top: 0;
