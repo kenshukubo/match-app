@@ -24,6 +24,9 @@
     <div class="lines-on-sides">
       <span>アカウントを持っていない人を招待する</span>
     </div>
+    <div class="sp-sub-text-wrapper">
+      <span class="sp-sub-title">アカウントを持っていない人を招待する</span>
+    </div>
 
     <div class="post-member-form">
       <%= form_for(resource, as: resource_name, url: invitation_path(resource_name)) do |f| %>
@@ -48,6 +51,9 @@
 
     <div class="lines-on-sides">
       <span>すでにアカウントを持っている人を招待する</span>
+    </div>
+    <div class="sp-sub-text-wrapper">
+      <span class="sp-sub-title">すでにアカウントを持っている人を招待する</span>
     </div>
   </div>
 </div>
@@ -75,6 +81,24 @@
   position: relative;
   z-index: 1;
   font-size: 14px;
+}
+
+.sp-sub-text-wrapper{
+  display: none;
+}
+
+@media(max-width: 567px){
+  .lines-on-sides{
+    display: none;
+  }
+  .sp-sub-text-wrapper{
+    display: block;
+    font-size: 14px;
+  }
+  .sp-sub-title{
+    border-left: 2px solid #f582ae;
+    padding-left: 12px;
+  }
 }
 
 .post-member-form{
