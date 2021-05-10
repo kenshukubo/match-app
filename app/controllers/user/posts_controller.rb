@@ -27,15 +27,32 @@ class User::PostsController < ApplicationController
 
   def update
     @post = current_user.post
-    if @post.update!(
-      place: post_params[:place],
-      number: post_params[:number],
-      time: post_params[:time],
-      detail: post_params[:detail],
-    )
+    begin
+      ActiveRecord::Base.transaction do
+        @post.update!(
+          place: post_params[:place],
+          number: post_params[:number],
+          
+          detail: post_params[:detail],
+        )
+
+        user_ids = PostMember.where(post: @post).pluck(:user_id)
+        message = "募集内容が変更されました。チェックしましょう。"
+
+        user_ids.each do |user_id|
+          Notification.create!(
+            target_user_id: user_id,
+            message: message,
+            url: post_path(@post.id)
+          )
+          user_notification = UserNotification.find_by(user_id: user_id)
+          user_notification.add_unchecked_notification_count
+        end
+      end
       flash[:notice] = "更新完了！"
       redirect_to root_path
-    else
+    rescue => error
+      p error
       flash[:alert] = "更新に失敗しました"
       redirect_to edit_post_path(@post.id)
     end
