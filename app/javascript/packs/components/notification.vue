@@ -160,8 +160,8 @@ export default {
 
 .header-notification-dot{
   position: absolute;
-  top: -4px;
-  right: 0px;
+  top: -5px;
+  right: -5px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
