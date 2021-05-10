@@ -9,10 +9,12 @@
         <span>招待中メンバー</span>
         <ul>
           <% @invited_members.each do |member| %>
-            <li>
-              <span><%= member.email %></span>
+            <li class="invited-member-item">
               <% @post_member = PostMember.find_by(user: member, post: current_user.post) %>
-              <%= link_to "削除する", post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" } %>
+              <%= link_to post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
+                <%= image_tag "sm-cancel.png" %>
+              <% end %>
+              <span class="invited-email"><%= member.email %></span>
             </li>
           <% end %>
         </ul>
@@ -53,6 +55,22 @@
 <style>
 .invited-member-list{
   margin-bottom: 24px;
+}
+
+.invited-member-item{
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+}
+
+.invite-cancel-link{
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
+}
+
+.invited-email{
+  font-size: 14px;
 }
 
 .lines-on-sides{
