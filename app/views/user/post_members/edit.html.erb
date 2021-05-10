@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      招待を確認する
+    </h1>
+
+    <div class="post-info-wrapper">
+      <div class="post-info">
+        <span>時間</span>
+        <span>
+          <%= @post.time.strftime("%Y年%m月%d日 %H時%M分") %>
+        </span>
+      </div>
+      <div class="post-info">
+        <span>場所</span>
+        <span>
+          <%= @post.place %>
+        </span>
+      </div>
+      <div class="post-info">
+        <span>人数</span>
+        <span>
+          <%= @post.number %>人
+        </span>
+      </div>
+      <div class="post-info">
+        <span>詳細</span>
+        <span>
+          <%= @post.detail %>
+        </span>
+      </div>
+    </div>
+
+    <div class="post-member-form">
+      <%= form_with model: @post_member, url: post_member_path, local: true, method: :patch do |f| %>
+        <%= render "shared/error_messages", resource: resource %>
+        <div class="form">
+          <div class="field">
+            <%= f.radio_button :is_confirmed, :true %>
+            <%= f.label :is_confirmed_true, "参加希望" %>
+            <%= f.radio_button :is_confirmed, :false %>
+            <%= f.label :is_confirmed_false, "不参加" %>
+          </div>
+          <div class="field">
+            <div class="button-wrapper">
+              <%= f.submit "更新", class:"app-button conversion" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<style>
+.post-info-wrapper{
+  background: #f3d2c1;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.post-info{
+  display: flex;
+  justify-content: space-between;
+}
+</style>
