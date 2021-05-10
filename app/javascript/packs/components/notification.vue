@@ -16,7 +16,7 @@
         </ul>
       </div>
 
-      <div v-if="!selectedMenu">
+      <div v-if="!selectedMenu" class="notification-item-wrapper">
         <div v-if="!usuallNotifications">
           <div class="notification-item">
             <span>ただいま通知はありません</span>
@@ -35,7 +35,7 @@
           </a>
         </template>
       </div>
-      <div v-else>
+      <div v-else class="notification-item-wrapper">
         <div v-if="!!adminNotifications">
           <div class="notification-item">
             <span>ただいま通知はありません</span>
@@ -193,7 +193,6 @@ export default {
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
   z-index: 997;
-  overflow: scroll;
 }
 
 .notification-menu-wrapper{
@@ -212,6 +211,11 @@ export default {
 
 .is-active{
   border-bottom: 2px solid #000;
+}
+
+.notification-item-wrapper{
+  max-height: 300px;
+  overflow: scroll;
 }
 
 .notification-item{
