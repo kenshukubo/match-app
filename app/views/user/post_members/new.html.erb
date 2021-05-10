@@ -6,7 +6,7 @@
 
     <% if current_user.invite_any? %>
       <div class="invited-member-list">
-        <span>招待中メンバー</span>
+        <span class="invited-member-list-title">招待中メンバー</span>
         <ul>
           <% @invited_members.each do |member| %>
             <li class="invited-member-item">
@@ -54,7 +54,14 @@
 
 <style>
 .invited-member-list{
+  background: #f3d2c1;
+  border-radius: 4px;
+  padding: 16px;
   margin-bottom: 24px;
+}
+
+.invited-member-list-title{
+  font-weight: 700;
 }
 
 .invited-member-item{
