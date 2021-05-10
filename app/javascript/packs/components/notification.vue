@@ -23,7 +23,7 @@
           </div>
         </div>
         <template v-else v-for="(notification, index) in usuallNotifications">
-          <div class="notification-item" :key="`notification-${index}`">
+          <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
             <div class="notification-img-wrapper">
               <img :src="notificationImage(notification.category)" class="notification-item-img">
             </div>
@@ -32,7 +32,7 @@
                 <span>{{notification.message}}</span>
               </div>
             </div>
-          </div>
+          </a>
         </template>
       </div>
       <div v-else>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <template v-else v-for="(notification, index) in adminNotifications">
-          <div class="notification-item" :key="`notification-${index}`">
+          <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
             <div class="notification-img-wrapper">
               <img :src="notificationImage(notification.category)" class="notification-item-img">
             </div>
@@ -51,7 +51,7 @@
                 <span>{{notification.message}}</span>
               </div>
             </div>
-          </div>
+          </a>
         </template>
       </div>
     </div>
