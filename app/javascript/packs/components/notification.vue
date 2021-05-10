@@ -165,6 +165,7 @@ export default {
   padding: 8px 0;
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
+  z-index: 997;
 }
 
 .notification-menu-wrapper{

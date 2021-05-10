@@ -36,6 +36,14 @@ header > .container{
   width: 32px!important;
 }
 
+.drawer-nav{
+  z-index: 999!important;
+}
+
+.drawer-overlay{
+  z-index: 998!important;
+}
+
 .drawer-brand{
   display: flex!important;
   justify-content: flex-end!important;
