@@ -178,10 +178,12 @@ export default {
   right: -54px;
   top: 32px;
   min-width: 300px;
+  max-height: 400px;
   padding: 8px 0;
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
   z-index: 997;
+  overflow: scroll;
 }
 
 .notification-menu-wrapper{
