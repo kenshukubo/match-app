@@ -1,6 +1,7 @@
 class User::PostsController < ApplicationController
   def new
     @post = Post.new
+    @invited_members = User.includes(:post_members).where.not(post_members: {id: nil})
   end
 
   def create

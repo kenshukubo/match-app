@@ -5,6 +5,24 @@
         <h1>すでに募集が作成されています</h1>
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう！</h1>
+
+        <% if current_user.invite_any? %>
+          <div class="invited-member-list">
+            <span class="invited-member-list-title">招待中メンバー</span>
+            <ul>
+              <% @invited_members.each do |member| %>
+                <li class="invited-member-item">
+                  <% @post_member = PostMember.find_by(user: member, post: current_user.post) %>
+                  <%= link_to post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
+                    <%= image_tag "sm-cancel.png" %>
+                  <% end %>
+                  <span class="invited-email"><%= member.email %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
         <div class="invite-send-btn-wrapper">
           <%= link_to "✉ 招待する", new_post_member_path, class:"invite-send-btn app-button conversion" %>
         </div>
