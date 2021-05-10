@@ -43,7 +43,7 @@ class User::PostsController < ApplicationController
           Notification.create!(
             target_user_id: user_id,
             message: message,
-            notification_type: "change",
+            category: "change",
             url: post_path(@post.id)
           )
           user_notification = UserNotification.find_by(user_id: user_id)

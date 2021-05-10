@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_05_10_145005) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "kind", default: 0
-    t.integer "notification_type"
+    t.integer "category"
     t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
   end
 

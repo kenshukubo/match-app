@@ -26,7 +26,7 @@ class Users::InvitationsController < Devise::InvitationsController
         Notification.create!(
           target_user_id: @user.id,
           message: message,
-          notifications: "invite",
+          category: "invite",
           url: edit_post_member_path(post_member.id)
         )
 
