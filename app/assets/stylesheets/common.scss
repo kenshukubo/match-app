@@ -32,3 +32,9 @@ input, select {
 input[type=text],input[type=password],input[type=email],input[type=submit],select{
   -webkit-appearance: none;
 }
+
+.text-ellipsis{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
