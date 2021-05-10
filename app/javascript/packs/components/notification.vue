@@ -60,8 +60,10 @@
 <script>
 import axios from 'packs/axios'
 import bellImage from 'packs/assets/images/bell.png'
-import changeImage from 'packs/assets/images/notifications/change.png'
 import inviteImage from 'packs/assets/images/notifications/invite.png'
+import changeImage from 'packs/assets/images/notifications/change.png'
+import attendImage from 'packs/assets/images/notifications/attend.png'
+import notAttendImage from 'packs/assets/images/notifications/not_attend.png'
 
 export default {
   computed: {
@@ -80,6 +82,14 @@ export default {
           }
           case "change":{
             return changeImage;
+            break
+          }
+          case "attend":{
+            return attendImage;
+            break
+          }
+          case "not_attend":{
+            return notAttendImage;
             break
           }
           default: {
