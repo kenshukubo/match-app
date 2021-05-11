@@ -7,15 +7,20 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
-    @invited_members = User
+    @unconfirm_members = User
     .includes(:post_members)
     .where.not(post_members: {id: nil})
     .where(post_members: {is_confirmed: false})
 
-    @confirmed_members = User
+    @attend_members = User
     .includes(:post_members)
     .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: true})
+    .where(post_members: {is_confirmed: true, status: "attend"})
+
+    @absent_members = User
+    .includes(:post_members)
+    .where.not(post_members: {id: nil})
+    .where(post_members: {is_confirmed: true, status: "absent"})
   end
 
   def edit
