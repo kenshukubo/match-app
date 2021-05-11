@@ -9,6 +9,11 @@ class User < ApplicationRecord
   has_one  :user_notification, dependent: :destroy
   has_many :post_members, dependent: :destroy
 
+  scope :filter_by_invited, ->() do
+    includes(:post_members)
+    .where.not(post_members: {id: nil})
+  end
+
   def self.dummy_email(social)
     "#{social.uid}-#{social.provider}@example.com"
   end

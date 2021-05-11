@@ -1,20 +1,12 @@
 class User::PostsController < ApplicationController
   def new
     @post = Post.new
-    @unconfirm_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: false})
 
-    @attend_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: true, status: "attend"})
+    @invited_user = User.filter_by_invited
 
-    @absent_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: true, status: "absent"})
+    @unconfirmed_members = @invited_user.where(post_members: {is_confirmed: false})
+    @attend_members      = @invited_user.where(post_members: {status: "attend"})
+    @absent_members      = @invited_user.where(post_members: {status: "absent"})
   end
 
   def create

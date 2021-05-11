@@ -63,7 +63,7 @@ import bellImage from 'packs/assets/images/bell.png'
 import inviteImage from 'packs/assets/images/notifications/invite.png'
 import changeImage from 'packs/assets/images/notifications/change.png'
 import attendImage from 'packs/assets/images/notifications/attend.png'
-import notAttendImage from 'packs/assets/images/notifications/not_attend.png'
+import absentImage from 'packs/assets/images/notifications/absent.png'
 
 export default {
   computed: {
@@ -88,8 +88,8 @@ export default {
             return attendImage;
             break
           }
-          case "not_attend":{
-            return notAttendImage;
+          case "absent":{
+            return absentImage;
             break
           }
           default: {

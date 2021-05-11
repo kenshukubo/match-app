@@ -1,24 +1,25 @@
 <div class="invited-member-list">
   <p class="invited-member-list-title">招待中</p>
 
-  <% if @unconfirm_members.blank? %>
+  <% if @invited_user.blank? %>
     <span>
       招待中のメンバーはいません
     </span>
   <% else %>
-    <ul style="margin-bottom: 16px;">
-      <span class="invited-member-list-sub-title">未承認メンバー</span>
-      <% @unconfirm_members.each do |member| %>
-        <li class="invited-member-item">
-          <% @post_member = PostMember.find_by(user: member, post: current_user.post) %>
-          <%= link_to post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-            <%= image_tag "sm-cancel.png", class:"invite-cancel-img" %>
-          <% end %>
-          <span class="invited-email text-ellipsis"><%= member.email %></span>
-        </li>
-      <% end %>
-    </ul>
-  
+    <% if @unconfirmed_members.present? %>
+      <ul style="margin-bottom: 16px;">
+        <span class="invited-member-list-sub-title">未承認メンバー</span>
+        <% @unconfirmed_members.each do |member| %>
+          <li class="invited-member-item">
+            <% @post_member = PostMember.find_by(user: member, post: current_user.post) %>
+            <%= link_to post_member_path(@post_member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
+              <%= image_tag "sm-cancel.png", class:"invite-cancel-img" %>
+            <% end %>
+            <span class="invited-email text-ellipsis"><%= member.email %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <% if @attend_members.present? %>
       <ul style="margin-bottom: 16px;">

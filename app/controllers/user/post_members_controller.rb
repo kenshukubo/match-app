@@ -7,20 +7,11 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
-    @unconfirm_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: false})
+    @invited_user = User.filter_by_invited
 
-    @attend_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: true, status: "attend"})
-
-    @absent_members = User
-    .includes(:post_members)
-    .where.not(post_members: {id: nil})
-    .where(post_members: {is_confirmed: true, status: "absent"})
+    @unconfirmed_members = @invited_user.where(post_members: {is_confirmed: false})
+    @attend_members      = @invited_user.where(post_members: {status: "attend"})
+    @absent_members      = @invited_user.where(post_members: {status: "absent"})
   end
 
   def edit
@@ -33,16 +24,19 @@ class User::PostMembersController < ApplicationController
     @post = @post_member.post
     begin
       ActiveRecord::Base.transaction do
-        @post_member.update(is_confirmed: post_member_params[:is_confirmed])
+        @post_member.update(
+          status: post_member_params[:status],
+          is_confirmed: true
+        )
 
         host_user_id = @post.user_id
         username = current_user.user_profile.name
 
-        if post_member_params[:is_confirmed] == "true"
+        if post_member_params[:status] == "attend"
           category = "attend"
           message = "#{username}さんは参加を希望しました"
-        else
-          category = "not_attend"
+        else #absent
+          category = "absent"
           message = "#{username}さんは残念ながら参加できません"
         end
 
@@ -76,6 +70,6 @@ class User::PostMembersController < ApplicationController
 
   private
     def post_member_params
-      params.require(:post_member).permit(:is_confirmed)
+      params.require(:post_member).permit(:status)
     end
 end
