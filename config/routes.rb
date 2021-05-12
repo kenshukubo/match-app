@@ -27,12 +27,6 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: :public do
-    namespace :searches do
-      resources :users, only:[:index]
-    end
-  end
-
   namespace :api, format: 'json' do
     namespace :v1 do
       resource  :stripe_checkout_session, only: [:create]
