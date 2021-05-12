@@ -8,10 +8,14 @@
       <div class="search-modal-container">
         <div class="search-area-header">
           <div class="search-area-wrapper">
-            <input type="text" placeholder="メールアドレスや名前で検索" class="search-area">
-            <img :src="searchImage" class="search-img modal-search-img">
+            <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="メールアドレスや名前で検索" class="search-area">
+            <img :src="searchImage" @click="searchKeyword" class="search-img modal-search-img">
           </div>
           <img :src="closeImage" class="close-img" @click="closeSearchModal">
+        </div>
+
+        <div>
+          
         </div>
       </div>
     </div>
@@ -28,9 +32,25 @@ export default {
       searchImage,
       closeImage,
       showSearchModal: false,
+      keyword: "",
+      users: [],
     }
   },
   methods: {
+    async searchKeyword() {
+      var self = this;
+      self.keyword = this.$refs.input.value;
+      try {
+        const res = await axios.get("/api/v1/search", {
+          params:{
+            keyword: self.keyword
+          },
+        })
+        self.users.push(res.data.users);
+      } catch(e) {
+        console.log(e)
+      }
+    },
     openSearchModal: function(){
       this.showSearchModal = true;
     },
