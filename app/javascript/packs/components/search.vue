@@ -14,8 +14,20 @@
           <img :src="closeImage" class="close-img" @click="closeSearchModal">
         </div>
 
-        <div>
-          
+        <div v-if="!!users">
+          <template v-for="(user, index) in users">
+            <div :key="`results-item-${index}`" class="results-item">
+              <div class="results-item-img-wrapper">
+                <img :src="user.image" class="results-item-img">
+              </div>
+              <div>
+                <span>{{user.name}}</span>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div v-else class="default-result">
+          <span>検索結果が表示されます</span>
         </div>
       </div>
     </div>
@@ -33,7 +45,7 @@ export default {
       closeImage,
       showSearchModal: false,
       keyword: "",
-      users: [],
+      users: "",
     }
   },
   methods: {
@@ -46,7 +58,7 @@ export default {
             keyword: self.keyword
           },
         })
-        self.users.push(res.data.users);
+        self.users = res.data.users;
       } catch(e) {
         console.log(e)
       }
@@ -119,5 +131,26 @@ export default {
   width: 20px;
   height: 20px;
   padding: 8px;
+}
+
+.results-item{
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.results-item-img-wrapper{
+  margin-right: 12px;
+}
+.results-item-img{
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 9999px;
+}
+
+.default-result{
+  text-align: center;
+  padding: 36px 0px;
 }
 </style>
