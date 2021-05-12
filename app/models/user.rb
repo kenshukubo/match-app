@@ -14,6 +14,12 @@ class User < ApplicationRecord
     .where.not(post_members: {id: nil})
   end
 
+  scope :search_by_keyword, ->(keyword) do
+    joins(:user_profile)
+    .where("email LIKE ?", "%#{keyword}%")
+    .merge(UserProfile.search_by_keyword keyword)
+  end
+
   def self.dummy_email(social)
     "#{social.uid}-#{social.provider}@example.com"
   end
