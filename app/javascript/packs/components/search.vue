@@ -20,8 +20,9 @@
               <div class="results-item-img-wrapper">
                 <img :src="user.image" class="results-item-img">
               </div>
-              <div>
-                <span>{{user.name}}</span>
+              <div class="results-item-header">
+                <span class="results-item-name text-ellipsis">{{user.name}}</span>
+                <button class="results-follow-btn">フレンド追加</button>
               </div>
             </div>
           </template>
@@ -72,7 +73,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .header-search-wrapper{
   position: relative;
   margin-right: 20px;
@@ -147,6 +148,27 @@ export default {
   height: 48px;
   object-fit: cover;
   border-radius: 9999px;
+}
+
+.results-item-header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.results-follow-btn{
+  min-height: 32px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 0 15px;
+  border-radius: 9999px;
+  border: 1px solid #8bd3dd;
+  color: #8bd3dd;
+  background: #fff;
+  &:hover{
+    background: rgba(139,211,221,.3);
+    transition: .7;
+  }
 }
 
 .default-result{
