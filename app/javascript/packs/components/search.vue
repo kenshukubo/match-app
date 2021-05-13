@@ -166,6 +166,7 @@ export default {
   border: 1px solid #8bd3dd;
   color: #8bd3dd;
   background: #fff;
+  cursor: pointer;
   &:hover{
     background: rgba(139,211,221,.3);
     transition: .7;
