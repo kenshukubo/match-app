@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       ActiveRecord::Base.transaction do
         UserProfile.create!(
           user: @user,
-          name: "ゲストさん",
+          name: "ゲスト",
           identified_char: SecureRandom.uuid
         )
         UserNotification.create!(user: @user)
