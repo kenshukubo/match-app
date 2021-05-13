@@ -133,6 +133,7 @@ export default {
   padding: 4px 8px;
   font-size: 14px;
   padding-right: 40px!important;
+  border-radius: 4px;
 }
 
 .modal-search-img{
