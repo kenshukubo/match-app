@@ -14,6 +14,17 @@
           <img :src="closeImage" class="close-img" @click="closeSearchModal">
         </div>
 
+        <div>
+          <ul class="results-menu-wrapper">
+            <li class="results-menu">
+              <span>結果</span>
+            </li>
+            <li class="results-menu">
+              <span>フレンド</span>
+            </li>
+          </ul>
+        </div>
+
         <div v-if="!!users">
           <template v-for="(user, index) in users">
             <div :key="`results-item-${index}`" class="results-item">
@@ -106,6 +117,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 4px;
+  margin-bottom: 16px;
 }
 
 .search-area-wrapper{
@@ -135,10 +147,24 @@ export default {
   cursor: pointer;
 }
 
+.results-menu-wrapper{
+  display: flex;
+  border-bottom: 1px solid #e6e6e6;
+}
+.results-menu{
+  width: 50%;
+  padding: 4px 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .results-item{
   display: flex;
   align-items: center;
   padding: 12px 16px;
+  // border: 1px solid rgb(235, 238, 240);
 }
 
 .results-item-img-wrapper{
