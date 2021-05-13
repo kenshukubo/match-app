@@ -132,6 +132,7 @@ export default {
   width: 20px;
   height: 20px;
   padding: 8px;
+  cursor: pointer;
 }
 
 .results-item{
