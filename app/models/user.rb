@@ -16,7 +16,6 @@ class User < ApplicationRecord
 
   scope :search_by_keyword, ->(keyword) do
     joins(:user_profile)
-    .where("email LIKE ?", "%#{keyword}%")
     .merge(UserProfile.search_by_keyword keyword)
   end
 

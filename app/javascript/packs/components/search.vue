@@ -8,7 +8,7 @@
       <div class="search-modal-container">
         <div class="search-area-header">
           <div class="search-area-wrapper">
-            <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="メールアドレスや名前で検索" class="search-area">
+            <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="名前で検索" class="search-area">
             <img :src="searchImage" @click="searchKeyword" class="search-img modal-search-img">
           </div>
           <img :src="closeImage" class="close-img" @click="closeSearchModal">
