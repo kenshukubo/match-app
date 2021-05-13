@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       resources :admin_notifications, only: [:index]
       resource :notification_count, only: [:show]
       resource :search, only: [:show]
-      resource :friend, only: [:create]
+      resource :friends, only: [:create, :destroy]
     end
   end
 

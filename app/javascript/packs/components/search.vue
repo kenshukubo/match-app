@@ -33,7 +33,12 @@
               </div>
               <div class="results-item-header">
                 <span class="results-item-name text-ellipsis">{{user.name}}</span>
-                <button @click="addFriend(user)" class="results-follow-btn">フレンド追加</button>
+                <button v-if="user.isFriend" @click="removeFriend(user)" class="results-remove-btn results-btn">
+                  フレンド解除
+                </button>
+                <button v-else @click="addFriend(user)" class="results-follow-btn results-btn">
+                  フレンド追加
+                </button>
               </div>
             </div>
           </template>
@@ -76,8 +81,13 @@ export default {
       }
     },
     async addFriend(user) {
-      return await axios.post("/api/v1/friend", {
+      return await axios.post("/api/v1/friends", {
         user_id: user.id
+      })
+    },
+    async removeFriend(user) {
+      return await axios.delete("/api/v1/friends", {
+        data: {user_id: user.id }
       })
     },
     openSearchModal: function(){
@@ -189,19 +199,33 @@ export default {
   width: 100%;
 }
 
-.results-follow-btn{
+.results-btn{
   min-height: 32px;
   font-weight: 700;
   font-size: 15px;
   padding: 0 15px;
   border-radius: 9999px;
+  cursor: pointer;
+  &:hover{
+    transition: .7;
+  }
+}
+
+.results-follow-btn{
   border: 1px solid #8bd3dd;
   color: #8bd3dd;
   background: #fff;
-  cursor: pointer;
   &:hover{
     background: rgba(139,211,221,.3);
-    transition: .7;
+  }
+}
+
+.results-remove-btn{
+  border: 1px solid #f582ae;
+  color: #f582ae;
+  background: #fff;
+  &:hover{
+    background: rgba(245,130,174,.3);
   }
 }
 
