@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_013619) do
+ActiveRecord::Schema.define(version: 2021_05_13_140943) do
 
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "target_user_id"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 2021_05_11_013619) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_relationships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "social_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -116,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_05_11_013619) do
   add_foreign_key "post_members", "posts"
   add_foreign_key "post_members", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "relationships", "users"
+  add_foreign_key "relationships", "users", column: "friend_id"
   add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"
 end

@@ -9,6 +9,11 @@ class User < ApplicationRecord
   has_one  :user_notification, dependent: :destroy
   has_many :post_members, dependent: :destroy
 
+  has_many :relationships
+  has_many :friend_users, through: :relationships, source: :friend
+  has_many :reverse_friend_relationships, class_name: 'UserRelationship', foreign_key: 'friend_id'
+  has_many :is_friend_users, through: :reverse_friend_relationships, source: :user
+
   scope :filter_by_invited, ->() do
     includes(:post_members)
     .where.not(post_members: {id: nil})
@@ -29,5 +34,20 @@ class User < ApplicationRecord
 
   def all_member_invite?
     PostMember.where(post: self.post).count == Post.find_by(user: self).number
+  end
+
+  def make_friend(other_user)
+    return if self == other_user
+    self.relationships.find_or_create_by(friend_id: other_user.id)
+  end
+
+  def remove_friend(other_user)
+    relationships = self.relationships.find_by(friend_id: other_user.id)
+    return unless relationships
+    relationships.destroy
+  end
+
+  def is_friend?(other_user)
+    self.friend_users.include?(other_user)
   end
 end

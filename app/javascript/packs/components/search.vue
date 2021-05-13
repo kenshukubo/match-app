@@ -33,7 +33,7 @@
               </div>
               <div class="results-item-header">
                 <span class="results-item-name text-ellipsis">{{user.name}}</span>
-                <button class="results-follow-btn">フレンド追加</button>
+                <button @click="addFriend(user)" class="results-follow-btn">フレンド追加</button>
               </div>
             </div>
           </template>
@@ -74,6 +74,11 @@ export default {
       } catch(e) {
         console.log(e)
       }
+    },
+    async addFriend(user) {
+      return await axios.post("/api/v1/friend", {
+        user_id: user.id
+      })
     },
     openSearchModal: function(){
       this.showSearchModal = true;
