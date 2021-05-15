@@ -17,13 +17,13 @@ Rails.application.routes.draw do
   authenticated :user do
     scope module: :user do
       resources :social_profiles, only: :destroy
-      resource :user_profile, only: [:edit, :update, :show]
+      resource  :user_profile, only: [:edit, :update, :show]
       resources :posts
       resources :post_members
       resources :requests
-      resource :ratings
-      resource :rooms, path: :chat, only: [:show]
-      resource :violation_reports, only: [:new, :create]
+      resource  :ratings
+      resource  :rooms, path: :chat, only: [:show]
+      resource  :violation_reports, only: [:new, :create]
     end
   end
 
@@ -33,9 +33,9 @@ Rails.application.routes.draw do
       resource  :stripe_webhook, only: [:create]
       resources :usuall_notifications, only: [:index]
       resources :admin_notifications, only: [:index]
-      resource :notification_count, only: [:show]
-      resource :search, only: [:show]
-      resource :friends, only: [:create, :destroy]
+      resource  :notification_count, only: [:show]
+      resource  :search, only: [:show]
+      resource  :friends, only: [:create, :destroy]
     end
   end
 
