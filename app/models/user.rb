@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def create_data_for_signup
-    UserProfile.create!(user: self, name: "ゲストさん", identified_char: SecureRandom.uuid)
+    UserProfile.create!(user: self, name: "ゲスト", identified_char: SecureRandom.uuid)
     UserNotification.create!(user: self)
   end
 
