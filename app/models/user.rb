@@ -38,6 +38,10 @@ class User < ApplicationRecord
     "#{social.uid}-#{social.provider}@example.com"
   end
 
+  def invite_member(invited_user_id, post)
+    PostMember.create!(user_id: invited_user_id, post: post)
+  end
+
   def invite_any?
     PostMember.find_by(post: self.post).present?
   end

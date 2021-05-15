@@ -22,13 +22,14 @@ class User::PostMembersController < ApplicationController
       ActiveRecord::Base.transaction do
         select_member_params[:user_id].each do |user_id|
 
-          post_member = PostMember.create!(
-            user_id: user_id,
-            post: @post
-          )
+          # PostMember作成
+          current_user.invite_member(user_id, @post)
 
+          # 通知作成
           category = "invite"
           message = "#{current_user.user_profile.name}さんに招待されました"
+          post_member = PostMember.find_by(user_id: user_id)
+
           Notification.create!(
             target_user_id: user_id,
             message: message,

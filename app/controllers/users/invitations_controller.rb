@@ -12,11 +12,14 @@ class Users::InvitationsController < Devise::InvitationsController
 
         @user.create_data_for_signup
 
+        # PostMember作成
         invite_user = User.find(@user.invited_by_id)
-        post_member = PostMember.create(user: @user, post: invite_user.post)
+        invite_user.invite_member(@user.id, invite_user.post)
 
+        # 通知作成
         message = "#{invite_user.user_profile.name}さんに招待されました"
         category = "invite"
+        post_member = PostMember.find_by(user: @user)
 
         Notification.create!(
           target_user_id: @user.id,
