@@ -8,10 +8,44 @@ class User::PostMembersController < ApplicationController
     end
 
     @invited_user = User.filter_by_invited
-
     @unconfirmed_members = @invited_user.where(post_members: {is_confirmed: false})
     @attend_members      = @invited_user.where(post_members: {status: "attend"})
     @absent_members      = @invited_user.where(post_members: {status: "absent"})
+
+    @post_members = PostMember.new
+    @not_invited_friends = current_user.friend_users.filter_by_not_invited
+  end
+
+  def create
+    @post = current_user.post
+    begin
+      ActiveRecord::Base.transaction do
+        select_member_params[:user_id].each do |user_id|
+
+          post_member = PostMember.create!(
+            user_id: user_id,
+            post: @post
+          )
+
+          category = "invite"
+          message = "#{current_user.user_profile.name}さんに招待されました"
+          Notification.create!(
+            target_user_id: user_id,
+            message: message,
+            category: category,
+            url: edit_post_member_path(post_member.id)
+          )
+
+          UserNotification.find_by(user_id: user_id).add_unchecked_notification_count
+        end
+      end
+      redirect_to new_post_member_path
+      flash[:notice] = "招待完了しました"
+    rescue => error
+      p error
+      redirect_to new_post_member_path
+      flash[:alert] = "招待に失敗しました"
+    end
   end
 
   def edit
@@ -72,4 +106,8 @@ class User::PostMembersController < ApplicationController
     def post_member_params
       params.require(:post_member).permit(:status)
     end
+
+    def select_member_params
+      params.require(:post_member).permit({:user_id => []})
+  end
 end
