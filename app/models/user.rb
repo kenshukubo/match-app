@@ -29,6 +29,11 @@ class User < ApplicationRecord
     .merge(UserProfile.search_by_keyword keyword)
   end
 
+  def create_data_for_signup
+    UserProfile.create!(user: self, name: "ゲストさん", identified_char: SecureRandom.uuid)
+    UserNotification.create!(user: self)
+  end
+
   def self.dummy_email(social)
     "#{social.uid}-#{social.provider}@example.com"
   end

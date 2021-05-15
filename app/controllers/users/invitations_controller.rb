@@ -10,16 +10,9 @@ class Users::InvitationsController < Devise::InvitationsController
     begin
       ActiveRecord::Base.transaction do
 
-        UserProfile.create!(
-          user: @user,
-          name: "ゲストさん",
-          identified_char: SecureRandom.uuid
-        )
-
-        user_notification = UserNotification.create!(user: @user)
+        @user.create_data_for_signup
 
         invite_user = User.find(@user.invited_by_id)
-
         post_member = PostMember.create(user: @user, post: invite_user.post)
 
         message = "#{invite_user.user_profile.name}さんに招待されました"
@@ -32,7 +25,7 @@ class Users::InvitationsController < Devise::InvitationsController
           url: edit_post_member_path(post_member.id)
         )
 
-        user_notification.add_unchecked_notification_count
+        UserNotification.find_by(user: @user).add_unchecked_notification_count
       end
     rescue => error
       p error
