@@ -44,39 +44,45 @@
     </div>
 
     <% if current_user.friend_users.blank? %>
-      <p class="post-member__no-friend-title">
+      <p class="post-member__exception-title">
         <span>フレンドがいません。</span>
         <span>
-          ヘッダーの<%= image_tag "search.png", class:"post-member__no-friend-search-img" %>からフレンド追加できます。
+          ヘッダーの<%= image_tag "search.png", class:"post-member__exception-search-img" %>からフレンド追加できます。
         </span>
       </p>
     <% else %>
-      <div class="post-member-form">
-        <%= form_with model: @post_members, url: post_members_path, local: true, method: :post do |f| %>
-          <div class="form">
-            <div class="field">
-              <div class="label">
-                <label>
-                  フレンドリストから選ぶ
-                </label>
+      <% if @not_invited_friends.blank? %>
+        <p class="post-member__exception-title">
+          <span>全フレンド招待済みです</span>
+        </p>
+      <% else %>
+        <div class="post-member-form">
+          <%= form_with model: @post_members, url: post_members_path, local: true, method: :post do |f| %>
+            <div class="form">
+              <div class="field">
+                <div class="label">
+                  <label>
+                    フレンドリストから選ぶ
+                  </label>
+                </div>
+                <div class="post-member__friend-list">
+                  <%= f.collection_check_boxes(:user_id, @not_invited_friends, :id, :email, include_hidden: false) do |b| %>
+                    <span class="post-member__friend-list-item">
+                      <%= b.check_box %>
+                      <%= b.label class:"text-ellipsis" %>
+                    </span>
+                  <% end %>
+                </div>
               </div>
-              <div class="post-member__friend-list">
-                <%= f.collection_check_boxes(:user_id, @not_invited_friends, :id, :email, include_hidden: false) do |b| %>
-                  <span class="post-member__friend-list-item">
-                    <%= b.check_box %>
-                    <%= b.label class:"text-ellipsis" %>
-                  </span>
-                <% end %>
+              <div class="field">
+                <div class="button-wrapper">
+                  <%= f.submit "招待する", class:"app-button conversion" %>
+                </div>
               </div>
             </div>
-            <div class="field">
-              <div class="button-wrapper">
-                <%= f.submit "招待する", class:"app-button conversion" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -124,7 +130,7 @@
   }
 }
 
-.post-member__no-friend-title{
+.post-member__exception-title{
   text-align: center;
   padding: 28px 0px;
   font-size: 14px;
@@ -132,7 +138,7 @@
   flex-direction: column;
 }
 
-.post-member__no-friend-search-img{
+.post-member__exception-search-img{
   width: 20px;
   height: 20px;
 }
