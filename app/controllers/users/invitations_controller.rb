@@ -8,13 +8,17 @@ class Users::InvitationsController < Devise::InvitationsController
     return unless @user.id.present?
 
     begin
+      invite_user = User.find(@user.invited_by_id)
       ActiveRecord::Base.transaction do
 
         @user.create_data_for_signup
 
         # PostMember作成
-        invite_user = User.find(@user.invited_by_id)
         invite_user.invite_member(@user.id, invite_user.post)
+
+        # お互いにフレンド追加
+        invite_user.make_friend(@user)
+        @user.make_friend(invite_user)
 
         # 通知作成
         message = "#{invite_user.user_profile.name}さんに招待されました"
