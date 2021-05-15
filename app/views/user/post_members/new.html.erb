@@ -42,6 +42,33 @@
     <div class="sp-sub-text-wrapper">
       <span class="sp-sub-title">すでにアカウントを持っている人を招待する</span>
     </div>
+
+    <div class="post-member-form">
+      <%= form_with model: @post_members, url: post_members_path, local: true, method: :post do |f| %>
+        <div class="form">
+          <div class="field">
+            <div class="label">
+              <label>
+                友達リスト
+              </label>
+            </div>
+            <div class="post-member__friend-list">
+              <%= f.collection_check_boxes(:user_id, @not_invited_friends, :id, :email, include_hidden: false) do |b| %>
+                <span class="post-member__friend-list-item">
+                  <%= b.check_box %>
+                  <%= b.label class:"text-ellipsis" %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="button-wrapper">
+              <%= f.submit "招待する", class:"app-button conversion" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -90,5 +117,18 @@
 
 .post-member-form{
   padding: 32px 0;
+}
+
+.post-member__friend-list{
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.post-member__friend-list-item{
+  display: flex;
+  margin: 4px 0px;
+  font-size: 14px;
 }
 </style>

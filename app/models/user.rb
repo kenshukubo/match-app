@@ -19,6 +19,11 @@ class User < ApplicationRecord
     .where.not(post_members: {id: nil})
   end
 
+  scope :filter_by_not_invited, ->() do
+    includes(:post_members)
+    .where(post_members: {id: nil})
+  end
+
   scope :search_by_keyword, ->(keyword) do
     joins(:user_profile)
     .merge(UserProfile.search_by_keyword keyword)
