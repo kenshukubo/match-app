@@ -38,6 +38,7 @@ class User < ApplicationRecord
     "#{social.uid}-#{social.provider}@example.com"
   end
 
+  ################ 招待系 ################
   def invite_member(invited_user_id, post)
     PostMember.create!(user_id: invited_user_id, post: post)
   end
@@ -50,6 +51,7 @@ class User < ApplicationRecord
     PostMember.where(post: self.post).count == Post.find_by(user: self).number
   end
 
+  ################ 友達系 ################
   def make_friend(other_user)
     return if self == other_user
     self.relationships.find_or_create_by(friend_id: other_user.id)
