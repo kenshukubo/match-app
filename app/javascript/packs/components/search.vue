@@ -16,17 +16,17 @@
 
         <div>
           <ul class="results-menu-wrapper">
-            <li class="results-menu">
+            <li :class="selectedResults" @click="selectSearchType('')" class="results-menu">
               <span>結果</span>
             </li>
-            <li class="results-menu">
+            <li :class="selectedFriends" @click="selectSearchType('friends')" class="results-menu">
               <span>フレンド</span>
             </li>
           </ul>
         </div>
 
-        <div v-if="!!users">
-          <template v-for="(user, index) in users">
+        <div v-if="!!userList">
+          <template v-for="(user, index) in userList">
             <div :key="`results-item-${index}`" class="results-item">
               <div class="results-item-img-wrapper">
                 <img :src="user.image" class="results-item-img">
@@ -56,6 +56,21 @@ import searchImage from 'packs/assets/images/search.png'
 import closeImage from 'packs/assets/images/close.png'
 
 export default {
+  computed: {
+    selectedResults(){
+      return !!this.selectedMenu ? '':'is-active'
+    },
+    selectedFriends(){
+      return !!this.selectedMenu ? 'is-active':''
+    },
+    userList(){
+      if(this.selectedMenu == "friends"){
+        return this.friends;
+      }else{
+        return this.users;
+      }
+    },
+  },
   data() {
     return {
       searchImage,
@@ -63,6 +78,8 @@ export default {
       showSearchModal: false,
       keyword: "",
       users: "",
+      friends: "",
+      selectedMenu: "",
     }
   },
   methods: {
@@ -70,15 +87,27 @@ export default {
       var self = this;
       self.keyword = this.$refs.input.value;
       try {
-        const res = await axios.get("/api/v1/search", {
+        const res1 = await axios.get("/api/v1/searches", {
           params:{
             keyword: self.keyword
           },
         })
-        self.users = res.data.users;
+        self.users = res1.data.users;
+        self.selectedMenu = "";
+
+        const res2 = await axios.get("/api/v1/search_friends", {
+          params:{
+            keyword: self.keyword
+          },
+        })
+        self.friends = res2.data.friends;
       } catch(e) {
         console.log(e)
       }
+    },
+    async selectSearchType(menuType) {
+      var self = this;
+      self.selectedMenu = menuType;
     },
     async addFriend(user) {
       return await axios.post("/api/v1/friends", {
@@ -174,6 +203,10 @@ export default {
   font-size: 14px;
   text-align: center;
   cursor: pointer;
+}
+
+.is-active{
+  border-bottom: 2px solid #000;
 }
 
 .results-item{

@@ -1,7 +1,7 @@
-class Api::V1::SearchesController < Api::ApplicationController
+class Api::V1::SearchFriendsController < Api::ApplicationController
   def index
     @keyword = params[:keyword]
-    @users = User
+    @friends = current_user.friend_users
     .includes(:user_profile)
     .where.not(id: current_user.id)
     .search_by_keyword(@keyword)

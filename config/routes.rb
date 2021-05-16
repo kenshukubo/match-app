@@ -34,7 +34,8 @@ Rails.application.routes.draw do
       resources :usuall_notifications, only: [:index]
       resources :admin_notifications, only: [:index]
       resource  :notification_count, only: [:show]
-      resource  :search, only: [:show]
+      resources :searches, only: [:index]
+      resources :search_friends, only: [:index]
       resource  :friends, only: [:create, :destroy]
       resources :posts, only: [:index]
     end
