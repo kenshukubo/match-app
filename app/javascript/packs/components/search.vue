@@ -213,7 +213,7 @@ export default {
   display: flex;
   align-items: center;
   padding: 12px 16px;
-  // border: 1px solid rgb(235, 238, 240);
+  border-bottom: 1px solid rgb(235, 238, 240);
 }
 
 .results-item-img-wrapper{
