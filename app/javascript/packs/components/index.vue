@@ -8,7 +8,12 @@
             :style="{ 'background-image': 'url(' + postBackgroundImage + ')' }"
           >
             <div class="post-item__text-area">
-
+              <p class="post-item__title">{{post.place}}で{{post.time}}から<br>ご飯食べませんか？</p>
+              <div v-if="!!post.members" class="post-item__member-img-wrapper">
+                <template v-for="(member, index) in post.members">
+                  <img :src="member.image" :key="`member-${index}`" class="post-item__member-img">
+                </template>
+              </div>
             </div>
           </div>
 
@@ -100,11 +105,35 @@ export default {
 }
 
 .post-item__text-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 90%;
   height: 72%;
   margin-top: 20px;
   background: #fff;
   border-radius: 8px;
+  padding: 20px 24px;
+  box-sizing: border-box;
+}
+
+.post-item__title{
+  max-height: 144px;
+  font-weight: 700;
+  font-size: 34px;
+  text-align: center;
+}
+
+.post-item__member-img-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+}
+.post-item__member-img{
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 1px solid;
+  border-radius: 50%;
 }
 
 .post-item__option-wrapper{
