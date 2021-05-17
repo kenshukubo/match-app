@@ -1,5 +1,6 @@
 json.postList do
   json.array!(@posts) do |post|
+    json.id         post.id
     json.place      post.place
     json.time       post.time
     json.number     post.number

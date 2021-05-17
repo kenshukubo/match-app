@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       resources :searches, only: [:index]
       resources :search_friends, only: [:index]
       resource  :friends, only: [:create, :destroy]
-      resources :posts, only: [:index]
+      resources :posts, only: [:index, :destroy]
     end
   end
 
