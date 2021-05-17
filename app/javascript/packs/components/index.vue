@@ -71,12 +71,11 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped lang="scss">
 .post-item-wrapper{
   margin: 24px 0;
   padding: 16px 16px 4px;
   background: #fff;
-  box-shadow: 2px 2px 8px -2px rgb(0 0 0 / 5%);
 }
 
 .post-created{
@@ -95,6 +94,9 @@ export default {
   justify-content: center;
   background-size: cover;
   height: 320px;
+  @media(max-width: 415px){
+    height: 220px;
+  }
 }
 
 .post-item__text-area{
