@@ -8,7 +8,7 @@
             :style="{ 'background-image': 'url(' + postBackgroundImage + ')' }"
           >
             <div class="post-item__text-area">
-              <p class="post-item__title">{{post.place}}で{{post.time}}から<br>ご飯食べませんか？</p>
+              <p class="post-item__title">{{post.place}}で{{post.time}}から<br>一緒にご飯いきませんか？</p>
               <div v-if="!!post.members" class="post-item__member-img-wrapper">
                 <template v-for="(member, index) in post.members">
                   <img :src="member.image" :key="`member-${index}`" class="post-item__member-img">
