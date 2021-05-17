@@ -113,7 +113,7 @@ export default {
   margin-top: 20px;
   background: #fff;
   border-radius: 8px;
-  padding: 20px 24px;
+  padding: 16px 20px;
   box-sizing: border-box;
   @media(max-width: 415px){
     padding: 12px 18px;
