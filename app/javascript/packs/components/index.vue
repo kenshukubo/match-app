@@ -20,13 +20,13 @@
           <div v-if="post.isHost" class="post-item__option-wrapper">
             <div class="post-item__option" style="margin-right:8px;">
               <img :src="trashImage" class="post-item__option-img">
-              <span @click="deletePost(post.id)" class="post-item__option-text">ゴミ箱</span>
+              <span @click="deletePost(post.id)" class="post-item__option-text hover-opacity">ゴミ箱</span>
             </div>
 
             <div class="post-item__edit-option-wrapper">
               <a :href="`/posts/${post.id}/edit`" class="post-item__option">
                 <img :src="editImage" class="post-item__option-img">
-                <span class="post-item__option-text">編集する</span>
+                <span class="post-item__option-text hover-opacity">編集する</span>
               </a>
             </div>
           </div>

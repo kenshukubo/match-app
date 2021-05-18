@@ -1,7 +1,7 @@
 <template>
   <div class="header-notification">
     <div class="header-notification-wrapper">
-      <img :src="bellImage" class="notification-img" @click="openNotificationList">
+      <img :src="bellImage" class="notification-img hover-opacity" @click="openNotificationList">
       <span class="header-notification-dot" v-if="notificationCount > 0"></span>
     </div>
     <div class="notification-list-wrapper" v-if="showNotificationList">

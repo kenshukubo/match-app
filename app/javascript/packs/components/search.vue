@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header-search-wrapper">
-      <img :src="searchImage" class="search-img" @click="openSearchModal">
+      <img :src="searchImage" class="search-img hover-opacity" @click="openSearchModal">
     </div>
 
     <div class="search-modal" v-show="showSearchModal">
@@ -9,9 +9,9 @@
         <div class="search-area-header">
           <div class="search-area-wrapper">
             <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="名前で検索" class="search-area">
-            <img :src="searchImage" @click="searchKeyword" class="search-img modal-search-img">
+            <img :src="searchImage" @click="searchKeyword" class="search-img modal-search-img hover-opacity">
           </div>
-          <img :src="closeImage" class="close-img" @click="closeSearchModal">
+          <img :src="closeImage" class="close-img hover-opacity" @click="closeSearchModal">
         </div>
 
         <div>

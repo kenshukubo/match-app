@@ -38,3 +38,9 @@ input[type=text],input[type=password],input[type=email],input[type=submit],selec
   white-space: nowrap;
   overflow: hidden;
 }
+
+.hover-opacity{
+  &:hover{
+    opacity: .7;
+  }
+}
