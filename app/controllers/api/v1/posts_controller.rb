@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:post_members)
   end
 
   def destroy
