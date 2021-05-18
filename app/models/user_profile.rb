@@ -15,6 +15,6 @@ class UserProfile < ApplicationRecord
   end
 
   def has_valid_profile?
-    self.name.present? && self.image.present? && self.sex.present? && self.age.present? && self.job.present?
+    self.name.present? && self.image.present? && self.age.present? && self.job.present?
   end
 end
