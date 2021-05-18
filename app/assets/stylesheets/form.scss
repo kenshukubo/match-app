@@ -102,8 +102,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(34,34,34,.5);
   svg{
-    fill: rgba(0,0,0,.1);
+    fill: rgba(0,0,0,.4);
     width: 80px;
   }
 }
