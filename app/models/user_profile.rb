@@ -7,7 +7,6 @@ class UserProfile < ApplicationRecord
 
   mount_uploader :image, ProfileImageUploader
 
-  enum sex: { male: 0, female: 1 }
   enum job: { student: 0, banker: 1, nurse: 2 }
 
   scope :search_by_keyword, ->(keyword) do
