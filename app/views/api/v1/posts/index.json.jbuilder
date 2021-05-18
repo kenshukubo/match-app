@@ -8,11 +8,11 @@ json.postList do
     json.createdAt  post.created_at.strftime("%-m月%-d日 %H時%M分")
     json.isHost     post.user == current_user
     json.members do
-      json.array! User.find(post.post_members.pluck(:user_id)) do |user|
-        if user.user_profile.image.present?
-          json.image user.user_profile.image.icon.url
+      json.array! UserProfile.where(user_id: post.post_members.pluck(:user_id)) do |user_profile|
+        if user_profile.image.present?
+          json.image user_profile.image.icon.url
         else
-          json.image user.user_profile.image.url
+          json.image user_profile.image.url
         end
       end
     end
