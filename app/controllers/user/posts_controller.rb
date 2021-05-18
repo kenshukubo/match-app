@@ -2,16 +2,28 @@ class User::PostsController < ApplicationController
   def new
     @post = Post.new
 
-    @invited_user = User.filter_by_invited
+    @invited_user = PostMember
+    .includes(:user)
+    .where(post: current_user.post)
+    .where.not(user: current_user)
 
-    @unconfirmed_members = @invited_user.where(post_members: {is_confirmed: false})
-    @attend_members      = @invited_user.where(post_members: {status: "attend"})
-    @absent_members      = @invited_user.where(post_members: {status: "absent"})
+    @unconfirmed_members = @invited_user.where(is_confirmed: false)
+    @attend_members      = @invited_user.where(status: "attend")
+    @absent_members      = @invited_user.where(status: "absent")
   end
 
   def create
     @post = current_user.build_post(post_params)
     if @post.save
+
+      #自分のレコード作成
+      PostMember.create!(
+        user: current_user,
+        post: @post,
+        is_confirmed: true,
+        status: "attend"
+      )
+
       redirect_to new_post_member_path, notice: 'メンバーを選びましょう'
     else
       redirect_to new_post_path, alert: '作成に失敗しました'

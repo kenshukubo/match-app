@@ -7,13 +7,17 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
-    @invited_user = User.filter_by_invited
-    @unconfirmed_members = @invited_user.where(post_members: {is_confirmed: false})
-    @attend_members      = @invited_user.where(post_members: {status: "attend"})
-    @absent_members      = @invited_user.where(post_members: {status: "absent"})
+    @invited_user = PostMember
+    .includes(:user)
+    .where(post: current_user.post)
+    .where.not(user: current_user)
+
+    @unconfirmed_members = @invited_user.where(is_confirmed: false)
+    @attend_members      = @invited_user.where(status: "attend")
+    @absent_members      = @invited_user.where(status: "absent")
 
     @post_members = PostMember.new
-    @not_invited_friends = current_user.friend_users.filter_by_not_invited
+    @not_invited_friends = current_user.friend_users.filter_by_not_invited(current_user)
   end
 
   def create

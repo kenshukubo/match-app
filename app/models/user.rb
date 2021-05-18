@@ -14,14 +14,9 @@ class User < ApplicationRecord
   has_many :reverse_friend_relationships, class_name: 'UserRelationship', foreign_key: 'friend_id'
   has_many :is_friend_users, through: :reverse_friend_relationships, source: :user
 
-  scope :filter_by_invited, ->() do
+  scope :filter_by_not_invited, ->(user) do
     includes(:post_members)
-    .where.not(post_members: {id: nil})
-  end
-
-  scope :filter_by_not_invited, ->() do
-    includes(:post_members)
-    .where(post_members: {id: nil})
+    .where(post_members: {id: nil, post: user.post})
   end
 
   scope :search_by_keyword, ->(keyword) do
