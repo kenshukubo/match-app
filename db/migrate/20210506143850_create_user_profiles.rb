@@ -4,7 +4,6 @@ class CreateUserProfiles < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.string :name
       t.string :image
-      t.integer :sex
       t.integer :age
       t.integer :job
       t.text :introduction
