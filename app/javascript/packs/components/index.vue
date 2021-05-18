@@ -32,7 +32,7 @@
           </div>
           <div v-else class="post-item__request">
             <button class="post-item__request-btn">
-              <span class="post-item__chat-text">🙋‍♂️反応する</span>
+              <span class="post-item__chat-text">🙋‍♂️応答する</span>
             </button>
           </div>
         </div>
@@ -81,6 +81,7 @@ export default {
   margin: 24px 0;
   padding: 16px 16px 4px;
   background: #fff;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 
 .post-created{
