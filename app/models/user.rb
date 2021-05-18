@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :reverse_friend_relationships, class_name: 'UserRelationship', foreign_key: 'friend_id'
   has_many :is_friend_users, through: :reverse_friend_relationships, source: :user
 
+  enum sex: { male: 0, female: 1 }
+
   scope :filter_by_not_invited, ->(user) do
     includes(:post_members)
     .where(post_members: {id: nil, post: user.post})

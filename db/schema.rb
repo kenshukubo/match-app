@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_140943) do
+ActiveRecord::Schema.define(version: 2021_05_18_150939) do
 
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "target_user_id"
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 2021_05_13_140943) do
     t.bigint "user_id", null: false
     t.string "name"
     t.string "image"
-    t.integer "sex"
     t.integer "age"
     t.integer "job"
     t.text "introduction"
@@ -116,6 +115,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_140943) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.integer "sex"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"

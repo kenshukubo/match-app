@@ -10,7 +10,6 @@ class User::UserProfilesController < ApplicationController
     @user_profile = current_user.user_profile
     if @user_profile.update(
       name: user_profile_params[:name],
-      sex: user_profile_params[:sex],
       age: user_profile_params[:age],
       job: user_profile_params[:job],
       image: user_profile_params[:image],
@@ -29,6 +28,6 @@ class User::UserProfilesController < ApplicationController
 
   private
     def user_profile_params
-      params.require(:user_profile).permit(:name, :sex, :age, :job, :image, :introduction)
+      params.require(:user_profile).permit(:name, :age, :job, :image, :introduction)
     end
 end
