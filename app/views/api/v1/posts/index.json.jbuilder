@@ -4,7 +4,7 @@ json.postList do
     json.place      post.place
     json.time       post.time.strftime("%-m月%-d日 %H:%M")
     json.number     post.number
-    json.detail     post.detail
+    json.sex        post.user.sex
     json.createdAt  post.created_at.strftime("%-m月%-d日 %H時%M分")
     json.isHost     post.user == current_user
     json.members do

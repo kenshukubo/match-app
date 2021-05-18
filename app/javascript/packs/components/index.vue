@@ -32,7 +32,8 @@
           </div>
           <div v-else class="post-item__request">
             <button class="post-item__request-btn">
-              <span class="post-item__chat-text">🙋‍♂️応答する</span>
+              <span v-if="post.sex=='female'" class="post-item__chat-text">🙋‍♂️アタックする</span>
+              <span v-else class="post-item__chat-text">🙋‍♀️アタックする</span>
             </button>
           </div>
         </div>

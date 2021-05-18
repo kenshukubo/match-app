@@ -1,6 +1,8 @@
 class Api::V1::PostsController < Api::ApplicationController
   def index
-    @posts = Post.all.includes(:post_members)
+    @posts = Post
+    .includes(:post_members, :user)
+    .where.not(users: {sex: current_user.sex})
   end
 
   def destroy
