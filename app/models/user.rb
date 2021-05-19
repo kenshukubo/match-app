@@ -23,10 +23,6 @@ class User < ApplicationRecord
     .where.not(post_members: {post: user.post})
   end
 
-  scope :same_sex, ->(user) do
-    where(sex: user.sex)
-  end
-
   scope :search_by_keyword, ->(keyword) do
     joins(:user_profile)
     .merge(UserProfile.search_by_keyword keyword)
