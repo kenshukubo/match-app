@@ -82,8 +82,7 @@ class User::PostsController < ApplicationController
           Notification.create!(
             target_user_id: user_id,
             message: message,
-            category: category,
-            url: post_path(@post.id)
+            category: category
           )
           user_notification = UserNotification.find_by(user_id: user_id)
           user_notification.add_unchecked_notification_count
