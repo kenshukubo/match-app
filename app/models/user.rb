@@ -14,11 +14,17 @@ class User < ApplicationRecord
   has_many :reverse_friend_relationships, class_name: 'UserRelationship', foreign_key: 'friend_id'
   has_many :is_friend_users, through: :reverse_friend_relationships, source: :user
 
+  validates :sex, presence: true
+
   enum sex: { male: 0, female: 1 }
 
   scope :filter_by_not_invited, ->(user) do
     includes(:post_members)
-    .where(post_members: {id: nil, post: user.post})
+    .where.not(post_members: {post: user.post})
+  end
+
+  scope :same_sex, ->(user) do
+    where(sex: user.sex)
   end
 
   scope :search_by_keyword, ->(keyword) do
@@ -37,7 +43,9 @@ class User < ApplicationRecord
 
   ################ 招待系 ################
   def invite_member(invited_user_id, post)
-    PostMember.create!(user_id: invited_user_id, post: post)
+    if post.user.sex == User.find(invited_user_id).sex
+      PostMember.create!(user_id: invited_user_id, post: post)
+    end
   end
 
   def invite_any?

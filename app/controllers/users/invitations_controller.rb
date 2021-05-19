@@ -1,4 +1,6 @@
 class Users::InvitationsController < Devise::InvitationsController
+  before_action :configure_permitted_parameters
+
   def new
     super
   end
@@ -8,31 +10,8 @@ class Users::InvitationsController < Devise::InvitationsController
     return unless @user.id.present?
 
     begin
-      invite_user = User.find(@user.invited_by_id)
       ActiveRecord::Base.transaction do
-
         @user.create_data_for_signup
-
-        # PostMember作成
-        invite_user.invite_member(@user.id, invite_user.post)
-
-        # お互いにフレンド追加
-        invite_user.make_friend(@user)
-        @user.make_friend(invite_user)
-
-        # 通知作成
-        message = "#{invite_user.user_profile.name}さんに招待されました"
-        category = "invite"
-        post_member = PostMember.find_by(user: @user)
-
-        Notification.create!(
-          target_user_id: @user.id,
-          message: message,
-          category: category,
-          url: edit_post_member_path(post_member.id)
-        )
-
-        UserNotification.find_by(user: @user).add_unchecked_notification_count
       end
     rescue => error
       p error
@@ -48,6 +27,41 @@ class Users::InvitationsController < Devise::InvitationsController
 
   def update
     super
+
+    begin
+      ActiveRecord::Base.transaction do
+        invite_user = User.find(@user.invited_by_id)
+
+        if @user.sex == invite_user.sex
+
+          # PostMember作成
+          invite_user.invite_member(@user.id, invite_user.post)
+    
+          # お互いにフレンド追加
+          invite_user.make_friend(@user)
+          @user.make_friend(invite_user)
+    
+          # 通知作成
+          message = "#{invite_user.user_profile.name}さんに招待されました"
+          category = "invite"
+          post_member = PostMember.find_by(user: @user)
+    
+          Notification.create!(
+            target_user_id: @user.id,
+            message: message,
+            category: category,
+            url: edit_post_member_path(post_member.id)
+          )
+    
+          UserNotification.find_by(user: @user).add_unchecked_notification_count
+        end
+      end
+    rescue => error
+      p error
+      flash[:alert] = "ユーザー情報の編集に失敗しました"
+      return
+    end
+    
   end
 
   def destroy
@@ -57,5 +71,10 @@ class Users::InvitationsController < Devise::InvitationsController
   private
     def after_invite_path_for(resource)
       new_post_member_path
+    end
+
+  protected
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:accept_invitation, keys: [:sex])
     end
 end
