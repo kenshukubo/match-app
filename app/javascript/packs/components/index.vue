@@ -185,8 +185,8 @@ export default {
 .post-item__request-btn{
   display: flex;
   align-items: center;
-  background: #f582ae;
-  border: 1px solid #f582ae;
+  background: #8bd3dd;
+  border: 1px solid #8bd3dd;
   cursor: pointer;
   border-radius: 10px;
   padding: 0 8px;
