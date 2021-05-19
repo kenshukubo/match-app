@@ -5,7 +5,7 @@ class User::PostsController < ApplicationController
     @invited_user = PostMember
     .includes(:user)
     .where(post: current_user.post)
-    .where.not(user: current_user)
+    .where.not(user: current_user) #自分以外
 
     @unconfirmed_members = @invited_user.where(is_confirmed: false)
     @attend_members      = @invited_user.where(status: "attend")
