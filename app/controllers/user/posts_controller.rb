@@ -45,7 +45,7 @@ class User::PostsController < ApplicationController
           detail: post_params[:detail],
         )
 
-        user_ids = PostMember.where(post: @post).pluck(:user_id)
+        user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
         message = "募集内容が変更されました。チェックしましょう。"
         category = "change"
 
