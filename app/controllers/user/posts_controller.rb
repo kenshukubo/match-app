@@ -46,7 +46,7 @@ class User::PostsController < ApplicationController
         )
 
         user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
-        message = "募集内容が変更されました。チェックしましょう。"
+        message = "#{current_user.user_profile.name}さんの募集が削除されました。"
         category = "change"
 
         user_ids.each do |user_id|
@@ -86,7 +86,7 @@ class User::PostsController < ApplicationController
         user_notification = UserNotification.find_by(user_id: user_id)
         user_notification.add_unchecked_notification_count
       end
-      
+
       redirect_to root_path, notice: '募集を削除しました'
     else
       redirect_to new_post_path, alert: '削除に失敗しました'
