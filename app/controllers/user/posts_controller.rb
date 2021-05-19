@@ -71,24 +71,27 @@ class User::PostsController < ApplicationController
 
   def destroy
     @post = current_user.post
-    if @post.destroy
-      user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
-      message = "募集内容が変更されました。チェックしましょう。"
-      category = "change"
+    begin
+      ActiveRecord::Base.transaction do
+        @post.destroy
+        user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
+        message = "募集内容が変更されました。チェックしましょう。"
+        category = "change"
 
-      user_ids.each do |user_id|
-        Notification.create!(
-          target_user_id: user_id,
-          message: message,
-          category: category,
-          url: post_path(@post.id)
-        )
-        user_notification = UserNotification.find_by(user_id: user_id)
-        user_notification.add_unchecked_notification_count
+        user_ids.each do |user_id|
+          Notification.create!(
+            target_user_id: user_id,
+            message: message,
+            category: category,
+            url: post_path(@post.id)
+          )
+          user_notification = UserNotification.find_by(user_id: user_id)
+          user_notification.add_unchecked_notification_count
+        end
       end
-
       redirect_to root_path, notice: '募集を削除しました'
-    else
+    rescue => error
+      p error
       redirect_to new_post_path, alert: '削除に失敗しました'
     end
   end
