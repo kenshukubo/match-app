@@ -18,11 +18,6 @@ class User < ApplicationRecord
 
   enum sex: { male: 0, female: 1 }
 
-  scope :filter_by_not_invited, ->(user) do
-    includes(:post_members)
-    .where.not(post_members: {post: user.post})
-  end
-
   scope :search_by_keyword, ->(keyword) do
     joins(:user_profile)
     .merge(UserProfile.search_by_keyword keyword)

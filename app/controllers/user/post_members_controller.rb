@@ -18,8 +18,10 @@ class User::PostMembersController < ApplicationController
     @attend_members      = @invited_user.where(status: "attend")
     @absent_members      = @invited_user.where(status: "absent")
 
-    @post_members = PostMember.new
-    @not_invited_friends = current_user.friend_users.filter_by_not_invited(current_user)
+    @not_invited_friends = current_user.friend_users
+    .where(sex: current_user.sex)
+    .includes(:post_members)
+    .where.not(id: PostMember.where(post: current_user.post).pluck(:user_id))
   end
 
   def create
