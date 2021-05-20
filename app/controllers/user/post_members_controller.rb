@@ -9,9 +9,12 @@ class User::PostMembersController < ApplicationController
 
     @post_members = PostMember.new
 
+    post = current_user.post
+    @invitable_number = post.number - PostMember.where(post: post).count
+
     @invited_user_exclude_me = PostMember
     .includes(:user)
-    .where(post: current_user.post)
+    .where(post: post)
     .where.not(user: current_user)
 
     @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
@@ -21,7 +24,7 @@ class User::PostMembersController < ApplicationController
     @not_invited_friends = current_user.friend_users
     .where(sex: current_user.sex)
     .includes(:post_members)
-    .where.not(id: PostMember.where(post: current_user.post).pluck(:user_id))
+    .where.not(id: PostMember.where(post: post).pluck(:user_id))
   end
 
   def create
@@ -29,8 +32,10 @@ class User::PostMembersController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
 
+        invitable_number = @post.number - PostMember.where(post: @post).count
+
         # 人数オーバーであればリターン
-        raise if select_member_params[:user_id].count > @post.number - 1
+        raise if select_member_params[:user_id].count > invitable_number
 
         select_member_params[:user_id].each do |user_id|
 

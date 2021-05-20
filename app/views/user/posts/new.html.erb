@@ -6,6 +6,10 @@
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
 
+        <p>
+          <span>招待可能人数：<%= @invitable_number %>人</span>
+        </p>
+
         <% if current_user.invite_any? %>
           <%= render "shared/inviting" %>
         <% end %>
@@ -43,7 +47,7 @@
           <div class="field">
             <div class="label">
               <label>
-                人数
+                人数（自分を合わせて）
               </label>
             </div>
             <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>

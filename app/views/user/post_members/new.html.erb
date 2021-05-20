@@ -4,6 +4,10 @@
       メンバーを招待する
     </h1>
 
+    <p>
+      <span>招待可能人数：<%= @invitable_number %>人</span>
+    </p>
+
     <% if current_user.invite_any? %>
       <%= render "shared/inviting" %>
     <% end %>
@@ -63,7 +67,7 @@
               <div class="field">
                 <div class="label">
                   <label>
-                    フレンドリストから選ぶ
+                    フレンドリストから選ぶ（<span>招待可能人数：<%= @invitable_number %>人</span>）
                   </label>
                 </div>
                 <div class="post-member__friend-list">

@@ -3,6 +3,7 @@ class User::PostsController < ApplicationController
 
     if current_user.post.present?
       @post = current_user.post
+      @invitable_number = @post.number - PostMember.where(post: @post).count
     else
       @new_post = Post.new
     end
