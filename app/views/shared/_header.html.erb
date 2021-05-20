@@ -8,44 +8,46 @@
 
     <div class="header-right">
 
-      <div id="search">
-          <search />
-      </div>
-      <%= javascript_pack_tag 'search' %>
-      <%= stylesheet_pack_tag 'search' %>
+      <% if current_user %>
+        <div id="search">
+            <search />
+        </div>
+        <%= javascript_pack_tag 'search' %>
+        <%= stylesheet_pack_tag 'search' %>
 
-      <div id="notification">
-          <notification />
-      </div>
-      <%= javascript_pack_tag 'notification' %>
-      <%= stylesheet_pack_tag 'notification' %>
+        <div id="notification">
+            <notification />
+        </div>
+        <%= javascript_pack_tag 'notification' %>
+        <%= stylesheet_pack_tag 'notification' %>
 
-      <button type="button" class="drawer-toggle drawer-hamburger">
-        <span class="sr-only">toggle navigation</span>
-        <span class="drawer-hamburger-icon"></span>
-      </button>
+        <button type="button" class="drawer-toggle drawer-hamburger">
+          <span class="sr-only">toggle navigation</span>
+          <span class="drawer-hamburger-icon"></span>
+        </button>
 
-      <nav class="drawer-nav" role="navigation">
-        <ul class="drawer-menu">
-          <li>
-            <a class="drawer-brand" href="#">
-              <button type="button" class="drawer-toggle drawer-hamburger hover-opacity">
-                <span class="sr-only">toggle navigation</span>
-                <span class="drawer-hamburger-icon"></span>
-              </button>
-            </a>
-          </li>
-          <li>
-            <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
-          </li>
-          <li>
-            <%= link_to "主催", new_post_path, class:"drawer-menu-item" %>
-          </li>
-          <li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
-          </li>
-        </ul>
-      </nav>
+        <nav class="drawer-nav" role="navigation">
+          <ul class="drawer-menu">
+            <li>
+              <a class="drawer-brand" href="#">
+                <button type="button" class="drawer-toggle drawer-hamburger hover-opacity">
+                  <span class="sr-only">toggle navigation</span>
+                  <span class="drawer-hamburger-icon"></span>
+                </button>
+              </a>
+            </li>
+            <li>
+              <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
+            </li>
+            <li>
+              <%= link_to "主催", new_post_path, class:"drawer-menu-item" %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
     </div>
   </div>
 </header>
