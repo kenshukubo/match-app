@@ -118,7 +118,7 @@ class User::PostMembersController < ApplicationController
           category: category
         )
 
-        user_notification = UserNotification.find_by(invited_member_user_id)
+        user_notification = UserNotification.find_by(user_id: invited_member_user_id)
         user_notification.add_unchecked_notification_count
       end
       redirect_to new_post_member_path, notice: '招待をキャンセルしました'
