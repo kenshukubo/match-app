@@ -7,6 +7,8 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
+    @post_members = PostMember.new
+
     @invited_user = PostMember
     .includes(:user)
     .where(post: current_user.post)
