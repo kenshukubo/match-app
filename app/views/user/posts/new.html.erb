@@ -1,6 +1,6 @@
 <div class="container">
   <div class="single-page">
-    <% if current_user.post.present? %>
+    <% if @post.present? %>
       <% if current_user.all_member_invite? %>
         <h1>すでに募集が作成されています</h1>
       <% else %>
@@ -8,6 +8,11 @@
 
         <% if current_user.invite_any? %>
           <%= render "shared/inviting" %>
+
+          <%= render "shared/post_image",
+            place: @post.place,
+            time: @post.time.strftime("%-m月%-d日 %H:%M")
+          %>
         <% end %>
 
         <div class="invite-send-btn-wrapper">

@@ -1,6 +1,11 @@
 class User::PostsController < ApplicationController
   def new
-    @post = Post.new
+
+    if current_user.post.present?
+      @post = current_user.post
+    else
+      @post = Post.new
+    end
 
     @invited_user = PostMember
     .includes(:user)
