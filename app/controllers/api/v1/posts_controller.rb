@@ -3,6 +3,7 @@ class Api::V1::PostsController < Api::ApplicationController
     @posts = Post
     .includes(:post_members, :user)
     .where.not(users: {sex: current_user.sex})
+    .all_member_join
   end
 
   def destroy
