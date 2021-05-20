@@ -1,7 +1,7 @@
 <div class="container">
   <div class="single-page">
     <h1>
-      メンバーを招待する
+      メンバーを選択する
     </h1>
 
     <% if current_user.invite_any? %>
@@ -26,6 +26,7 @@
               </label>
             </div>
             <%= f.email_field :email, type: "email", :placeholder => "example@matchapp.jp", required: "required" %>
+            <span class="form-attention-text">※登録した同性ユーザーは自動でメンバーに追加されます。</span>
           </div>
           <div class="field">
             <div class="button-wrapper">
@@ -37,10 +38,10 @@
     </div>
 
     <div class="lines-on-sides">
-      <span>すでにアカウントを持っている人を招待する</span>
+      <span>すでにアカウントを持っている人を選択する</span>
     </div>
     <div class="sp-sub-text-wrapper">
-      <span class="sp-sub-title">すでにアカウントを持っている人を招待する</span>
+      <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
     </div>
 
     <% if current_user.friend_users.blank? %>
@@ -53,7 +54,7 @@
     <% else %>
       <% if @not_invited_friends.blank? %>
         <p class="post-member__exception-title">
-          <span>全フレンド招待済みです</span>
+          <span>全フレンド選択済みです</span>
         </p>
       <% else %>
         <div class="post-member-form">
@@ -76,7 +77,7 @@
               </div>
               <div class="field">
                 <div class="button-wrapper">
-                  <%= f.submit "招待する", class:"app-button conversion" %>
+                  <%= f.submit "確定する", class:"app-button conversion" %>
                 </div>
               </div>
             </div>
