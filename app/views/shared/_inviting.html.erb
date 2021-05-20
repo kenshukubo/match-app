@@ -1,9 +1,9 @@
 <div class="invited-member-list">
-  <p class="invited-member-list-title">選択中メンバー</p>
+  <p class="invited-member-list-title">招待中メンバー</p>
 
   <% if @invited_user_exclude_me.blank? %>
     <span>
-      選択中のメンバーはいません
+      招待中のメンバーはいません
     </span>
   <% else %>
     <% if @unconfirmed_members.present? %>

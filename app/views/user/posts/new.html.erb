@@ -4,7 +4,7 @@
       <% if current_user.all_member_invite? %>
         <h1>すでに募集が作成されています</h1>
       <% else %>
-        <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう！</h1>
+        <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
 
         <% if current_user.invite_any? %>
           <%= render "shared/inviting" %>
@@ -82,8 +82,8 @@
   margin-bottom: 36px;
 }
 .invite-send-btn{
-  background: #001858;
-  border-color: #001858;
+  background: #8bd3dd;
+  border-color: #8bd3dd;
 }
 
 .post-select-link-wrapper{

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="single-page">
     <h1>
-      メンバーを選択する
+      メンバーを招待する
     </h1>
 
     <% if current_user.invite_any? %>
@@ -77,7 +77,7 @@
               </div>
               <div class="field">
                 <div class="button-wrapper">
-                  <%= f.submit "確定する", class:"app-button conversion" %>
+                  <%= f.submit "招待確定する", class:"app-button conversion" %>
                 </div>
               </div>
             </div>
