@@ -43,8 +43,8 @@ class User < ApplicationRecord
     PostMember.find_by(post: self.post).present?
   end
 
-  def all_member_invite?
-    PostMember.where(post: self.post).count == Post.find_by(user: self).number
+  def all_member_invite?(post)
+    PostMember.where(post: post).count == post.number
   end
 
   ################ 友達系 ################

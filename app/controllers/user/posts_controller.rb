@@ -4,7 +4,7 @@ class User::PostsController < ApplicationController
     if current_user.post.present?
       @post = current_user.post
     else
-      @post = Post.new
+      @new_post = Post.new
     end
 
     @invited_user_include_me = PostMember

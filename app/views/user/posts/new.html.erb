@@ -1,7 +1,7 @@
 <div class="container">
   <div class="single-page">
     <% if @post.present? %>
-      <% if current_user.all_member_invite? %>
+      <% if current_user.all_member_invite?(@post) %>
         <h1>すでに募集が作成されています</h1>
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
@@ -24,13 +24,13 @@
         <% end %>
       <% end %>
       <div class="post-select-link-wrapper">
-        募集を<%= link_to "編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
+        募集を<%= link_to "編集する", edit_post_path(@post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(@post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
       </div>
     <% else %>
       <h1>
         合コンをセッティングする
       </h1>
-      <%= form_with model: @post, url: posts_path, local: true, method: :post do |f| %>
+      <%= form_with model: @new_post, url: posts_path, local: true, method: :post do |f| %>
         <div class="form">
           <div class="field">
             <div class="label">
