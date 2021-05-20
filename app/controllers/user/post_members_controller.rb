@@ -28,6 +28,10 @@ class User::PostMembersController < ApplicationController
     @post = current_user.post
     begin
       ActiveRecord::Base.transaction do
+
+        # 人数オーバーであればリターン
+        raise if select_member_params[:user_id].count > @post.number - 1
+
         select_member_params[:user_id].each do |user_id|
 
           # PostMember作成
