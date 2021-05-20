@@ -1,5 +1,5 @@
 <template>
-  <div class="header-notification">
+  <div class="header-notification" ref="elRoot">
     <div class="header-notification-wrapper">
       <img :src="bellImage" class="notification-img hover-opacity" @click="openNotificationList">
       <span class="header-notification-dot" v-if="notificationCount > 0"></span>
@@ -113,6 +113,15 @@ export default {
   },
   created() {
     this.fetchNotificationCount();
+  },
+  mounted(){
+    //枠外クリックで非表示する処理
+    window.addEventListener('click', this._onBlurHandler = (event) => {
+      if (this.$refs.elRoot.contains(event.target)) {
+        return;
+      }
+      this.showNotificationList = false;
+    });
   },
   methods: {
     async fetchNotificationCount(){
