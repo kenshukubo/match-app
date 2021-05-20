@@ -9,14 +9,14 @@ class User::PostMembersController < ApplicationController
 
     @post_members = PostMember.new
 
-    @invited_user = PostMember
+    @invited_user_exclude_me = PostMember
     .includes(:user)
     .where(post: current_user.post)
     .where.not(user: current_user)
 
-    @unconfirmed_members = @invited_user.where(is_confirmed: false)
-    @attend_members      = @invited_user.where(status: "attend")
-    @absent_members      = @invited_user.where(status: "absent")
+    @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
+    @attend_members      = @invited_user_exclude_me.where(status: "attend")
+    @absent_members      = @invited_user_exclude_me.where(status: "absent")
 
     @not_invited_friends = current_user.friend_users
     .where(sex: current_user.sex)

@@ -7,14 +7,18 @@ class User::PostsController < ApplicationController
       @post = Post.new
     end
 
-    @invited_user = PostMember
+    @invited_user_include_me = PostMember
+    .includes(:user)
+    .where(post: current_user.post)
+
+    @invited_user_exclude_me = PostMember
     .includes(:user)
     .where(post: current_user.post)
     .where.not(user: current_user) #自分以外
 
-    @unconfirmed_members = @invited_user.where(is_confirmed: false)
-    @attend_members      = @invited_user.where(status: "attend")
-    @absent_members      = @invited_user.where(status: "absent")
+    @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
+    @attend_members      = @invited_user_exclude_me.where(status: "attend")
+    @absent_members      = @invited_user_exclude_me.where(status: "absent")
   end
 
   def create

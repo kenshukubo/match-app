@@ -8,16 +8,20 @@
 
         <% if current_user.invite_any? %>
           <%= render "shared/inviting" %>
-
-          <%= render "shared/post_image",
-            place: @post.place,
-            time: @post.time.strftime("%-m月%-d日 %H:%M")
-          %>
         <% end %>
 
         <div class="invite-send-btn-wrapper">
           <%= link_to "✉ 招待する", new_post_member_path, class:"invite-send-btn app-button conversion" %>
         </div>
+
+        <% if current_user.invite_any? %>
+          <h2 style="font-size: 16px;">投稿イメージ</h2>
+          <%= render "shared/post_image",
+            place: @post.place,
+            time: @post.time.strftime("%-m月%-d日 %H:%M"),
+            invited_user_include_me: @invited_user_include_me
+          %>
+        <% end %>
       <% end %>
       <div class="post-select-link-wrapper">
         募集を<%= link_to "編集する", edit_post_path(current_user.post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(current_user.post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
@@ -75,7 +79,7 @@
 .invite-send-btn-wrapper{
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 .invite-send-btn{
   background: #001858;
