@@ -6,7 +6,7 @@
       </p>
 
       <div class="post-item__member-img-wrapper">
-        <% invited_user_include_me.each do |post_member| %>
+        <% join_member.each do |post_member| %>
           <%= image_tag post_member.user.user_profile.image.url, class:"post-item__member-img" %>
         <% end %>
       </div>

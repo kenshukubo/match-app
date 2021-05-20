@@ -3,6 +3,11 @@
     <% if @post.present? %>
       <% if current_user.all_member_invite?(@post) %>
         <h1>すでに募集が作成されています</h1>
+        <%= render "shared/post_image",
+          place: @post.place,
+          time: @post.time.strftime("%-m月%-d日 %H:%M"),
+          join_member: @join_member
+        %>
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
 
@@ -23,7 +28,7 @@
           <%= render "shared/post_image",
             place: @post.place,
             time: @post.time.strftime("%-m月%-d日 %H:%M"),
-            invited_user_include_me: @invited_user_include_me
+            join_member: @join_member
           %>
         <% end %>
       <% end %>

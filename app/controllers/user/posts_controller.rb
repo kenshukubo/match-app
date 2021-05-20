@@ -8,9 +8,9 @@ class User::PostsController < ApplicationController
       @new_post = Post.new
     end
 
-    @invited_user_include_me = PostMember
+    @join_member = PostMember
     .includes(:user)
-    .where(post: current_user.post)
+    .where(post: current_user.post, status: "attend")
 
     @invited_user_exclude_me = PostMember
     .includes(:user)
