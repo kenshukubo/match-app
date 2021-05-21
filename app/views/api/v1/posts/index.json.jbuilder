@@ -14,6 +14,7 @@ json.postList do
         else
           json.image user_profile.image.url
         end
+        json.id user_profile.id
       end
     end
   end

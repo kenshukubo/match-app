@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       resources :search_friends, only: [:index]
       resource  :friends, only: [:create, :destroy]
       resources :posts, only: [:index, :destroy]
+      resource  :zoom_in_profile, only: [:show]
     end
   end
 

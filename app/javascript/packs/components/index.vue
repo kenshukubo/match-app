@@ -11,7 +11,7 @@
               <p class="post-item__title">{{post.place}}で{{post.time}}から一緒にご飯いきませんか？</p>
               <div v-if="!!post.members" class="post-item__member-img-wrapper">
                 <template v-for="(member, index) in post.members">
-                  <img :src="member.image" :key="`member-${index}`" class="post-item__member-img">
+                  <img :src="member.image" @click="zoomIn(member)" :key="`member-${index}`" class="post-item__member-img">
                 </template>
               </div>
             </div>
@@ -39,6 +39,21 @@
         </div>
       </template>
     </div>
+
+    <ZoomInModal v-if="modal">
+      
+    </ZoomInModal>
+
+    <!-- <transition name="modal" v-if="modal" appear>
+      <div class="modal modal-overlay" @click.self="$emit('close')">
+        <div class="modal-window">
+          <div class="modal-content">
+            <img :src="zoomInProfile.image">
+          </div>
+        </div>
+      </div>
+    </transition> -->
+
   </div>
 </template>
 <script>
@@ -46,14 +61,20 @@ import axios from 'packs/axios'
 import postBackgroundImage from 'packs/assets/images/post-background.png'
 import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
+import ZoomInModal from './ZoomInModal.vue'
 
 export default {
+  components: {
+    ZoomInModal
+  },
   data() {
     return{
       postBackgroundImage,
       trashImage,
       editImage,
       postList: "",
+      modal: false,
+      zoomInProfile: "",
     }
   },
   created() {
@@ -74,6 +95,18 @@ export default {
         return await axios.delete(`/api/v1/posts/${postId}`)
       }
     },
+    async zoomIn(member) {
+      var self = this;
+      try {
+        const res = await axios.get('/api/v1/zoom_in_profile', {
+          params: {id: member.id}
+        })
+        self.zoomInProfile = res.data.zoomInProfile;
+        self.modal = true;
+      } catch(e) {
+        console.log(e)
+      }
+    }
   }
 }
 </script>
@@ -144,6 +177,7 @@ export default {
   height: 64px;
   object-fit: cover;
   border-radius: 50%;
+  cursor: pointer;
   @media(max-width: 415px){
     width: 48px;
     height: 48px;
@@ -196,5 +230,34 @@ export default {
   color: #fff;
   font-size: 1.142rem;
   font-weight: 700;
+}
+
+
+
+
+
+
+.modal {
+  &.modal-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 30;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  &-window {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  &-content {
+    padding: 10px 20px;
+  }
+
 }
 </style>
