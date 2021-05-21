@@ -32,6 +32,8 @@
     font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
     border: 2px solid #172c66;
+  }
+  #user_profile_age, #user_profile_job{
     @media(max-width: 567px){
       width: 100%;
     }
