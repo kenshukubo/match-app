@@ -36,15 +36,16 @@ header > .container{
   width: 24px!important;
 }
 
-.drawer-nav{
-  z-index: 999!important;
-}
+// .drawer-nav{
+//   z-index: 999!important;
+// }
 
-.drawer-overlay{
-  z-index: 998!important;
-}
+// .drawer-overlay{
+//   z-index: 998!important;
+// }
 
-.drawer-brand{
-  display: flex!important;
-  justify-content: flex-end!important;
+.drawer--right.drawer-open .drawer-hamburger{
+  right: 260px !important;
+  position: absolute!important;
+  z-index: 1000!important;
 }
