@@ -1,5 +1,8 @@
 class Api::V1::PostsController < Api::ApplicationController
   def index
+
+    return if !current_user
+
     @posts = Post
     .includes(:post_members, :user)
     .where.not(users: {sex: current_user.sex})
