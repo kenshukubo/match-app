@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
       unless current_user.user_profile.has_valid_profile?
         redirect_to edit_user_profile_path
       end
+      @user_profile = current_user.user_profile
     end
 
   end

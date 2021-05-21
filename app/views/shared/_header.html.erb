@@ -29,6 +29,14 @@
         <nav class="drawer-nav" role="navigation">
           <ul class="drawer-menu">
             <li>
+              <div class="drawer-menu__user-info">
+                <%= image_tag @user_profile.image.icon.url, class:"drawer-menu__user-icon" %>
+                <span class="drawer-menu__user-name">
+                  <%= @user_profile.name %>
+                </span>
+              </div>
+            </li>
+            <li>
               <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
             </li>
             <li>

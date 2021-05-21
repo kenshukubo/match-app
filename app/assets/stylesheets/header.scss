@@ -36,16 +36,40 @@ header > .container{
   width: 24px!important;
 }
 
-// .drawer-nav{
-//   z-index: 999!important;
-// }
+.drawer-menu-item{
+  padding: 0 20px!important;
+  line-height: 46px!important;
+}
 
-// .drawer-overlay{
-//   z-index: 998!important;
-// }
+.drawer-menu-item:hover{
+  text-decoration: none!important;
+  background-color: #f7fafc!important;
+}
 
 .drawer--right.drawer-open .drawer-hamburger{
   right: 260px !important;
   position: absolute!important;
   z-index: 1000!important;
+}
+
+.drawer-open .drawer-hamburger-icon::after,
+.drawer-open .drawer-hamburger-icon::before {
+  background-color: #fff!important;
+}
+
+.drawer-menu__user-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px 0px;
+}
+.drawer-menu__user-icon{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+.drawer-menu__user-name{
+  font-weight: 700;
 }
