@@ -33,10 +33,10 @@
               </div>
               <div class="results-item-header">
                 <span class="results-item-name text-ellipsis">{{user.name}}</span>
-                <button v-if="user.isFriend" @click="removeFriend(user)" class="results-remove-btn results-btn">
+                <button v-if="user.isFriend" @click="removeFriend(user, index)" class="results-remove-btn results-btn">
                   フレンド解除
                 </button>
-                <button v-else @click="addFriend(user)" class="results-follow-btn results-btn">
+                <button v-else @click="addFriend(user, index)" class="results-follow-btn results-btn">
                   フレンド追加
                 </button>
               </div>
@@ -109,12 +109,14 @@ export default {
       var self = this;
       self.selectedMenu = menuType;
     },
-    async addFriend(user) {
+    async addFriend(user, i) {
+      this.users[i].isFriend = true;
       return await axios.post("/api/v1/friends", {
         user_id: user.id
       })
     },
-    async removeFriend(user) {
+    async removeFriend(user, i) {
+      this.users[i].isFriend = false;
       return await axios.delete("/api/v1/friends", {
         data: {user_id: user.id }
       })
