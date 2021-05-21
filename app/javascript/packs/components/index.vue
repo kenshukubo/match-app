@@ -11,7 +11,7 @@
               <p class="post-item__title">{{post.place}}で{{post.time}}から一緒にご飯いきませんか？</p>
               <div v-if="!!post.members" class="post-item__member-img-wrapper">
                 <template v-for="(member, index) in post.members">
-                  <img :src="member.image" @click="zoomIn(member)" :key="`member-${index}`" class="post-item__member-img">
+                  <img :src="member.image" @click="zoomIn(member)" :key="`member-${index}`" class="post-item__member-img hover-opacity">
                 </template>
               </div>
             </div>
@@ -40,19 +40,20 @@
       </template>
     </div>
 
-    <ZoomInModal v-if="modal">
-      
+    <ZoomInModal v-if="modal" @close="closeModal">
+      <template slot="image">
+        <img :src="zoomInProfile.image" class="profile-image">
+      </template>
+      <template slot="name">
+        <p class="profile-info">{{zoomInProfile.name}}</p>
+      </template>
+      <template slot="age" v-if="zoomInProfile.age">
+        <p class="profile-info">{{zoomInProfile.age}}才</p>
+      </template>
+      <template slot="job" v-if="zoomInProfile.job">
+        <p class="profile-info">{{zoomInProfile.job}}</p>
+      </template>
     </ZoomInModal>
-
-    <!-- <transition name="modal" v-if="modal" appear>
-      <div class="modal modal-overlay" @click.self="$emit('close')">
-        <div class="modal-window">
-          <div class="modal-content">
-            <img :src="zoomInProfile.image">
-          </div>
-        </div>
-      </div>
-    </transition> -->
 
   </div>
 </template>
@@ -106,7 +107,10 @@ export default {
       } catch(e) {
         console.log(e)
       }
-    }
+    },
+    closeModal() {
+      this.modal = false
+    },
   }
 }
 </script>
@@ -232,32 +236,10 @@ export default {
   font-weight: 700;
 }
 
-
-
-
-
-
-.modal {
-  &.modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 30;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  &-window {
-    background: #fff;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  &-content {
-    padding: 10px 20px;
-  }
-
+.profile-image{
+  width: 360px;
+}
+.profile-info{
+  text-align: center;
 }
 </style>

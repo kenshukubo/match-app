@@ -2,8 +2,11 @@
   <transition name="modal" appear>
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
+        <slot name="image"></slot>
         <div class="modal-content">
-          <slot/>
+          <slot name="name"></slot>
+          <slot name="age"></slot>
+          <slot name="job"></slot>
         </div>
       </div>
     </div>
