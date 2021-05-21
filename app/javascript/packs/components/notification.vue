@@ -17,7 +17,7 @@
       </div>
 
       <div v-if="!selectedMenu" class="notification-item-wrapper">
-        <div v-if="!usuallNotifications">
+        <div v-if="!Object.keys(usuallNotifications).length">
           <div class="notification-item">
             <span>ただいま通知はありません</span>
           </div>
@@ -36,7 +36,7 @@
         </template>
       </div>
       <div v-else class="notification-item-wrapper">
-        <div v-if="!!adminNotifications">
+        <div v-if="!Object.keys(adminNotifications).length">
           <div class="notification-item">
             <span>ただいま通知はありません</span>
           </div>
