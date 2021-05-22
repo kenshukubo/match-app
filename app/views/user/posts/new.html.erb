@@ -52,7 +52,7 @@
           <div class="field">
             <div class="label">
               <label>
-                人数（自分を合わせて）
+                <%= @sex %>の人数（自分を合わせて）
               </label>
             </div>
             <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
