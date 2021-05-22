@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="single-page">
+    <% if @attack_group.present? %>
+    <% else %>
+      <%= render "shared/attack_groups/form" %>
+    <% end %>
+  </div>
+</div>
