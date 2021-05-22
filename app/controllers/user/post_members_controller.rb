@@ -7,6 +7,12 @@ class User::PostMembersController < ApplicationController
       flash[:alert] = "募集を作成しましょう"
     end
 
+    if current_user.sex == "male"
+      @sex = "男子"
+    else
+      @sex = "女子"
+    end
+
     @post_members = PostMember.new
 
     post = current_user.post
