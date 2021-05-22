@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_150939) do
+ActiveRecord::Schema.define(version: 2021_05_22_062420) do
+
+  create_table "attack_groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_attack_groups_on_post_id"
+    t.index ["user_id"], name: "index_attack_groups_on_user_id"
+  end
+
+  create_table "attackers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "attack_group_id", null: false
+    t.boolean "is_confirmed", default: false
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attack_group_id"], name: "index_attackers_on_attack_group_id"
+    t.index ["user_id"], name: "index_attackers_on_user_id"
+  end
 
   create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "target_user_id"
@@ -123,6 +143,10 @@ ActiveRecord::Schema.define(version: 2021_05_18_150939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attack_groups", "posts"
+  add_foreign_key "attack_groups", "users"
+  add_foreign_key "attackers", "attack_groups"
+  add_foreign_key "attackers", "users"
   add_foreign_key "post_members", "posts"
   add_foreign_key "post_members", "users"
   add_foreign_key "posts", "users"

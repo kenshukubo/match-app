@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: 'target_user_id', dependent: :destroy
   has_one  :user_notification, dependent: :destroy
   has_many :post_members, dependent: :destroy
+  has_many :attack_groups, dependent: :destroy
+  has_many :attackers, dependent: :destroy
 
   has_many :relationships
   has_many :friend_users, through: :relationships, source: :friend
