@@ -1,6 +1,6 @@
 <% if current_user.post.present? %>
   <% if current_user.post.all_member_here? %>
-    <span class="top__user-status">投稿済</span>
+    <span style="font-weight:700;">投稿済</span>
   <% else %>
     <%= link_to "招待中", new_post_member_path, class:"top__user-status hover-opacity" %>
   <% end %>  
