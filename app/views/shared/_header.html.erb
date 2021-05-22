@@ -30,9 +30,9 @@
           <ul class="drawer-menu">
             <li>
               <div class="drawer-menu__user-info">
-                <%= image_tag @user_profile.image.icon.url, class:"drawer-menu__user-icon" %>
+                <%= image_tag current_user.user_profile.image.icon.url, class:"drawer-menu__user-icon" %>
                 <span class="drawer-menu__user-name">
-                  <%= @user_profile.name %>
+                  <%= current_user.user_profile.name %>
                 </span>
               </div>
             </li>
