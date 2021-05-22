@@ -45,7 +45,7 @@ class User::PostMembersController < ApplicationController
 
         # 通知作成用
         category = "invite"
-        message = "#{current_user.user_profile.name}さんに招待されました"
+        message = "#{current_user.user_profile.name}さんに募集メンバーに招待されました"
 
         select_member_params[:user_id].each do |user_id|
 
