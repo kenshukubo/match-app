@@ -15,15 +15,17 @@
         </div>
 
         <div class="top__user-info-status">
-          <div class="top__user-info-status-item">
-            <span>
-              自分の投稿
+          <div class="top__user-info-status-item-wrapper">
+            <div class="top__user-info-status-item">
+              <span>自分の投稿</span>
               <%= render "shared/post_status" %>
-            </span>
+            </div>
           </div>
           <div>
-            <span>あなたへの招待</span>
-            <%= render "shared/invite_status" %>
+            <div class="top__user-info-status-item">
+              <span>あなたへの招待</span>
+              <%= render "shared/invite_status" %>
+            </div>
           </div>
         </div>
     </div>

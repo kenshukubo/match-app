@@ -104,7 +104,7 @@
   }
   .top__user-info-status{
     display: flex;
-    .top__user-info-status-item{
+    .top__user-info-status-item-wrapper{
       margin-right: 42px;
       @media(max-width: 567px){
         margin-right: 28px;
@@ -112,6 +112,13 @@
       .top__user-status{
         font-weight: 700;
         text-decoration: underline;
+      }
+    }
+    .top__user-info-status-item{
+      @media(max-width: 567px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
     }
   }
