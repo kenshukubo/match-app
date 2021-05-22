@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resource  :user_profile, only: [:edit, :update, :show]
       resources :posts
       resources :post_members
-      resources :attacks
+      resources :attack_groups
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]
