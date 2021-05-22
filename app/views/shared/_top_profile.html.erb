@@ -1,32 +1,41 @@
-<div class="top__user-profile">
+<div class="top__header-user-action-area">
   
-    <div class="top__user-icon-wrapper">
-      <%= image_tag @user_profile.image.thumb.url, class:"top__user-icon" %>
+    <div class="top__user-profile">
+        <div class="top__user-icon-wrapper">
+          <%= image_tag @user_profile.image.thumb.url, class:"top__user-icon" %>
+        </div>
+
+        <div class="top__user-info">
+            <div class="top__user-info-header">
+              <span class="top__user-name text-ellipsis">
+                <%= @user_profile.name %>
+              </span>
+              <button class="top__user-setting-btn hover-opacity">
+                <%= link_to "プロフィール設定", edit_user_profile_path %>
+              </button>
+            </div>
+
+            <div class="top__user-info-status">
+              <div class="top__user-info-status-item-wrapper">
+                <div class="top__user-info-status-item">
+                  <span>自分の投稿</span>
+                  <%= render "shared/post_status" %>
+                </div>
+              </div>
+              <div>
+                <div class="top__user-info-status-item">
+                  <span>あなたへの招待</span>
+                  <%= render "shared/invite_status" %>
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
 
-    <div class="top__user-info">
-        <div class="top__user-info-header">
-          <span class="top__user-name text-ellipsis">
-            <%= @user_profile.name %>
-          </span>
-          <button class="top__user-setting-btn hover-opacity">
-            <%= link_to "プロフィール設定", edit_user_profile_path %>
-          </button>
-        </div>
-
-        <div class="top__user-info-status">
-          <div class="top__user-info-status-item-wrapper">
-            <div class="top__user-info-status-item">
-              <span>自分の投稿</span>
-              <%= render "shared/post_status" %>
-            </div>
-          </div>
-          <div>
-            <div class="top__user-info-status-item">
-              <span>あなたへの招待</span>
-              <%= render "shared/invite_status" %>
-            </div>
-          </div>
-        </div>
+    <div class="top__select-btn-wrapper">
+      <button class="">アタック隊作成</button>
+      <button>
+        <%= link_to "募集作成", new_post_path %>
+      </button>
     </div>
 </div>
