@@ -1,6 +1,6 @@
 <div class="container">
   <div class="single-page">
-    <% if @attack_group.present? %>
+    <% if current_user.attack_groups.present? %>
     <% else %>
       <%= render "shared/attack_groups/form" %>
     <% end %>
