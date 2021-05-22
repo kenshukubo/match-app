@@ -101,6 +101,8 @@
       color: #000;
       height: 24px;
       font-size: 10px;
+      background-color: transparent;
+      border-color: #001858;
       @media(max-width: 567px){
         display: none;
       }
