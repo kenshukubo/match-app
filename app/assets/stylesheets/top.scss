@@ -104,12 +104,13 @@
     }
     .top__user-setting-btn{
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       color: #000;
       height: 24px;
       font-size: 10px;
       background-color: transparent;
-      border-color: #001858;
+      border: none;
+      text-decoration: underline;
       @media(max-width: 567px){
         display: none;
       }
