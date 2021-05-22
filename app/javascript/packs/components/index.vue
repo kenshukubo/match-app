@@ -116,7 +116,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .post-item-wrapper{
-  margin: 24px 0;
+  margin-bottom: 36px;
   padding: 16px 16px 4px;
   background: #fff;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);

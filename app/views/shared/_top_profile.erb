@@ -1,0 +1,27 @@
+<div class="top__user-profile">
+  
+    <div class="top__user-icon-wrapper">
+      <%= image_tag @user_profile.image.thumb.url, class:"top__user-icon" %>
+    </div>
+
+    <div class="top__user-info">
+        <div class="top__user-info-header">
+          <span class="top__user-name">
+            <%= @user_profile.name %>
+          </span>
+          <button class="top__user-setting-btn">
+            <%= link_to "プロフィール設定", edit_user_profile_path %>
+          </button>
+        </div>
+
+        <div class="top__user-info-status">
+          <div class="top__user-info-status-item">
+            <span>投稿</span>
+            
+          </div>
+          <div>
+            <span>招待</span>
+          </div>
+        </div>
+    </div>
+</div>
