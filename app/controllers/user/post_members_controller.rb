@@ -43,16 +43,17 @@ class User::PostMembersController < ApplicationController
         # 人数オーバーであればリターン
         raise if select_member_params[:user_id].count > invitable_number
 
+        # 通知作成用
+        category = "invite"
+        message = "#{current_user.user_profile.name}さんに招待されました"
+
         select_member_params[:user_id].each do |user_id|
 
           # PostMember作成
           current_user.invite_member(user_id, @post)
-
-          # 通知作成
-          category = "invite"
-          message = "#{current_user.user_profile.name}さんに招待されました"
           post_member = PostMember.find_by(user_id: user_id)
 
+          # 通知作成
           Notification.create!(
             target_user_id: user_id,
             message: message,
@@ -150,5 +151,5 @@ class User::PostMembersController < ApplicationController
 
     def select_member_params
       params.require(:post_member).permit({:user_id => []})
-  end
+    end
 end
