@@ -100,7 +100,10 @@
     display: flex;
     .top__user-info-status-item{
       margin-right: 42px;
-      .top__user-post-status{
+      @media(max-width: 567px){
+        margin-right: 28px;
+      }
+      .top__user-status{
         font-weight: 700;
         text-decoration: underline;
       }

@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
         redirect_to edit_user_profile_path
       end
       @user_profile = current_user.user_profile
+      @invited_number = PostMember.where.not(post: current_user.post).where(user: current_user).count
     end
-
   end
 end
