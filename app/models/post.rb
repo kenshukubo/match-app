@@ -10,4 +10,8 @@ class Post < ApplicationRecord
   scope :all_member_join, ->() do
     where('number = ?', PostMember.where(post: self, status: "attend").count)
   end
+
+  def all_member_here?
+    PostMember.where(post: self, status: "attend").count == self.number
+  end
 end

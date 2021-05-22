@@ -1,0 +1,9 @@
+<% if current_user.post.present? %>
+  <% if current_user.post.all_member_here? %>
+    <span class="top__user-post-status">投稿済</span>
+  <% else %>
+    <%= link_to "招待中", new_post_member_path, class:"top__user-post-status" %>
+  <% end %>  
+<% else %>
+  <%= link_to "未作成", new_post_path, class:"top__user-post-status" %>
+<% end %>

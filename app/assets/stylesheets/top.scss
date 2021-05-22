@@ -52,13 +52,13 @@
 
 .top__user-profile{
   display: flex;
-  padding: 18px 84px;
+  padding: 18px 64px;
   @media(max-width: 567px){
     padding: 12px 32px;
   }
 }
 .top__user-icon-wrapper{
-  margin-right: 36px;
+  margin-right: 64px;
   @media(max-width: 567px){
     margin-right: 20px;
   }
@@ -99,7 +99,11 @@
   .top__user-info-status{
     display: flex;
     .top__user-info-status-item{
-      margin-right: 8px;
+      margin-right: 42px;
+      .top__user-post-status{
+        font-weight: 700;
+        text-decoration: underline;
+      }
     }
   }
 }
