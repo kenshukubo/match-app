@@ -4,7 +4,7 @@
       <%= @sex %>メンバーを招待する
     </h1>
 
-    <p>
+    <p class="invitable-number">
       <span>招待可能人数：<%= @invitable_number %>人</span>
     </p>
 
@@ -67,7 +67,7 @@
               <div class="field">
                 <div class="label">
                   <label>
-                    フレンドリストから選ぶ（<span>招待可能人数：<%= @invitable_number %>人</span>）
+                    フレンドリストから選ぶ
                   </label>
                 </div>
                 <div class="post-member__friend-list">
@@ -93,6 +93,12 @@
 </div>
 
 <style>
+.invitable-number{
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
 .lines-on-sides{
   position: relative;
   top: 0;
