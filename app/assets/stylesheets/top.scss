@@ -142,3 +142,21 @@
   display: flex;
   justify-content: center;
 }
+.top__select-btn{
+  min-width: 128px;
+  margin: 0px 4px;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  line-height: 24px;
+  .top__select-link{
+    display: inline-block;
+    width: 100%;
+  }
+}
+.attack-btn{
+  background: #8bd3dd;
+}
+.post-create-btn{
+  background: #f582ae;
+}
