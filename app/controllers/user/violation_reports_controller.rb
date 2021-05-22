@@ -1,2 +1,2 @@
-class User::ViolationReportsController < User::ApplicationController
+class User::ViolationReportsController < ApplicationController
 end

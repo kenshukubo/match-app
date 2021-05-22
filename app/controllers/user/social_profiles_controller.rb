@@ -1,4 +1,4 @@
-class User::SocialProfilesController < User::ApplicationController
+class User::SocialProfilesController < ApplicationController
   before_action :require_other_login_info, only: [:destroy]
 
   def destroy

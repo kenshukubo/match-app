@@ -1,2 +1,4 @@
-class User::AttacksController < User::ApplicationController
+class User::AttacksController < ApplicationController
+  def new
+  end
 end

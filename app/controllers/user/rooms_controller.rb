@@ -1,4 +1,4 @@
-class User::RoomsController < User::ApplicationController
+class User::RoomsController < ApplicationController
   before_action :set_layout, only: [:show]
 
   def show
