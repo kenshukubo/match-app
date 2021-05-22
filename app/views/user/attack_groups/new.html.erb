@@ -1,8 +1,7 @@
 <div class="container">
   <div class="single-page">
     <% if current_user.attack_groups.present? %>
-    <% else %>
-      <%= render "shared/attack_groups/form" %>
     <% end %>
+    <%= render "shared/attack_groups/form" %>
   </div>
 </div>
