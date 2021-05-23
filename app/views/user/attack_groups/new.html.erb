@@ -4,6 +4,10 @@
       アタックチーム作成
     </h1>
 
+    <% if current_user.attack_groups.present? %>
+      <%= link_to "アタックチーム一覧へ", attack_groups_path %>
+    <% end %>
+
     <div class="lines-on-sides">
       <span>すでにアカウントを持っている人を選択する</span>
     </div>
