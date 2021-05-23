@@ -57,6 +57,9 @@
   color: #fff;
   border-color: #f582ae;
   background: #f582ae;
+  &:hover{
+    opacity: .7;
+  }
 }
 
 .user-profile__preview-box-wrapper{
