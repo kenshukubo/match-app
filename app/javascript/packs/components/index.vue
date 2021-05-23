@@ -76,10 +76,12 @@ export default {
       postList: "",
       modal: false,
       zoomInProfile: "",
+      postListed: false,
     }
   },
   created() {
     this.fetchPostList();
+    this.fetchPostIsListed();
   },
   methods: {
     async fetchPostList(){
@@ -87,6 +89,15 @@ export default {
       try {
         const res = await axios.get("/api/v1/posts")
         self.postList = res.data.postList;
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async fetchPostIsListed(){
+      var self = this;
+      try {
+        const res =  await axios.patch("/api/v1/post_listed_check")
+        self.postListed = res.data.isModal
       } catch(e) {
         console.log(e)
       }

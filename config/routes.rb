@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resource  :friends, only: [:create, :destroy]
       resources :posts, only: [:index, :destroy]
       resource  :zoom_in_profile, only: [:show]
+      resource  :post_listed_check, only: [:update]
     end
   end
 
