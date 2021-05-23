@@ -1,4 +1,4 @@
-<%= form_with model: @attackers, url: attack_groups_path, local: true, method: :post do |f| %>
+<%= form_with model: model, url: url, local: true, method: :post do |f| %>
   <div class="form">
     <% if current_user.friend_users.blank? %>
       <span>フレンドがいません。</span>
@@ -10,7 +10,7 @@
           </label>
         </div>
         <div class="post-member__friend-list">
-          <%= f.collection_check_boxes(:user_id, @host_friends, :id, :email, include_hidden: false) do |b| %>
+          <%= f.collection_check_boxes(:user_id, listed_friends, :id, :email, include_hidden: false) do |b| %>
             <span class="post-member__friend-list-item">
               <%= b.check_box %>
               <%= b.label class:"text-ellipsis" %>
