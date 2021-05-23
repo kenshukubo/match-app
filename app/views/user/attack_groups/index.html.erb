@@ -9,12 +9,16 @@
                     <div class="attack_groups__item-title-wrapper">
                       <span class="attack_groups__item-title">アタックチーム<%= group.group_number %></span>
                     </div>
-                    <div class="attack_groups__item-users-wrapper">
-                        <% group.attackers do |attacker| %>
-                            <div>
-                              <%= image_tag attacker.user.user_profile.image.icon.url %>
+                    <div class="attack_groups__users-item-wrapper">
+                        <% group.attackers.each do |attacker| %>
+                            <div class="attack_groups__user-item">
+                              <div>
+                                <%= image_tag attacker.user.user_profile.image.icon.url, class:"attack_groups__user-item-img" %>
+                              </div>
+                              <span>
+                                <%= attacker.user.user_profile.name %>
+                              </span>
                             </div>
-                            <span><%= attacker.user.user_profile.name %></span>
                         <% end %>
                     </div>
                 </div>
@@ -25,6 +29,34 @@
 
 <style>
 .attack_groups__item{
-  padding: 24px;
+  padding: 24px 0;
+}
+
+.attack_groups__item-title-wrapper{
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.attack_groups__users-item-wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid #f3d2c1;
+  border-radius: 8px;
+  padding: 10px 0px;
+  background: #f3d2c1;
+}
+
+.attack_groups__user-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.attack_groups__user-item-img{
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 9999px;
 }
 </style>
