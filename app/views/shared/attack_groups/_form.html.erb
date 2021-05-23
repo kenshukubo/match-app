@@ -1,6 +1,3 @@
-<h1>
-  アタックチーム作成
-</h1>
 <%= form_with model: @attackers, url: attack_groups_path, local: true, method: :post do |f| %>
   <div class="form">
     <% if current_user.friend_users.blank? %>

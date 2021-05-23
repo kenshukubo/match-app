@@ -1,5 +1,16 @@
 <div class="container">
   <div class="single-page">
+    <h1>
+      アタックチーム作成
+    </h1>
+
+    <div class="lines-on-sides">
+      <span>すでにアカウントを持っている人を選択する</span>
+    </div>
+    <div class="sp-sub-text-wrapper">
+      <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
+    </div>
+    
     <% if current_user.attack_groups.present? %>
     <% end %>
     <%= render "shared/attack_groups/form" %>
