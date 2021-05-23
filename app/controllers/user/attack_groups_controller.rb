@@ -32,7 +32,7 @@ class User::AttackGroupsController < ApplicationController
 
         # 通知作成用
         category = "invite"
-        message = "#{current_user.user_profile.name}さんにアタック隊に招待されました"
+        message = "#{current_user.user_profile.name}さんにアタックチームに招待されました"
 
         # その他メンバーを作成
         select_member_params[:user_id].each do |user_id|
