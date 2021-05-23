@@ -1,5 +1,9 @@
 class User::AttackGroupsController < ApplicationController
   def index
+    @attack_groups = AttackGroup
+    .includes(:attackers)
+    .where(user: current_user)
+    .order(group_number: :asc)
   end
 
   def new

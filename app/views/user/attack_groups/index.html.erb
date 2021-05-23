@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="single-page">
+        <h1 style="text-align:center; padding-bottom: 0px;">
+          アタックチーム一覧
+        </h1>
+        <div class="attack_groups__wrapper">
+            <% @attack_groups.each do |group| %>
+                <div class="attack_groups__item">
+                    <div class="attack_groups__item-title-wrapper">
+                      <span class="attack_groups__item-title">アタックチーム<%= group.group_number %></span>
+                    </div>
+                    <div class="attack_groups__item-users-wrapper">
+                        <% group.attackers do |attacker| %>
+                            <div>
+                              <%= image_tag attacker.user.user_profile.image.icon.url %>
+                            </div>
+                            <span><%= attacker.user.user_profile.name %></span>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<style>
+.attack_groups__item{
+  padding: 24px;
+}
+</style>
