@@ -5,6 +5,7 @@ class User::AttackGroupsController < ApplicationController
   def new
     @attackers = Attacker.new
     @host_friends = current_user.friend_users.where(sex: current_user.sex)
+    @attack_groups_number = current_user.attack_groups.count
   end
 
   def create

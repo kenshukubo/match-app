@@ -5,7 +5,10 @@
     </h1>
 
     <% if current_user.attack_groups.present? %>
-      <%= link_to "アタックチーム一覧へ", attack_groups_path %>
+    <div style="margin-bottom: 24px;">
+      <span>作成済チーム数：</span>
+      <%= link_to "#{@attack_groups_number}", attack_groups_path, style:"text-decoration: underline;" %>
+    </div>
     <% end %>
 
     <div class="lines-on-sides">
