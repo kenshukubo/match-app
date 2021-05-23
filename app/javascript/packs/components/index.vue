@@ -255,7 +255,8 @@ export default {
 }
 
 .profile-image{
-  width: 360px;
+  max-width: 360px;
+  max-height: 360px;
 }
 .profile-info{
   text-align: center;
