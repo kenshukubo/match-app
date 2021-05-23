@@ -32,29 +32,21 @@ class Users::InvitationsController < Devise::InvitationsController
       ActiveRecord::Base.transaction do
         invite_user = User.find(@user.invited_by_id)
 
-        if @user.sex == invite_user.sex
+        # お互いにフレンド追加
+        invite_user.make_friend(@user)
+        @user.make_friend(invite_user)
 
-          # PostMember作成
-          invite_user.invite_member(@user.id, invite_user.post)
-    
-          # お互いにフレンド追加
-          invite_user.make_friend(@user)
-          @user.make_friend(invite_user)
-    
-          # 通知作成
-          message = "#{invite_user.user_profile.name}さんに招待されました"
-          category = "invite"
-          post_member = PostMember.find_by(user: @user)
-    
-          Notification.create!(
-            target_user_id: @user.id,
-            message: message,
-            category: category,
-            url: edit_post_member_path(post_member.id)
-          )
-    
-          UserNotification.find_by(user: @user).add_unchecked_notification_count
-        end
+        # 通知作成
+        message = "#{invite_user.user_profile.name}さんに招待されました"
+        category = "invite"
+
+        Notification.create!(
+          target_user_id: @user.id,
+          message: message,
+          category: category
+        )
+
+        UserNotification.find_by(user: @user).add_unchecked_notification_count
       end
     rescue => error
       p error
