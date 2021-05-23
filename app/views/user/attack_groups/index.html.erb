@@ -7,7 +7,10 @@
             <% @attack_groups.each do |group| %>
                 <div class="attack_groups__item">
                     <div class="attack_groups__item-title-wrapper">
-                      <span class="attack_groups__item-title">アタックチーム<%= group.group_number %></span>
+                        <span class="attack_groups__item-title">アタックチーム<%= group.group_number %></span>
+                        <div class="attack_groups__item-option hover-opacity">
+                          <%= link_to "削除する", attack_group_path(group.id), method: :delete, data: { confirm: "削除します。よろしいでしょうか？" } %>
+                        </div>
                     </div>
                     <div class="attack_groups__users-item-wrapper">
                         <% group.attackers.each do |attacker| %>
@@ -33,7 +36,13 @@
 }
 
 .attack_groups__item-title-wrapper{
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 12px;
+}
+
+.attack_groups__item-option{
+  text-decoration: underline;
 }
 
 .attack_groups__users-item-wrapper{

@@ -66,6 +66,10 @@ class User::AttackGroupsController < ApplicationController
     end
   end
 
+  def destroy
+    
+  end
+
   private
 
   def select_member_params
