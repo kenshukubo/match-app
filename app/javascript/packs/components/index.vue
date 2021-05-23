@@ -55,6 +55,9 @@
       </template>
     </ZoomInModal>
 
+    <PostListedModal v-if="postListed">
+    </PostListedModal>
+
   </div>
 </template>
 <script>
@@ -63,10 +66,12 @@ import postBackgroundImage from 'packs/assets/images/post-background.png'
 import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './ZoomInModal.vue'
+import PostListedModal from './PostListedModal.vue'
 
 export default {
   components: {
-    ZoomInModal
+    ZoomInModal,
+    PostListedModal
   },
   data() {
     return{
