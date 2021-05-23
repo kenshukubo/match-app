@@ -13,6 +13,34 @@
     <% end %>
 
     <div class="lines-on-sides">
+      <span>すでにアカウントを持っている人を選択する</span>
+    </div>
+    <div class="sp-sub-text-wrapper">
+      <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
+    </div>
+
+    <% if current_user.friend_users.blank? %>
+      <p class="post-member__exception-title">
+        <span>フレンドがいません。</span>
+        <span>
+          ヘッダーの<%= image_tag "search.png", class:"post-member__exception-search-img" %>からフレンド追加できます。
+        </span>
+      </p>
+    <% else %>
+      <% if @not_invited_friends.blank? %>
+        <p class="post-member__exception-title">
+          <span>全フレンド選択済みです</span>
+        </p>
+      <% else %>
+        <%= render "shared/friend_list",
+          model: @post_members,
+          url: post_members_path,
+          listed_friends: @not_invited_friends
+        %>
+      <% end %>
+    <% end %>
+
+    <div class="lines-on-sides">
       <span>アカウントを持っていない人を招待する</span>
     </div>
     <div class="sp-sub-text-wrapper">
@@ -40,34 +68,6 @@
         </div>
       <% end %>
     </div>
-
-    <div class="lines-on-sides">
-      <span>すでにアカウントを持っている人を選択する</span>
-    </div>
-    <div class="sp-sub-text-wrapper">
-      <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
-    </div>
-
-    <% if current_user.friend_users.blank? %>
-      <p class="post-member__exception-title">
-        <span>フレンドがいません。</span>
-        <span>
-          ヘッダーの<%= image_tag "search.png", class:"post-member__exception-search-img" %>からフレンド追加できます。
-        </span>
-      </p>
-    <% else %>
-      <% if @not_invited_friends.blank? %>
-        <p class="post-member__exception-title">
-          <span>全フレンド選択済みです</span>
-        </p>
-      <% else %>
-        <%= render "shared/friend_list",
-          model: @post_members,
-          url: post_members_path,
-          listed_friends: @not_invited_friends
-        %>
-      <% end %>
-    <% end %>
   </div>
 </div>
 
