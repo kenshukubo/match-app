@@ -67,7 +67,12 @@ class User::AttackGroupsController < ApplicationController
   end
 
   def destroy
-    
+    group = AttackGroup.find(params[:id])
+    if group.destroy
+      redirect_to attack_groups_path, notice: 'チームを削除しました'
+    else
+      redirect_to attack_groups_path, notice: 'チームの削除に失敗しました'
+    end
   end
 
   private
