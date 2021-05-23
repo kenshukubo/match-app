@@ -63,6 +63,9 @@ class User::PostMembersController < ApplicationController
 
           UserNotification.find_by(user_id: user_id).add_unchecked_notification_count
         end
+
+        # 人数が揃えばトップ表示
+        @post.update!(is_listed: true) if @post.all_member_here?
       end
       redirect_to new_post_member_path
       flash[:notice] = "招待完了しました"
@@ -108,6 +111,9 @@ class User::PostMembersController < ApplicationController
 
         user_notification = UserNotification.find_by(user_id: host_user_id)
         user_notification.add_unchecked_notification_count
+
+        # 人数が揃えばトップ表示
+        @post.update!(is_listed: true) if @post.all_member_here?
       end
       flash[:notice] = "更新完了！"
       redirect_to root_path
