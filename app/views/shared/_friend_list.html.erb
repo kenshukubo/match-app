@@ -1,0 +1,45 @@
+<div class="post-member-form">
+  <%= form_with model: model, url: url, local: true, method: :post do |f| %>
+    <div class="form">
+      <div class="field">
+        <div class="label">
+          <label>
+            フレンドリストから選ぶ
+          </label>
+        </div>
+        <div class="post-member__friend-list">
+          <%= f.collection_check_boxes(:user_id, listed_friends, :id, :email, include_hidden: false) do |b| %>
+            <span class="post-member__friend-list-item">
+              <%= b.check_box %>
+              <%= b.label class:"text-ellipsis" %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="field">
+        <div class="button-wrapper">
+          <%= f.submit "招待確定する", class:"app-button conversion" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+.post-member-form{
+  padding: 32px 0;
+}
+
+.post-member__friend-list{
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.post-member__friend-list-item{
+  display: flex;
+  margin: 4px 0px;
+  font-size: 14px;
+}
+</style>
