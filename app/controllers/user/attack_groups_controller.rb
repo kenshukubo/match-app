@@ -13,7 +13,7 @@ class User::AttackGroupsController < ApplicationController
       ActiveRecord::Base.transaction do
 
         if current_user.attack_groups.present?
-          group_number = current_user.attack_groups.last.group_number
+          group_number = current_user.attack_groups.last.group_number + 1
         else
           group_number = 1
         end

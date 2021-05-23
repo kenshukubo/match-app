@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :posts
       resources :post_members
       resources :attack_groups
-      resource  :attacker, only: [:edit, :update]
+      resources :attackers, only: [:edit, :update]
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]
