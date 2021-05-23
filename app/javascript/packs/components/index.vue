@@ -127,8 +127,9 @@ export default {
   display: inline-block;
   padding: 0 8px;
   border-radius: 10px;
-  background:#001858;
-  color: #fff;
+  background:#fff;
+  color: #001858;
+  border: 1px solid #001858;
   font-size: .571rem;
   line-height: 1.428rem;
   margin-bottom: 4px;
