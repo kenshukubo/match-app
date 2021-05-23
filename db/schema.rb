@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_05_23_140659) do
     t.datetime "time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_listed", default: false
+    t.boolean "is_modal", default: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
