@@ -102,19 +102,6 @@
         max-width: 200px;
       }
     }
-    .top__user-setting-btn{
-      display: flex;
-      align-items: flex-end;
-      color: #000;
-      height: 24px;
-      font-size: 10px;
-      background-color: transparent;
-      border: none;
-      text-decoration: underline;
-      @media(max-width: 567px){
-        display: none;
-      }
-    }
   }
   .top__user-info-status{
     display: flex;
