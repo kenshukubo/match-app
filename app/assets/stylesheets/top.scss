@@ -62,17 +62,23 @@
 
 .top__user-profile{
   display: flex;
-  padding-left: 64px;
+  padding: 0px 64px;
   margin-bottom: 32px;
   @media(max-width: 567px){
-    padding-left: 32px;
+    padding: 0px 32px;
+  }
+  @media(max-width: 415px){
+    padding: 0px 24px;
   }
 }
 .top__user-icon-wrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 24px;
+  margin: 0px 24px;
+  @media(max-width: 415px){
+    margin: 0px 12px;
+  }
   .top__user-icon{
     width: 84px;
     height: 84px;
@@ -97,6 +103,7 @@
 .top__user-info{
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   margin: 12px;
   .top__user-info-status{
@@ -112,10 +119,10 @@
       }
     }
     .top__user-info-status-item{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       @media(max-width: 567px){
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         font-size: 14px;
       }
     }
