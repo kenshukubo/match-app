@@ -1,4 +1,5 @@
 class User::PostsController < ApplicationController
+  before_action :inviting_member, only: [:new, :edit]
   def new
 
     if current_user.post.present?
@@ -17,15 +18,6 @@ class User::PostsController < ApplicationController
     @join_member = PostMember
     .includes(:user)
     .where(post: current_user.post, status: "attend")
-
-    @invited_user_exclude_me = PostMember
-    .includes(:user)
-    .where(post: current_user.post)
-    .where.not(user: current_user) #自分以外
-
-    @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
-    @attend_members      = @invited_user_exclude_me.where(status: "attend")
-    @absent_members      = @invited_user_exclude_me.where(status: "absent")
   end
 
   def create
@@ -114,5 +106,16 @@ class User::PostsController < ApplicationController
   private
     def post_params
       params.require(:post).permit(:user_id, :place, :number, :time, :detail)
+    end
+
+    def inviting_member
+      @invited_user_exclude_me = PostMember
+      .includes(:user)
+      .where(post: current_user.post)
+      .where.not(user: current_user) #自分以外
+
+      @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
+      @attend_members      = @invited_user_exclude_me.where(status: "attend")
+      @absent_members      = @invited_user_exclude_me.where(status: "absent")
     end
 end

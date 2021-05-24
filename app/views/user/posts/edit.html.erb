@@ -3,6 +3,11 @@
     <h1>
       募集を編集する
     </h1>
+
+    <% if current_user.invite_any? %>
+      <%= render "shared/inviting" %>
+    <% end %>
+
     <%= form_with model: @post, url: post_path, local: true, method: :patch do |f| %>
       <div class="form">
         <div class="field">

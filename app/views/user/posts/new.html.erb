@@ -7,11 +7,13 @@
         <% else %>
           <h1>すでに募集が作成されています</h1>
         <% end %>
+
         <%= render "shared/posts/post_image",
           place: @post.place,
           time: @post.time.strftime("%-m月%-d日 %H:%M"),
           join_member: @join_member
         %>
+        
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
 
