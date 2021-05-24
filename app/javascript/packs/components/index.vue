@@ -55,7 +55,7 @@
       </template>
     </ZoomInModal>
 
-    <PostListedModal v-if="postListed">
+    <PostListedModal v-if="postListed" @close="closeModal">
     </PostListedModal>
 
   </div>
@@ -103,6 +103,7 @@ export default {
       try {
         const res =  await axios.patch("/api/v1/post_listed_check")
         self.postListed = res.data.isModal
+        if(self.postListed) this.confettiStart();
       } catch(e) {
         console.log(e)
       }
@@ -125,7 +126,16 @@ export default {
       }
     },
     closeModal() {
-      this.modal = false
+      this.modal = false;
+
+      this.postListed = false;
+      this.confettiStop();
+    },
+    confettiStart() {
+      this.$confetti.start();
+    },
+    confettiStop() {
+      this.$confetti.stop();
     },
   }
 }
