@@ -44,8 +44,11 @@ export default {
     flex-direction: column;
     width: 420px;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
+    @media(max-width: 576px){
+      width: 300px;
+    }
   }
   &-content {
     width: 100%;
