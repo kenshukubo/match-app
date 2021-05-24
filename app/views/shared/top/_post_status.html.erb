@@ -1,6 +1,6 @@
 <% if current_user.post.present? %>
   <% if current_user.post.all_member_here? %>
-    <%= link_to "投稿済", new_post_member_path, class:"top__user-status hover-opacity" %>
+    <%= link_to "投稿済", new_post_path, class:"top__user-status hover-opacity" %>
   <% else %>
     <%= link_to "招待中", new_post_member_path, class:"top__user-status hover-opacity" %>
   <% end %>  
