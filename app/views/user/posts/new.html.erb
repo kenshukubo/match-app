@@ -2,7 +2,11 @@
   <div class="single-page">
     <% if @post.present? %>
       <% if current_user.all_member_invite?(@post) %>
-        <h1>すでに募集が作成されています</h1>
+        <% if @post.all_member_here? %>
+          <h1>すでに募集が投稿されています</h1>
+        <% else %>
+          <h1>すでに募集が作成されています</h1>
+        <% end %>
         <%= render "shared/posts/post_image",
           place: @post.place,
           time: @post.time.strftime("%-m月%-d日 %H:%M"),
