@@ -63,24 +63,33 @@
 .top__user-profile{
   display: flex;
   padding-left: 64px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   @media(max-width: 567px){
     padding-left: 32px;
   }
 }
 .top__user-icon-wrapper{
-  margin-right: 64px;
-  @media(max-width: 567px){
-    margin-right: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 24px;
   .top__user-icon{
     width: 84px;
     height: 84px;
     border-radius: 50%;
     object-fit: cover;
+    margin-bottom: 4px;
     @media(max-width: 567px){
       width: 72px;
       height: 72px;
+    }
+  }
+  .top__user-name{
+    font-size: 14px;
+    max-width: 240px;
+    font-weight: 700;
+    @media(max-width: 567px){
+      max-width: 200px;
     }
   }
 }
@@ -89,20 +98,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  .top__user-info-header{
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    .top__user-name{
-      font-size: 28px;
-      margin-right: 8px;
-      max-width: 240px;
-      @media(max-width: 567px){
-        font-size: 24px;
-        max-width: 200px;
-      }
-    }
-  }
+  margin: 12px;
   .top__user-info-status{
     display: flex;
     .top__user-info-status-item-wrapper{
