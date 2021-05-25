@@ -5,10 +5,10 @@
     </h1>
 
     <% if current_user.attack_groups.present? %>
-    <div style="margin-bottom: 24px;">
-      <span>作成済チーム数：</span>
-      <%= link_to "#{@attack_groups_number}", attack_groups_path, class: "hover-opacity",style:"text-decoration: underline;" %>
-    </div>
+      <div style="margin-bottom: 24px;">
+        <span>作成済チーム数：</span>
+        <%= link_to "#{@attack_groups_number}", attack_groups_path, class: "hover-opacity",style:"text-decoration: underline;" %>
+      </div>
     <% end %>
 
     <div class="lines-on-sides">
