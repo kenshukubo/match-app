@@ -106,6 +106,9 @@
   align-items: center;
   width: 100%;
   margin: 12px;
+  @media(max-width: 415px){
+    margin: 12px 0px;
+  }
   .top__user-info-status{
     display: flex;
     .top__user-info-status-item-wrapper{
