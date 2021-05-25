@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="post-list">
+      <clip-loader :loading="isLoading" :color="color"></clip-loader>
       <template v-for="(post, index) in postList">
         <div class="post-item-wrapper" :key="`post-${index}`">
           <span class="post-created">{{post.createdAt}}</span>
@@ -67,11 +68,13 @@ import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './ZoomInModal.vue'
 import PostListedModal from './PostListedModal.vue'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
   components: {
     ZoomInModal,
-    PostListedModal
+    PostListedModal,
+    ClipLoader
   },
   data() {
     return{
@@ -82,6 +85,8 @@ export default {
       modal: false,
       zoomInProfile: "",
       postListed: false,
+      isLoading: false,
+      color: "#8bd3dd",
     }
   },
   created() {
@@ -91,9 +96,11 @@ export default {
   methods: {
     async fetchPostList(){
       var self = this;
+      self.isLoading = true;
       try {
         const res = await axios.get("/api/v1/posts")
         self.postList = res.data.postList;
+        self.isLoading = false;
       } catch(e) {
         console.log(e)
       }
