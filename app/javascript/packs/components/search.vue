@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="header-search-wrapper">
-      <img :src="searchImage" class="search-img hover-opacity" @click="openSearchModal">
+      <img :src="addFriendImage" class="add-friend-img hover-opacity" @click="openSearchModal">
     </div>
 
     <div class="search-modal" v-show="showSearchModal">
       <div class="search-modal-container">
         <div class="search-area-header">
           <div class="search-area-wrapper">
-            <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索" class="search-area">
-            <img :src="searchImage" @click="searchKeyword" class="search-img modal-search-img hover-opacity">
+            <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名でフレンド検索" class="search-area">
+            <img :src="searchImage" @click="searchKeyword" class="modal-search-img hover-opacity">
           </div>
           <img :src="closeImage" class="close-img hover-opacity" @click="closeSearchModal">
         </div>
@@ -52,6 +52,7 @@
 </template>
 <script>
 import axios from 'packs/axios'
+import addFriendImage from 'packs/assets/images/add-friend.png'
 import searchImage from 'packs/assets/images/search.png'
 import closeImage from 'packs/assets/images/close.png'
 
@@ -74,6 +75,7 @@ export default {
   data() {
     return {
       searchImage,
+      addFriendImage,
       closeImage,
       showSearchModal: false,
       keyword: "",
@@ -137,10 +139,10 @@ export default {
   display: flex;
   align-items: center;
 }
-.search-img{
+.add-friend-img{
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
 }
 
 .search-modal{
@@ -183,9 +185,12 @@ export default {
 }
 
 .modal-search-img{
+  width: 24px;
+  height: 24px;
   padding: 8px;
   position: absolute;
   right: 12px;
+  cursor: pointer;
 }
 .close-img{
   width: 20px;
