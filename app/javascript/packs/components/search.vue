@@ -44,7 +44,8 @@
           </template>
         </div>
         <div v-else class="default-result">
-          <span>ユーザー検索結果が表示されます</span>
+          <clip-loader :loading="isLoading" :color="color"></clip-loader>
+          <span v-show='!isLoading'>ユーザー検索結果が表示されます</span>
         </div>
       </div>
     </div>
@@ -55,6 +56,7 @@ import axios from 'packs/axios'
 import addFriendImage from 'packs/assets/images/add-friend.png'
 import searchImage from 'packs/assets/images/search.png'
 import closeImage from 'packs/assets/images/close.png'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
   computed: {
@@ -72,6 +74,9 @@ export default {
       }
     },
   },
+  components: {
+    ClipLoader
+  },
   data() {
     return {
       searchImage,
@@ -82,11 +87,14 @@ export default {
       users: "",
       friends: "",
       selectedMenu: "",
+      isLoading: false,
+      color: "#8bd3dd",
     }
   },
   methods: {
     async searchKeyword() {
       var self = this;
+      self.isLoading = true;
       self.keyword = this.$refs.input.value;
       try {
         const res1 = await axios.get("/api/v1/searches", {
@@ -103,6 +111,7 @@ export default {
           },
         })
         self.friends = res2.data.friends;
+        self.isLoading = false;
       } catch(e) {
         console.log(e)
       }
