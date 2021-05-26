@@ -66,8 +66,8 @@ import axios from 'packs/axios'
 import postBackgroundImage from 'packs/assets/images/post-background.png'
 import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
-import ZoomInModal from './ZoomInModal.vue'
-import PostListedModal from './PostListedModal.vue'
+import ZoomInModal from './modal/ZoomInModal.vue'
+import PostListedModal from './modal/PostListedModal.vue'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
