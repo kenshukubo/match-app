@@ -168,7 +168,7 @@ export default {
 <style scoped lang="scss">
 .post-item-wrapper{
   margin-bottom: 36px;
-  padding: 16px 16px 4px;
+  padding: 16px 16px 0px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
@@ -270,7 +270,7 @@ export default {
 .post-item__request{
   display: flex;
   justify-content: center;
-  padding: 12px 0px;
+  padding: 8px 0px;
 }
 
 .post-item__request-btn{
@@ -280,12 +280,13 @@ export default {
   border: 1px solid #8bd3dd;
   cursor: pointer;
   border-radius: 10px;
-  padding: 0 8px;
+  min-width: 150px;
+  text-align: center;
 }
 
 .post-item__chat-text{
+  width: 100%;
   color: #fff;
-  font-size: 1.142rem;
   font-weight: 700;
 }
 
