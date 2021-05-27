@@ -3,6 +3,12 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
+          <button>
+            新規アタックチーム作成
+          </button>
+          <button>
+            作成済チームでアタックする
+          </button>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@
       </template>
     </div>
 
-    <ZoomInModal v-if="modal" @close="closeModal">
+    <ZoomInModal v-if="zoomInModal" @close="closeModal">
       <template slot="image">
         <img :src="zoomInProfile.image" class="profile-image">
       </template>
@@ -87,7 +87,7 @@ export default {
       trashImage,
       editImage,
       postList: "",
-      modal: false,
+      zoomInModal: false,
       zoomInProfile: "",
       postListed: false,
       selectMenuModal: false,
@@ -133,7 +133,7 @@ export default {
           params: {id: member.id}
         })
         self.zoomInProfile = res.data.zoomInProfile;
-        self.modal = true;
+        self.zoomInModal = true;
       } catch(e) {
         console.log(e)
       }
@@ -142,8 +142,8 @@ export default {
       this.selectMenuModal = true;
     },
     closeModal() {
-      this.modal = false;
-
+      this.zoomInModal = false;
+      this.selectMenuModal = false;
       this.postListed = false;
       this.confettiStop();
     },
