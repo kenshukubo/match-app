@@ -5,7 +5,7 @@
         <img :src="popperImage" class="post-listed__popper-img">
         <div class="modal-content">
           <div class="post-listed__popper-title-wrapper">
-            <span class="post-listed__popper-title">募集が投稿されました！</span>
+            <span class="post-listed__popper-title">募集が投稿されました</span>
             <span>アタックを待ちましょう</span>
           </div>
         </div>
