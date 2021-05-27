@@ -110,7 +110,7 @@ class User::PostsController < ApplicationController
 
     def inviting_member
       @invited_user_exclude_me = PostMember
-      .includes(:user)
+      .includes(user: [:user_profile])
       .where(post: current_user.post)
       .where.not(user: current_user) #自分以外
 

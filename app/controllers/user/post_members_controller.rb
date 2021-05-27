@@ -19,7 +19,7 @@ class User::PostMembersController < ApplicationController
     @invitable_number = post.number - PostMember.where(post: post).count
 
     @invited_user_exclude_me = PostMember
-    .includes(:user)
+    .includes(user: [:user_profile])
     .where(post: post)
     .where.not(user: current_user)
 
