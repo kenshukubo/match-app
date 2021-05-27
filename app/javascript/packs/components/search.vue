@@ -121,16 +121,22 @@ export default {
       self.selectedMenu = menuType;
     },
     async addFriend(user, i) {
-      this.users[i].isFriend = true;
-      return await axios.post("/api/v1/friends", {
+      const res = await axios.post("/api/v1/friends", {
         user_id: user.id
       })
+      this.users[i].isFriend = res.data.addedUser.isFriend;
+      this.friends.push(res.data.addedUser)
     },
     async removeFriend(user, i) {
-      this.users[i].isFriend = false;
-      return await axios.delete("/api/v1/friends", {
+      var self = this;
+      const res = await axios.delete("/api/v1/friends", {
         data: {user_id: user.id }
       })
+      // TODO フレンド解除時ボタンが切り替わらない
+      console.log(res.data.removedUser.isFriend)
+      self.users[i].isFriend = res.data.removedUser.isFriend;
+      console.log(this.users[i].isFriend)
+      self.friends = self.friends.filter( e => e.id !== res.data.removedUser.id )
     },
     openSearchModal: function(){
       this.showSearchModal = true;
