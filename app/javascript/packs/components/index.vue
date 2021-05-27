@@ -33,8 +33,8 @@
           </div>
           <div v-else class="post-item__request">
             <button class="post-item__request-btn">
-              <span v-if="post.sex=='female'" class="post-item__chat-text">🙋‍♂️アタックする</span>
-              <span v-else class="post-item__chat-text">🙋‍♀️アタックする</span>
+              <span v-if="post.sex=='female'" @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♂️ アタックする</span>
+              <span v-else @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♀️ アタックする</span>
             </button>
           </div>
         </div>
@@ -59,6 +59,9 @@
     <PostListedModal v-if="postListed" @close="closeModal">
     </PostListedModal>
 
+    <SelectMenuModal v-if="selectMenuModal" @close="closeModal">
+    </SelectMenuModal>
+
   </div>
 </template>
 <script>
@@ -67,12 +70,14 @@ import postBackgroundImage from 'packs/assets/images/post-background.png'
 import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './modal/ZoomInModal.vue'
+import SelectMenuModal from './modal/SelectMenuModal.vue'
 import PostListedModal from './modal/PostListedModal.vue'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
   components: {
     ZoomInModal,
+    SelectMenuModal,
     PostListedModal,
     ClipLoader
   },
@@ -85,6 +90,7 @@ export default {
       modal: false,
       zoomInProfile: "",
       postListed: false,
+      selectMenuModal: false,
       isLoading: false,
       color: "#8bd3dd",
     }
@@ -131,6 +137,9 @@ export default {
       } catch(e) {
         console.log(e)
       }
+    },
+    async showSelectMenuModal() {
+      this.selectMenuModal = true;
     },
     closeModal() {
       this.modal = false;
