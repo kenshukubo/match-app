@@ -111,21 +111,6 @@ export default {
         console.log(e)
       }
     },
-    async fetchPostIsListed(){
-      var self = this;
-      try {
-        const res =  await axios.patch("/api/v1/post_listed_check")
-        self.postListed = res.data.isModal
-        if(self.postListed) this.confettiStart();
-      } catch(e) {
-        console.log(e)
-      }
-    },
-    async deletePost(postId){
-      if(confirm('投稿を削除します。よろしいでしょうか？')){
-        return await axios.delete(`/api/v1/posts/${postId}`)
-      }
-    },
     async zoomIn(member) {
       var self = this;
       try {
@@ -139,13 +124,37 @@ export default {
       }
     },
     async showSelectMenuModal() {
-      this.selectMenuModal = true;
+      try {
+        const res = await axios.get('/api/v1/attack_group_check')
+        if(res.data.anyAttackGroups){
+          this.selectMenuModal = true;
+        }else{
+          window.location.href = '/attack_groups/new';
+        }
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async fetchPostIsListed(){
+      var self = this;
+      try {
+        const res =  await axios.patch("/api/v1/post_listed_check")
+        self.postListed = res.data.isModal
+        if(self.postListed) this.confettiStart();
+      } catch(e) {
+        console.log(e)
+      }
     },
     closeModal() {
       this.zoomInModal = false;
       this.selectMenuModal = false;
       this.postListed = false;
       this.confettiStop();
+    },
+    async deletePost(postId){
+      if(confirm('投稿を削除します。よろしいでしょうか？')){
+        return await axios.delete(`/api/v1/posts/${postId}`)
+      }
     },
     confettiStart() {
       this.$confetti.start();

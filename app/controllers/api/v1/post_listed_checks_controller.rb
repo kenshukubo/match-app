@@ -1,5 +1,6 @@
 class Api::V1::PostListedChecksController < Api::ApplicationController
   def update
+    return if !current_user
     @post = Post.find_by(user: current_user)
 
     if @post.is_modal

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:index, :destroy]
       resource  :zoom_in_profile, only: [:show]
       resource  :post_listed_check, only: [:update]
+      resource  :attack_group_check, only: [:show]
     end
   end
 
