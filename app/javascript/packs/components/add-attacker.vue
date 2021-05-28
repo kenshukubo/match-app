@@ -4,11 +4,14 @@
       @click="showFriendsList"
       class="attack_groups__option-btn add-attacker-btn hover-opacity"
     >
-      メンバー追加
+      <span>メンバー追加</span>
     </button>
 
     <div v-if="showList" class="friend-list">
-      <p class="friend-list__title">メンバー選択</p>
+      <p class="friend-list__title">
+        <span>メンバー選択</span>
+        <span @click="closeFriendList" class="close-friend-list">✖️</span>
+      </p>
       <div v-if="!!friends" class="friend-list__items-wrapper">
         <template v-for="(friend, index) in friends">
           <div @click="addAttacker(friend.id)" :key="`friend-${index}`" class="friend-info">
@@ -59,6 +62,9 @@ export default {
       } catch(e) {
         console.log(e)
       }
+    },
+    async closeFriendList(){
+      this.showList = false
     }
   }
 }
@@ -77,16 +83,21 @@ export default {
 .friend-list{
   position: absolute;
   right: -24px;
+  top: 32px;
   min-width: 300px;
   padding: 8px 0;
   background-color: #fff;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
 }
 .friend-list__title{
+  display: flex;
+  justify-content: space-between;
   font-weight: 700;
   border-bottom: 1px solid #e6e6e6;
-  text-align: center;
-  padding: 4px 0 12px;
+  padding: 4px 12px 12px 12px;
+}
+.close-friend-list{
+  cursor: pointer;
 }
 .friend-list__items-wrapper{
   max-height: 200px;
