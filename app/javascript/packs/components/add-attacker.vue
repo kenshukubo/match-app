@@ -7,16 +7,18 @@
       メンバー追加
     </button>
 
-    <div class="friend-list">
+    <div v-if="showList" class="friend-list">
       <p class="friend-list__title">メンバー選択</p>
-      <div class="friend-list__items-wrapper">
+      <div v-if="!!friends" class="friend-list__items-wrapper">
         <template v-for="(friend, index) in friends">
-          <div :key="`friend-${index}`" class="friend-info">
+          <div @click="addAttacker(friend.id)" :key="`friend-${index}`" class="friend-info">
             <img :src="friend.image" class="friend-img">
             <span class="friend-name text-ellipsis">{{friend.name}}</span>
           </div>
         </template>
+        <p v-if="friends.length==0" class="no-friend-title">招待可能なフレンドがいません</p>
       </div>
+
     </div>
   </div>
 </template>
@@ -28,6 +30,7 @@ export default {
     return {
       attackGroupId: "",
       friends: "",
+      showList: false,
     }
   },
   created() {
@@ -43,6 +46,16 @@ export default {
           params: {attack_group_id: self.attackGroupId}
         })
         self.friends = res.data.friends
+        self.showList = true
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async addAttacker(userId){
+      try {
+        return await axios.post("/api/v1/add_attackers", {
+          user_id: userId
+        })
       } catch(e) {
         console.log(e)
       }
@@ -63,7 +76,7 @@ export default {
 
 .friend-list{
   position: absolute;
-  right: 0px;
+  right: -24px;
   min-width: 300px;
   padding: 8px 0;
   background-color: #fff;
@@ -83,6 +96,10 @@ export default {
   display: flex;
   align-items: center;
   padding: 12px;
+  cursor: pointer;
+  &:hover{
+    background-color: #f7fafc;
+  }
 }
 .friend-img{
   width: 42px;
@@ -92,5 +109,10 @@ export default {
 }
 .friend-name{
   max-width: 220px;
+}
+
+.no-friend-title{
+  padding: 12px;
+  text-align: center;
 }
 </style>
