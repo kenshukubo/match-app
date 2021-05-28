@@ -28,7 +28,7 @@ class User::PostMembersController < ApplicationController
     @absent_members      = @invited_user_exclude_me.where(status: "absent")
 
     @not_invited_friends = current_user.friend_users
-    .where(sex: current_user.sex)
+    .same_sex(current_user)
     .includes(:post_members)
     .where.not(id: PostMember.where(post: post).pluck(:user_id))
   end

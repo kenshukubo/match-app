@@ -19,9 +19,9 @@
       <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
     </div>
 
-    <% if current_user.friend_users.blank? %>
+    <% if current_user.friend_users.same_sex(current_user).blank? %>
         <p class="post-member__exception-title">
-          <span>フレンドがいません。</span>
+          <span>(同性の)フレンドがいません。</span>
           <span>
             ヘッダーの <%= image_tag "add-friend.png", class:"post-member__exception-search-img" %> からフレンド追加できます。
           </span>

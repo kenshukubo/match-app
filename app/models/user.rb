@@ -25,6 +25,10 @@ class User < ApplicationRecord
     .merge(UserProfile.search_by_keyword keyword)
   end
 
+  scope :same_sex, ->(user) do
+    where(sex: user.sex)
+  end
+
   def create_data_for_signup
     UserProfile.create!(user: self, name: "ゲスト", identified_char: SecureRandom.uuid)
     UserNotification.create!(user: self)
