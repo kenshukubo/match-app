@@ -8,6 +8,9 @@ class Api::V1::AddAttackersController < Api::ApplicationController
   end
 
   def create
-    
+    Attacker.create!(
+      user_id: params[:user_id],
+      attack_group_id: params[:group_id],
+    )
   end
 end

@@ -14,12 +14,13 @@
       </p>
       <div v-if="!!friends" class="friend-list__items-wrapper">
         <template v-for="(friend, index) in friends">
-          <div @click="addAttacker(friend.id)" :key="`friend-${index}`" class="friend-info">
+          <div v-if="!isInvite" @click="addAttacker(friend.id)" :key="`friend-${index}`" class="friend-info">
             <img :src="friend.image" class="friend-img">
             <span class="friend-name text-ellipsis">{{friend.name}}</span>
           </div>
         </template>
-        <p v-if="friends.length==0" class="no-friend-title">招待可能なフレンドがいません</p>
+        <p v-if="isInvite" class="result-title">招待完了しました</p>
+        <p v-if="friends.length==0" class="result-title">招待可能なフレンドがいません</p>
       </div>
 
     </div>
@@ -34,12 +35,14 @@ export default {
       attackGroupId: "",
       friends: "",
       showList: false,
+      isInvite: false
     }
   },
   created() {
     let addAttackerElement = document.getElementById("add-attacker");
     let data = JSON.parse(addAttackerElement.getAttribute('data'));
     this.attackGroupId = data.attackGroupId
+    this.isInvite = false
   },
   methods: {
     async showFriendsList(){
@@ -56,8 +59,10 @@ export default {
     },
     async addAttacker(userId){
       try {
+        this.isInvite = true;
         return await axios.post("/api/v1/add_attackers", {
-          user_id: userId
+          user_id: userId,
+          group_id: this.attackGroupId
         })
       } catch(e) {
         console.log(e)
@@ -122,7 +127,7 @@ export default {
   max-width: 220px;
 }
 
-.no-friend-title{
+.result-title{
   padding: 12px;
   text-align: center;
 }
