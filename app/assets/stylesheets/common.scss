@@ -44,3 +44,13 @@ input[type=text],input[type=password],input[type=email],input[type=submit],selec
     opacity: .7;
   }
 }
+
+.invite-cancel-img{
+  width: 18px;
+}
+
+.invite-cancel-link{
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
+}

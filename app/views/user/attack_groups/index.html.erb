@@ -17,14 +17,19 @@
                             </div>
                         </div>
                         <div class="attack_groups__users-item-wrapper">
-                            <% group.attackers.each do |attacker| %>
+                            <% group.attackers.is_participant.each do |attacker| %>
                                 <div class="attack_groups__user-item">
                                   <div>
                                     <%= image_tag attacker.user.user_profile.image.icon.url, class:"attack_groups__user-item-img" %>
                                   </div>
-                                  <span>
-                                    <%= attacker.user.user_profile.name %>
-                                  </span>
+                                  <div class="attack_groups__name-wrapper">
+                                    <%= link_to attacker_path(attacker.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
+                                      <%= image_tag "sm-cancel.png", style:"width: 12px;" %>
+                                    <% end %>
+                                    <span>
+                                      <%= attacker.user.user_profile.name %>
+                                    </span>
+                                  </div>
                                 </div>
                             <% end %>
                         </div>
@@ -84,4 +89,10 @@
   object-fit: cover;
   border-radius: 9999px;
 }
+
+.attack_groups__name-wrapper{
+  display: flex;
+  align-items: center;
+}
+
 </style>
