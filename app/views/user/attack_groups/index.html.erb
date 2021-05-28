@@ -15,7 +15,7 @@
                         <div class="attack_groups__item-title-wrapper">
                             <span class="attack_groups__item-title">アタックチーム<%= group.group_number %></span>
                             <div class="attack_groups__item-option hover-opacity">
-                              <%= link_to "削除する", attack_group_path(group.id), method: :delete, data: { confirm: "削除します。よろしいでしょうか？" }, class:"attack_groups__delete-btn" %>
+                              <%= link_to "チーム削除する", attack_group_path(group.id), method: :delete, data: { confirm: "削除します。よろしいでしょうか？" }, class:"attack_groups__delete-btn" %>
                             </div>
                         </div>
                         <div class="attack_groups__users-item-wrapper">

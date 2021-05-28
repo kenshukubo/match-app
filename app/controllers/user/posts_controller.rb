@@ -95,6 +95,8 @@ class User::PostsController < ApplicationController
           user_notification = UserNotification.find_by(user_id: user_id)
           user_notification.add_unchecked_notification_count
         end
+
+        PostMember.where(post: @post).destroy_all
       end
       redirect_to root_path, notice: '募集を削除しました'
     rescue => error
