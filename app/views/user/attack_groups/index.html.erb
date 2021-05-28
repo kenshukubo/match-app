@@ -14,8 +14,19 @@
                     <div class="attack_groups__item">
                         <div class="attack_groups__item-title-wrapper">
                             <span class="attack_groups__item-title">チーム<%= group.group_number %></span>
-                            <div class="attack_groups__item-option hover-opacity">
-                              <%= link_to "チーム削除する", attack_group_path(group.id), method: :delete, data: { confirm: "削除します。よろしいでしょうか？" }, class:"attack_groups__delete-btn" %>
+                            <div class="attack_groups__item-option">
+
+                              <% props = {
+                                  attackGroupId: group.id
+                                }.to_json
+                              %>
+                              <div id="add-attacker" data="<%= props %>">
+                                  <add-attacker />
+                              </div>
+                              <%= javascript_pack_tag 'add_attacker' %>
+                              <%= stylesheet_pack_tag 'add_attacker' %>
+                              <%= link_to "削除する", attack_group_path(group.id), method: :delete, data: { confirm: "チームを削除します。よろしいでしょうか？" }, class:"attack_groups__option-btn hover-opacity" %>
+
                             </div>
                         </div>
                         <div class="attack_groups__users-item-wrapper">
@@ -60,11 +71,11 @@
 
 .attack_groups__item-option{
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   text-decoration: underline;
 }
 
-.attack_groups__delete-btn{
+.attack_groups__option-btn{
   font-size: 12px;
 }
 
