@@ -5,7 +5,9 @@
         </h1>
 
         <% unless @attack_groups.present? %>
-            <p class="attack_groups__no-items-title">チームが存在しません</p>
+            <p class="attack_groups__no-items-title">
+              チームが存在しません。<%= link_to "チーム作成", new_attack_group_path, style:"text-decoration:underline;" %>する。
+            </p>
         <% else %>
             <div class="attack_groups__wrapper">
                 <% @attack_groups.each do |group| %>
