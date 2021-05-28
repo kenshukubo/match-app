@@ -32,7 +32,7 @@
             </div>
           </div>
           <div v-else class="post-item__request">
-            <button class="post-item__request-btn">
+            <button class="post-item__request-btn hover-opacity">
               <span v-if="post.sex=='female'" @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♂️ アタックする</span>
               <span v-else @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♀️ アタックする</span>
             </button>
