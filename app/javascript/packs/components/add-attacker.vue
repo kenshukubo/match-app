@@ -42,11 +42,11 @@ export default {
     let addAttackerElement = document.getElementById("add-attacker");
     let data = JSON.parse(addAttackerElement.getAttribute('data'));
     this.attackGroupId = data.attackGroupId
-    this.isInvite = false
   },
   methods: {
     async showFriendsList(){
       var self = this;
+      self.isInvite = false
       try {
         const res = await axios.get("/api/v1/add_attackers", {
           params: {attack_group_id: self.attackGroupId}
