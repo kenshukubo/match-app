@@ -18,10 +18,10 @@ Rails.application.routes.draw do
     scope module: :user do
       resources :social_profiles, only: :destroy
       resource  :user_profile, only: [:edit, :update, :show]
-      resources :posts
-      resources :post_members
+      resources :posts, only: [:new, :create, :edit, :update, :destroy]
+      resources :post_members, only: [:new, :create, :edit, :update, :destroy]
       resources :attack_groups, only: [:index, :create, :new, :destroy]
-      resources :attackers, only: [:edit, :update, :destroy]
+      resources :attackers, only: [:create, :edit, :update, :destroy]
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]
