@@ -13,6 +13,58 @@
 }
 
 .form{
+  // チェックボックス ここから
+  input[type=radio] {
+    display: none;
+  }
+  .sex-radio-btn{
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 30px;
+    position: relative;
+    width: auto;
+  }
+  .sex-radio-btn::before {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: 16px;
+    left: 5px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+    width: 16px;
+  }
+  .sex-radio-btn::after {
+    content: '';
+    display: block;
+    height: 20px;
+    left: 7px;
+    margin-top: -16px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    width: 9px;
+  }
+  .male-radio::after{
+    border-right: 6px solid #8bd3dd;
+    border-bottom: 3px solid #8bd3dd;
+  }
+  .female-radio::after{
+    border-right: 6px solid #f582ae;
+    border-bottom: 3px solid #f582ae;
+  }
+  input[type=radio]:checked + .sex-radio-btn::before {
+    border-color: #666;
+  }
+  input[type=radio]:checked + .sex-radio-btn::after {
+    opacity: 1;
+  }
+  // チェックボックス ここまで
   input{
     border-radius: .28571429rem;
     box-shadow: inset 0 0 0 0 transparent;
@@ -30,6 +82,9 @@
     padding: 10px 12px;
     line-height: 1.21428571em;
     border: 1px solid #172c66;
+  }
+  input:focus, select:focus{
+    border: 3px solid #f3d2c1;
   }
   #user_profile_age, #user_profile_job{
     @media(max-width: 567px){
