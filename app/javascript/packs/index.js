@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue.esm'
 import Index from './components/index.vue'
-import VueConfetti from 'vue-confetti'
+import VueConfetti from 'vue-confetti' //紙吹雪のライブラリ
 
 Vue.use(VueConfetti)
 
