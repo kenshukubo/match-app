@@ -31,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def create_data_for_signup
-    self.build_user_notification
+    UserNotification.create!(user: self)
   end
 
   def self.dummy_email(social)
