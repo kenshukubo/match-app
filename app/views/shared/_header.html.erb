@@ -27,31 +27,48 @@
         </button>
 
         <nav class="drawer-nav" role="navigation">
-          <ul class="drawer-menu">
-            <li>
+          <div class="drawer-menu">
+            <div>
               <div class="drawer-menu__user-info">
                 <%= image_tag current_user.user_profile.image.icon.url, class:"drawer-menu__user-icon" %>
                 <span class="drawer-menu__user-name">
                   <%= current_user.user_profile.name %>
                 </span>
               </div>
-            </li>
-            <li>
-              <%= link_to "アタックチーム一覧", attack_groups_path, class:"drawer-menu-item" %>
-            </li>
-            <li>
-              <%= link_to "アタックチーム作成", new_attack_group_path, class:"drawer-menu-item" %>
-            </li>
-            <li>
-              <%= link_to "募集作成", new_post_path, class:"drawer-menu-item" %>
-            </li>
-            <li>
+            </div>
+
+            <div class="drawer-menu__option-wrapper">
+              <div class="drawer-menu__title-wrapper">
+                <span class="drawer-menu__title drawer-menu__attack-menu">アタックメニュー</span>
+                <span class="drawer-menu__title-line attack-title-line"></span>
+              </div>
+
+              <div>
+                <%= link_to "チーム作成", new_attack_group_path, class:"drawer-menu-item" %>
+              </div>
+              <div>
+                <%= link_to "チーム一覧", attack_groups_path, class:"drawer-menu-item" %>
+              </div>
+            </div>
+
+            <div class="drawer-menu__option-wrapper">
+              <div class="drawer-menu__title-wrapper">
+                <span class="drawer-menu__title drawer-menu__post-menu">募集メニュー</span>
+                <span class="drawer-menu__title-line post-title-line"></span>
+              </div>
+
+              <div>
+                <%= link_to "募集作成", new_post_path, class:"drawer-menu-item" %>
+              </div>
+            </div>
+
+            <div>
               <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
-            </li>
-            <li>
+            </div>
+            <div>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
       <% end %>
     </div>

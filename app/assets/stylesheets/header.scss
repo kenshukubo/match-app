@@ -73,3 +73,43 @@ header > .container{
 .drawer-menu__user-name{
   font-weight: 700;
 }
+
+.drawer-menu__option-wrapper{
+  margin-bottom: 24px;
+}
+
+.drawer-menu__title-wrapper{
+  display: flex;
+  margin: 8px 12px;
+}
+
+.drawer-menu__title{
+  display: block;
+  font-size: 12px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.drawer-menu__attack-menu{
+  color: #8bd3dd;
+}
+
+.drawer-menu__post-menu{
+  color: #f582ae;
+}
+
+.drawer-menu__title-line{
+  display: block;
+  width: 100%;
+  position: relative;
+  bottom: 8px;
+}
+
+.attack-title-line{
+  border-bottom: 1px solid #8bd3dd;
+}
+
+.post-title-line{
+  border-bottom: 1px solid #f582ae;
+}
