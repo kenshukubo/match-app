@@ -6,13 +6,13 @@
           <h3 class="attack-select-header">アタック方法を選びましょう</h3>
           <div class="attack-select-btn-wrapper" style="margin-bottom:32px;">
             <span class="attack-select-title">新しいチームを作る</span>
-            <button class="attack-select-btn">
+            <button class="attack-select-btn hover-opacity">
               新規チーム作成
             </button>
           </div>
           <div class="attack-select-btn-wrapper">
             <span class="attack-select-title">作成済のチームでアタックする</span>
-            <button class="attack-select-btn">
+            <button class="attack-select-btn hover-opacity">
               アタックチームを選択する
             </button>
           </div>
@@ -74,5 +74,6 @@
   border-radius: 8px;
   padding: 8px 12px;
   font-weight: 700;
+  cursor: pointer;
 }
 </style>
