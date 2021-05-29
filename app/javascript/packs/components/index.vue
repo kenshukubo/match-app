@@ -60,7 +60,11 @@
     <PostListedModal v-if="postListed" @close="closeModal">
     </PostListedModal>
 
-    <SelectMenuModal v-if="selectMenuModal" @close="closeModal">
+    <SelectMenuModal
+      v-if="selectMenuModal"
+      @close="closeModal"
+      :hasAnyAttackGropups="hasAnyAttackGropups"
+    >
     </SelectMenuModal>
 
   </div>
@@ -91,6 +95,7 @@ export default {
       zoomInModal: false,
       zoomInProfile: "",
       postListed: false,
+      hasAnyAttackGropups: "",
       selectMenuModal: false,
       isLoading: false,
       color: "#8bd3dd",
@@ -125,13 +130,11 @@ export default {
       }
     },
     async showSelectMenuModal() {
+      var self = this;
       try {
         const res = await axios.get('/api/v1/attack_group_check')
-        if(res.data.anyAttackGroups){
-          this.selectMenuModal = true;
-        }else{
-          window.location.href = '/attack_groups/new';
-        }
+        self.hasAnyAttackGropups = res.data.anyAttackGroups
+        self.selectMenuModal = true;
       } catch(e) {
         console.log(e)
       }
