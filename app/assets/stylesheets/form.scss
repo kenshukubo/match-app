@@ -82,6 +82,10 @@
     padding: 10px 12px;
     line-height: 1.21428571em;
     border: 1px solid #172c66;
+    border-radius: .28571429rem;
+  }
+  .edit-profile-select{
+    min-width: 120px;
   }
   input:focus, select:focus{
     border: 3px solid #f3d2c1;
