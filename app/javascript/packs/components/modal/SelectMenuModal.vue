@@ -3,12 +3,19 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
-          <button>
-            新規アタックチーム作成
-          </button>
-          <button>
-            作成済チームでアタックする
-          </button>
+          <h3 class="attack-select-header">アタック方法を選びましょう</h3>
+          <div class="attack-select-btn-wrapper" style="margin-bottom:32px;">
+            <span class="attack-select-title">新しいチームを作る</span>
+            <button class="attack-select-btn">
+              新規チーム作成
+            </button>
+          </div>
+          <div class="attack-select-btn-wrapper">
+            <span class="attack-select-title">作成済のチームでアタックする</span>
+            <button class="attack-select-btn">
+              アタックチームを選択する
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -34,8 +41,38 @@
     overflow: hidden;
   }
   &-content {
-    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 32px;
   }
 
+}
+
+.attack-select-header{
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.attack-select-btn-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attack-select-title{
+  font-size: 12px;
+  color: #a09f9e;
+  margin-bottom: 8px;
+}
+
+.attack-select-btn{
+  width: 260px;
+  background: #fff;
+  border: 1px solid #f582ae;
+  color: #f582ae;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
 }
 </style>
