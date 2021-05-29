@@ -39,6 +39,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         creator = SocialUserCreator.new(auth)
         creator.execute!
+        user = creator.user
       end
       sign_in_and_redirect user, event: :authentication
     end

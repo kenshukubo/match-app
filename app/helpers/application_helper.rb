@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def resource_class
+    User
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
   def embedded_svg filename, options={}
     file = File.read(Rails.root.join('app', 'assets', 'images', 'svg', filename))
     doc = Nokogiri::HTML::DocumentFragment.parse file

@@ -4,6 +4,7 @@ class User < ApplicationRecord
         :recoverable, :rememberable, :validatable, :omniauthable, :confirmable, omniauth_providers: %i[line], invite_for: 24.hours
 
   has_one  :user_profile, dependent: :destroy
+  has_many :social_profiles, dependent: :destroy
   has_one  :post, dependent: :destroy
   has_many :notifications, foreign_key: 'target_user_id', dependent: :destroy
   has_one  :user_notification, dependent: :destroy
@@ -30,12 +31,15 @@ class User < ApplicationRecord
   end
 
   def create_data_for_signup
-    UserProfile.create!(user: self, name: "ゲスト", identified_char: SecureRandom.uuid)
-    UserNotification.create!(user: self)
+    self.build_user_notification
   end
 
   def self.dummy_email(social)
     "#{social.uid}-#{social.provider}@example.com"
+  end
+
+  def social_profile(provider)
+    social_profiles.find_by(provider: provider)
   end
 
   ################ 招待系 ################

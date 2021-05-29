@@ -11,6 +11,7 @@ class Users::InvitationsController < Devise::InvitationsController
 
     begin
       ActiveRecord::Base.transaction do
+        UserProfile.create!(user: @user, name: "ゲスト", identified_char: SecureRandom.uuid)
         @user.create_data_for_signup
       end
     rescue => error

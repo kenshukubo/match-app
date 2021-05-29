@@ -48,6 +48,45 @@
 .top__signin-btn{
   color: #fff;
   border: 2px solid #fff;
+  margin-bottom: 16px;
+}
+
+.sns-btn--line{
+  width: 234px;
+  background-color: #00C300;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  transition: .3s;
+  &:hover{
+    background-color: #00E000;
+  }
+  &:focus,
+  &:active{
+    background-color: #00B300;
+  }
+  &.disable{
+    background-color: #C6C6C6;
+  }
+  .sns-btn__image{
+    padding: 0 8px;
+    img{
+      width: 24px;
+    }
+  }
+  .sns-btn__text{
+    cursor: pointer;
+    border-left: 1px solid rgba(255,255,255,.6);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+  }
 }
 
 .top__header-user-action-area{

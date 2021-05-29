@@ -4,6 +4,10 @@ class SocialProfile < ApplicationRecord
 
   class << self
 
+    def find_with_line(auth)
+      find_by(uid: auth['uid'], provider: :line)
+    end
+
     def initialize_with_omniauth(auth)
       # lineに最適化されている状態
       new(

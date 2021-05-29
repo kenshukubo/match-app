@@ -7,6 +7,21 @@
           <h1 class="top__title">MatchApp</h1>
           <%= link_to "新規登録はこちら", new_user_registration_path, class:"top__signup-btn top__btn" %>
           <%= link_to "ログイン", new_user_session_path, class:"top__signin-btn top__btn" %>
+
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+                <% if OmniAuth::Utils.camelize(provider) == "Line" %>
+                  <%= link_to omniauth_authorize_path(resource_name, provider), class:"sns-btn--line disabled" do %>
+                  <div class="sns-btn__image">
+                    <%= image_tag "line-btn-icon.png" %>
+                  </div>
+                  <div class="sns-btn__text">
+                    <%= "LINEでログイン" %>
+                  </div>
+                  <% end %>
+                <% end %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <%= render "shared/top/index" %>

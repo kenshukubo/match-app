@@ -38,7 +38,7 @@ class SocialUserCreator
           identified_char: SecureRandom.uuid
         )
       end
-      user.build_initial_data
+      user.create_data_for_signup
       user.email = User.dummy_email(auth)
       user.skip_confirmation!
     end
