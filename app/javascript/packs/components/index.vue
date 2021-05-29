@@ -16,6 +16,7 @@
                 </template>
               </div>
             </div>
+            <span v-if="index==0" class="post-item__desc">※アイコンをタッチするとプロフィールをみれます</span>
           </div>
 
           <div v-if="post.isHost" class="post-item__option-wrapper">
@@ -188,7 +189,8 @@ export default {
 
 .post-item{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-size: cover;
   height: 320px;
   @media(max-width: 415px){
@@ -239,6 +241,15 @@ export default {
     width: 48px;
     height: 48px;
   }
+}
+
+.post-item__desc{
+  display: block;
+  width: -webkit-fill-available;
+  text-align: end;
+  font-size: 10px;
+  color: #fff;
+  padding-right: 30px;
 }
 
 .post-item__option-wrapper{
