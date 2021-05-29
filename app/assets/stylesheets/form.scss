@@ -22,16 +22,14 @@
   input[type=text],input[type=password],input[type=email]{
     padding: 10px 12px;
     font-size: 14px;
-    font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
     width: 100%;
-    border: 2px solid #172c66;
+    border: 1px solid #172c66;
   }
   select{
     padding: 10px 12px;
-    font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
     line-height: 1.21428571em;
-    border: 2px solid #172c66;
+    border: 1px solid #172c66;
   }
   #user_profile_age, #user_profile_job{
     @media(max-width: 567px){
