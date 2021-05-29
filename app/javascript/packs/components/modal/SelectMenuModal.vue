@@ -7,7 +7,7 @@
           <div class="attack-select-btn-wrapper" style="margin-bottom:32px;">
             <span class="attack-select-title">新しいチームを作る</span>
             <button class="attack-select-btn hover-opacity">
-              新規チーム作成
+              <a href="/attack_groups/new" class="attack-select-link">新規チーム作成</a>
             </button>
           </div>
           <div class="attack-select-btn-wrapper">
@@ -75,5 +75,10 @@
   padding: 8px 12px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.attack-select-link{
+  display: inline-block;
+  width: 100%;
 }
 </style>
