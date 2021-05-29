@@ -49,8 +49,6 @@ class User::PostsController < ApplicationController
         @post.update!(
           place: post_params[:place],
           number: post_params[:number],
-          
-          detail: post_params[:detail],
         )
 
         user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
@@ -107,7 +105,7 @@ class User::PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:user_id, :place, :number, :time, :detail)
+      params.require(:post).permit(:user_id, :place, :number, :time)
     end
 
     def inviting_member
