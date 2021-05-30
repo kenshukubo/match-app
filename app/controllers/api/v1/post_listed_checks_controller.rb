@@ -3,6 +3,8 @@ class Api::V1::PostListedChecksController < Api::ApplicationController
     return if !current_user
     @post = Post.find_by(user: current_user)
 
+    return if @post.blank?
+
     if @post.is_modal
       render json: { isModal: false }
     else
