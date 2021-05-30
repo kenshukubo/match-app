@@ -12,7 +12,11 @@
           </div>
           <div class="attack-select-btn-wrapper">
             <span class="attack-select-title">作成済のチームでアタックする</span>
-            <button v-bind:class="{ active: hasAnyAttackGropups }" class="attack-select-btn team-select-btn">
+            <button
+              v-bind:class="{ active: hasAnyAttackGropups }"
+              @click="showFriendList"
+              class="attack-select-btn team-select-btn"
+            >
               アタックチームを選択する
             </button>
           </div>
@@ -24,7 +28,18 @@
 <script>
 export default {
   props: ['hasAnyAttackGropups'],
-};
+  data() {
+    return {
+      friendListModal: false,
+    }
+  },
+  methods: {
+    showFriendList() {
+      this.friendListModal = true;
+      this.$emit('friend-list-modal', this.friendListModal);
+    },
+  }
+}
 </script>
 <style scoped lang="scss">
 .modal {

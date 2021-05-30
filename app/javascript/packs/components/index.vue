@@ -64,8 +64,11 @@
       v-if="selectMenuModal"
       @close="closeModal"
       :hasAnyAttackGropups="hasAnyAttackGropups"
+      @friend-list-modal='friendListModal = $event'
     >
     </SelectMenuModal>
+
+    <FriendListModal v-if="friendListModal"></FriendListModal>
 
   </div>
 </template>
@@ -76,6 +79,7 @@ import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './modal/ZoomInModal.vue'
 import SelectMenuModal from './modal/SelectMenuModal.vue'
+import FriendListModal from './modal/FriendListModal.vue';
 import PostListedModal from './modal/PostListedModal.vue'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
@@ -83,8 +87,9 @@ export default {
   components: {
     ZoomInModal,
     SelectMenuModal,
+    FriendListModal,
     PostListedModal,
-    ClipLoader
+    ClipLoader,
   },
   data() {
     return{
@@ -97,6 +102,7 @@ export default {
       postListed: false,
       hasAnyAttackGropups: "",
       selectMenuModal: false,
+      friendListModal: "",
       isLoading: false,
       color: "#8bd3dd",
     }
