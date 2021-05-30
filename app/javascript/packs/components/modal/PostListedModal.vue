@@ -26,26 +26,11 @@ export default {
 
 <style scoped lang="scss">
 .modal {
-  &.modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 30;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
   &-window {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 420px;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
     @media(max-width: 576px){
       width: 300px;
     }
@@ -54,7 +39,6 @@ export default {
     width: 100%;
     padding: 10px 20px;
   }
-
 }
 
 .post-listed__popper-img{
