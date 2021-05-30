@@ -16,7 +16,7 @@
                 </template>
               </div>
             </div>
-            <span v-if="index==0" class="post-item__desc">※アイコンをタッチするとプロフィールをみれます</span>
+            <span v-if="index==0" class="post-item__desc">※アイコンをタップするとプロフィールをみれます</span>
           </div>
 
           <div v-if="post.isHost" class="post-item__option-wrapper">
