@@ -68,7 +68,7 @@
     >
     </SelectMenuModal>
 
-    <FriendListModal v-if="friendListModal"></FriendListModal>
+    <FriendListModal v-if="friendListModal" @close="closeModal"></FriendListModal>
 
   </div>
 </template>
@@ -102,7 +102,7 @@ export default {
       postListed: false,
       hasAnyAttackGropups: "",
       selectMenuModal: false,
-      friendListModal: "",
+      friendListModal: false,
       isLoading: false,
       color: "#8bd3dd",
     }
@@ -156,9 +156,11 @@ export default {
       }
     },
     closeModal() {
-      this.zoomInModal = false;
-      this.selectMenuModal = false;
-      this.postListed = false;
+      var self = this;
+      self.zoomInModal = false;
+      self.selectMenuModal = false;
+      self.postListed = false;
+      self.friendListModal = false
       this.confettiStop();
     },
     async deletePost(postId){
