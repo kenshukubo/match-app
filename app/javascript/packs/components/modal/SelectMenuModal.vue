@@ -14,6 +14,7 @@
             <span class="attack-select-title">作成済のチームでアタックする</span>
             <button
               v-bind:class="{ active: hasAnyAttackGropups }"
+              v-bind:disabled="!hasAnyAttackGropups"
               @click="showFriendList"
               class="attack-select-btn team-select-btn"
             >
