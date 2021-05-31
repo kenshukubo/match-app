@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resource  :post_listed_check, only: [:update]
       resource  :attack_group_check, only: [:show]
       resources :add_attackers, only: [:index, :create]
+      resources :attack_groups, only: [:index]
     end
   end
 
