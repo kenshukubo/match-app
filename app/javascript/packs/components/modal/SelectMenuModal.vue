@@ -28,15 +28,10 @@
 <script>
 export default {
   props: ['hasAnyAttackGropups'],
-  data() {
-    return {
-      friendListModal: false,
-    }
-  },
   methods: {
     showFriendList() {
-      this.friendListModal = true;
-      this.$emit('friend-list-modal', this.friendListModal);
+      this.$emit('show-friend-list-modal', true);
+      this.$emit('hide-menu-modal', false);
     },
   }
 }

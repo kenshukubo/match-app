@@ -3,7 +3,7 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
-          <h3 class="">チームを選びましょう</h3>
+          <h3 class="attack-group-select__header-title">チームを選びましょう</h3>
         </div>
       </div>
     </div>
@@ -13,28 +13,16 @@
 </script>
 <style scoped lang="scss">
 .modal {
-  &.modal-overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 30;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  &-window {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-  }
   &-content {
     display: flex;
     flex-direction: column;
     padding: 28px 32px;
   }
+}
 
+.attack-group-select__header-title{
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
 }
 </style>

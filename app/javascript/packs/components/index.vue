@@ -64,11 +64,13 @@
       v-if="selectMenuModal"
       @close="closeModal"
       :hasAnyAttackGropups="hasAnyAttackGropups"
-      @friend-list-modal='friendListModal = $event'
+      @show-friend-list-modal='friendListModal = $event'
+      @hide-menu-modal='selectMenuModal = $event'
     >
     </SelectMenuModal>
 
-    <FriendListModal v-if="friendListModal" @close="closeModal"></FriendListModal>
+    <FriendListModal v-if="friendListModal" @close="closeModal">
+    </FriendListModal>
 
   </div>
 </template>
