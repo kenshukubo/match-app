@@ -3,13 +3,13 @@
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
         <div class="modal-content">
-          <h3 class="attack-group-select__header-title">チームを選びましょう</h3>
+          <h3 class="attack-group-select__header-title">チームを選んでください</h3>
           <div>
             <template v-for="(attackGroup, index) in attackGroups">
               <div class="attack-group-item" :key="`group-${index}`">
-                <span>
+                <p class="attack-group-item__team-name">
                   チーム{{attackGroup.groupNumber}}
-                </span>
+                </p>
                 <template v-for="(attacker, index) in attackGroup.attackers">
                   <div class="attacker-info" :key="`attacker-${index}`">
                     <img :src="attacker.image" class="attacker-info__user-img">
@@ -65,6 +65,11 @@ export default {
 
 .attack-group-item{
   margin-bottom: 24px;
+}
+
+.attack-group-item__team-name{
+  text-align: center;
+  margin-bottom: 8px;
 }
 
 .attacker-info{
