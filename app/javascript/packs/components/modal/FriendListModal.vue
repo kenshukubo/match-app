@@ -132,4 +132,8 @@ export default {
     display: none;
   }
 }
+
+.swiper-button-next:after, .swiper-button-prev:after{
+  padding-bottom: 18px;
+}
 </style>
