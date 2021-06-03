@@ -27,15 +27,11 @@
 </template>
 <script>
 import axios from 'packs/axios'
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import { directive } from 'vue-awesome-swiper'
 // Import Swiper styles
 import 'swiper/css/swiper.css'
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
   directives: {
     swiper: directive
   },
