@@ -6,17 +6,17 @@
           <h3 class="attack-select-header">アタック方法を選びましょう</h3>
           <div class="attack-select-btn-wrapper" style="margin-bottom:32px;">
             <span class="attack-select-title">新しいチームを作る</span>
-            <button class="attack-select-btn team-create-btn hover-opacity">
+            <button class="modal-select-btn team-create-btn hover-opacity">
               <a href="/attack_groups/new" class="attack-select-link">新規チーム作成</a>
             </button>
           </div>
           <div class="attack-select-btn-wrapper">
             <span class="attack-select-title">作成済のチームでアタックする</span>
             <button
-              v-bind:class="{ active: hasAnyAttackGropups }"
+              v-bind:class="{ activeModalBtn: hasAnyAttackGropups }"
               v-bind:disabled="!hasAnyAttackGropups"
               @click="showFriendList"
-              class="attack-select-btn team-select-btn"
+              class="modal-select-btn modal-select-disabled-btn"
             >
               アタックチームを選択する
             </button>
@@ -65,32 +65,10 @@ export default {
   margin-bottom: 8px;
 }
 
-.attack-select-btn{
-  width: 260px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-weight: 700;
-}
-
 .team-create-btn{
   border: 1px solid #f582ae;
   color: #f582ae;
   cursor: pointer;
-}
-
-.team-select-btn{
-  border: 1px solid #a09f9e;
-  color: #a09f9e;
-}
-
-.active{
-  border: 1px solid #f582ae;
-  color: #f582ae;
-  cursor: pointer;
-  &:hover{
-    opacity: .7;
-  }
 }
 
 .attack-select-link{

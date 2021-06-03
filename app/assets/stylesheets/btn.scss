@@ -1,0 +1,21 @@
+.modal-select-btn{
+  width: 260px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 700;
+}
+
+.modal-select-disabled-btn{
+  border: 1px solid #a09f9e;
+  color: #a09f9e;
+}
+
+.activeModalBtn{
+  border: 1px solid #f582ae;
+  color: #f582ae;
+  cursor: pointer;
+  &:hover{
+    opacity: .7;
+  }
+}

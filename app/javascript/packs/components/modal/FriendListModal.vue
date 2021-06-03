@@ -6,7 +6,7 @@
           <h3 class="attack-group-select__header-title">チームを選んでください</h3>
           <div v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
-              <div class="swiper-slide" v-for="(attackGroup, index) in attackGroups" :key="`group-${index}`">
+              <div class="swiper-slide attack-group-item" v-for="(attackGroup, index) in attackGroups" :key="`group-${index}`">
                 <p class="attack-group-item__team-name">
                   チーム{{attackGroup.groupNumber}}
                 </p>
@@ -20,6 +20,12 @@
             <div class="swiper-button-prev" slot="button-prev"></div>
             <div class="swiper-button-next" slot="button-next"></div>
           </div>
+
+          <button
+            class="modal-select-btn modal-select-disabled-btn"
+          >
+            チームを確定する
+          </button>
         </div>
       </div>
     </div>
@@ -76,6 +82,7 @@ export default {
   &-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 16px 32px;
   }
 }
@@ -87,7 +94,7 @@ export default {
 }
 
 .attack-group-item{
-  margin-bottom: 24px;
+  cursor: pointer;
 }
 
 .attack-group-item__team-name{
