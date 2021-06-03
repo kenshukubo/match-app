@@ -42,7 +42,8 @@ export default {
   &-content {
     display: flex;
     flex-direction: column;
-    padding: 28px 32px;
+    padding: 16px 32px;
+    width: 300px;
   }
 }
 
