@@ -10,15 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_140659) do
+ActiveRecord::Schema.define(version: 2021_06_04_202425) do
 
   create_table "attack_groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "group_number"
-    t.index ["post_id"], name: "index_attack_groups_on_post_id"
     t.index ["user_id"], name: "index_attack_groups_on_user_id"
   end
 
@@ -77,6 +75,16 @@ ActiveRecord::Schema.define(version: 2021_05_23_140659) do
     t.index ["friend_id"], name: "index_relationships_on_friend_id"
     t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "attack_group_id", null: false
+    t.bigint "posts_id", null: false
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["attack_group_id"], name: "index_requests_on_attack_group_id"
+    t.index ["posts_id"], name: "index_requests_on_posts_id"
   end
 
   create_table "social_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -145,7 +153,6 @@ ActiveRecord::Schema.define(version: 2021_05_23_140659) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "attack_groups", "posts"
   add_foreign_key "attack_groups", "users"
   add_foreign_key "attackers", "attack_groups"
   add_foreign_key "attackers", "users"
@@ -154,6 +161,8 @@ ActiveRecord::Schema.define(version: 2021_05_23_140659) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "friend_id"
+  add_foreign_key "requests", "attack_groups"
+  add_foreign_key "requests", "posts", column: "posts_id"
   add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"
 end

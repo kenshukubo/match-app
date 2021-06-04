@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_many :post_members, dependent: :destroy
-  has_many :attack_groups, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   validates :number, presence: true
   validates :place, presence: true
