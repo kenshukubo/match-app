@@ -11,6 +11,8 @@
               <div
                 v-for="(attackGroup, index) in attackGroups"
                 :key="`group-${index}`"
+                @click="selectGroup(attackGroup)"
+                v-bind:class="{ groupSelectActive: selectedGroupNumber == attackGroup.groupNumber }"
                 class="swiper-slide attack-group-item"
               >
                 <p class="attack-group-item__team-name">
@@ -30,6 +32,7 @@
           </div>
 
           <button
+            v-bind:class="{ activeModalBtn: selectedGroupNumber }"
             class="modal-select-btn modal-select-disabled-btn"
           >
             チームを確定する
@@ -56,6 +59,7 @@ export default {
     return{
       attackGroups: "",
       color: "#8bd3dd",
+      selectedGroupNumber: "",
       swiperOption: {
         pagination: {
           el: '.swiper-pagination',
@@ -90,6 +94,9 @@ export default {
         console.log(e)
       }
     },
+    async selectGroup(group){
+      this.selectedGroupNumber = group.groupNumber
+    }
   }
 }
 </script>
@@ -114,10 +121,16 @@ export default {
   width: 274px!important;
   border-radius: 8px;
   padding: 8px 12px;
-//   border: 1px solid transparent;
-//   &:hover{
-//     border-color: #001858;
-//   }
+  border: 1px solid transparent;
+  &:hover{
+    border-color: #f582ae;
+    background: #ffc6c7;
+  }
+}
+
+.groupSelectActive{
+  border-color:#f582ae;
+  background: #ffc6c7;
 }
 
 .attack-group-item__team-name{
