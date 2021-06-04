@@ -197,19 +197,20 @@ export default {
   font-size: 14px;
   padding-right: 40px!important;
   border-radius: 4px;
+  border-width: 1px;
 }
 
 .modal-search-img{
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   padding: 8px;
   position: absolute;
   right: 12px;
   cursor: pointer;
 }
 .close-img{
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   padding: 8px;
   cursor: pointer;
 }
