@@ -79,12 +79,12 @@ ActiveRecord::Schema.define(version: 2021_06_04_202425) do
 
   create_table "requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "attack_group_id", null: false
-    t.bigint "posts_id", null: false
+    t.bigint "post_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attack_group_id"], name: "index_requests_on_attack_group_id"
-    t.index ["posts_id"], name: "index_requests_on_posts_id"
+    t.index ["post_id"], name: "index_requests_on_post_id"
   end
 
   create_table "social_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -162,7 +162,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_202425) do
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "friend_id"
   add_foreign_key "requests", "attack_groups"
-  add_foreign_key "requests", "posts", column: "posts_id"
+  add_foreign_key "requests", "posts"
   add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"
 end
