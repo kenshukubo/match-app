@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_202425) do
   create_table "requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "attack_group_id", null: false
     t.bigint "posts_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attack_group_id"], name: "index_requests_on_attack_group_id"
