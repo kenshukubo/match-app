@@ -114,10 +114,10 @@ export default {
   width: 274px!important;
   border-radius: 8px;
   padding: 8px 12px;
-  border: 1px solid transparent;
-  &:hover{
-    border-color: #001858;
-  }
+//   border: 1px solid transparent;
+//   &:hover{
+//     border-color: #001858;
+//   }
 }
 
 .attack-group-item__team-name{
