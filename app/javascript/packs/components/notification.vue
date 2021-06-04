@@ -64,6 +64,7 @@ import inviteImage from 'packs/assets/images/notifications/invite.png'
 import changeImage from 'packs/assets/images/notifications/change.png'
 import attendImage from 'packs/assets/images/notifications/attend.png'
 import absentImage from 'packs/assets/images/notifications/absent.png'
+import heartImage from 'packs/assets/images/notifications/heart.png'
 
 export default {
   computed: {
@@ -92,6 +93,10 @@ export default {
             return absentImage;
             break
           }
+          case "request":{
+            return heartImage;
+            break
+          }
           default: {
             return inviteImage;
           }
@@ -104,6 +109,7 @@ export default {
       bellImage,
       inviteImage,
       changeImage,
+      heartImage,
       notificationCount: 0,
       showNotificationList: false,
       selectedMenu: "",
