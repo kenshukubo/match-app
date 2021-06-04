@@ -11,7 +11,7 @@
                 <p class="attack-group-item__team-name">
                   チーム{{attackGroup.groupNumber}}
                 </p>
-                <div>
+                <div class="attacker-info-wrapper">
                   <div class="attacker-info" v-for="(attacker, index) in attackGroup.attackers" :key="`attacker-${index}`">
                     <img :src="attacker.image" class="attacker-info__user-img">
                     <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
@@ -120,10 +120,15 @@ export default {
   margin-bottom: 8px;
 }
 
+.attacker-info-wrapper{
+  height: 130px;
+  overflow-y: scroll;
+}
+
 .attacker-info{
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .attacker-info__user-img{
