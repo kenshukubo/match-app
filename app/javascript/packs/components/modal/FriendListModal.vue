@@ -4,10 +4,15 @@
       <div class="modal-window">
         <div class="modal-content">
           <h3 class="attack-group-select__header-title">チームを選んでください</h3>
+
           <div v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
               <clip-loader :loading="isLoading" :color="color"></clip-loader>
-              <div v-for="(attackGroup, index) in attackGroups" :key="`group-${index}`" class="swiper-slide attack-group-item">
+              <div
+                v-for="(attackGroup, index) in attackGroups"
+                :key="`group-${index}`"
+                class="swiper-slide attack-group-item"
+              >
                 <p class="attack-group-item__team-name">
                   チーム{{attackGroup.groupNumber}}
                 </p>
