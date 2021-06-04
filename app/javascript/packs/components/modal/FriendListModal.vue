@@ -6,13 +6,16 @@
           <h3 class="attack-group-select__header-title">チームを選んでください</h3>
           <div v-swiper:mySwiper="swiperOption">
             <div class="swiper-wrapper">
-              <div class="swiper-slide attack-group-item" v-for="(attackGroup, index) in attackGroups" :key="`group-${index}`">
+              <clip-loader :loading="isLoading" :color="color"></clip-loader>
+              <div v-for="(attackGroup, index) in attackGroups" :key="`group-${index}`" class="swiper-slide attack-group-item">
                 <p class="attack-group-item__team-name">
                   チーム{{attackGroup.groupNumber}}
                 </p>
-                <div class="attacker-info" v-for="(attacker, index) in attackGroup.attackers" :key="`attacker-${index}`">
-                  <img :src="attacker.image" class="attacker-info__user-img">
-                  <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
+                <div>
+                  <div class="attacker-info" v-for="(attacker, index) in attackGroup.attackers" :key="`attacker-${index}`">
+                    <img :src="attacker.image" class="attacker-info__user-img">
+                    <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -33,17 +36,21 @@
 </template>
 <script>
 import axios from 'packs/axios'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 import { directive } from 'vue-awesome-swiper'
-// Import Swiper styles
 import 'swiper/css/swiper.css'
 
 export default {
+  components: {
+    ClipLoader
+  },
   directives: {
     swiper: directive
   },
   data() {
     return{
       attackGroups: "",
+      color: "#8bd3dd",
       swiperOption: {
         pagination: {
           el: '.swiper-pagination',
@@ -53,8 +60,10 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         },
+        centeredSlides: true,
         slidesPerView: 1,
-      }
+        spaceBetween: 5,
+      },
     }
   },
   mounted() {
@@ -67,13 +76,15 @@ export default {
   methods: {
     async fetchAttackGroups(){
       var self = this;
+      self.isLoading = true;
       try {
         const res = await axios.get("/api/v1/attack_groups")
         self.attackGroups = res.data.attackGroups;
+        self.isLoading = false;
       } catch(e) {
         console.log(e)
       }
-    }
+    },
   }
 }
 </script>
@@ -95,6 +106,13 @@ export default {
 
 .attack-group-item{
   cursor: pointer;
+  width: 274px!important;
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  &:hover{
+    border-color: #001858;
+  }
 }
 
 .attack-group-item__team-name{
