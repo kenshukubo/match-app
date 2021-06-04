@@ -34,8 +34,8 @@
           </div>
           <div v-else class="post-item__request">
             <button class="post-item__request-btn hover-opacity">
-              <span v-if="post.sex=='female'" @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♂️ アタックする</span>
-              <span v-else @click="showSelectMenuModal" class="post-item__chat-text">🙋‍♀️ アタックする</span>
+              <span v-if="post.sex=='female'" @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♂️ アタックする</span>
+              <span v-else @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♀️ アタックする</span>
             </button>
           </div>
         </div>
@@ -69,7 +69,11 @@
     >
     </SelectMenuModal>
 
-    <FriendListModal v-if="friendListModal" @close="closeModal">
+    <FriendListModal
+      v-if="friendListModal"
+      @close="closeModal"
+      :selectedPostId="selectedPostId"
+    >
     </FriendListModal>
 
   </div>
@@ -103,6 +107,7 @@ export default {
       zoomInProfile: "",
       postListed: false,
       hasAnyAttackGropups: "",
+      selectedPostId: "",
       selectMenuModal: false,
       friendListModal: false,
       isLoading: false,
@@ -137,12 +142,13 @@ export default {
         console.log(e)
       }
     },
-    async showSelectMenuModal() {
+    async showSelectMenuModal(postId) {
       var self = this;
       try {
         const res = await axios.get('/api/v1/attack_group_check')
         self.hasAnyAttackGropups = res.data.anyAttackGroups
         self.selectMenuModal = true;
+        self.selectedPostId = postId
       } catch(e) {
         console.log(e)
       }

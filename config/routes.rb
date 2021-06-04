@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resource  :user_profile, only: [:edit, :update, :show]
       resources :posts, only: [:new, :create, :edit, :update, :destroy]
       resources :post_members, only: [:new, :create, :edit, :update, :destroy]
-      resources :attack_groups, only: [:index, :create, :new, :destroy]
+      resources :attack_groups, only: [:index, :show, :create, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]
       resources :social_profiles, only: :destroy
       resource  :ratings
@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       resource  :attack_group_check, only: [:show]
       resources :add_attackers, only: [:index, :create]
       resources :attack_groups, only: [:index]
+      resource  :request, only: [:create]
     end
   end
 

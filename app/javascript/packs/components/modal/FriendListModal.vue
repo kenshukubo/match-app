@@ -32,7 +32,9 @@
           </div>
 
           <button
+            @click="submitRequest"
             v-bind:class="{ activeModalBtn: selectedGroupNumber }"
+            v-bind:disabled="!selectedGroupNumber"
             class="modal-select-btn modal-select-disabled-btn"
           >
             チームを確定する
@@ -49,6 +51,7 @@ import { directive } from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 export default {
+  props: ['selectedPostId'],
   components: {
     ClipLoader
   },
@@ -94,8 +97,19 @@ export default {
         console.log(e)
       }
     },
-    async selectGroup(group){
+    selectGroup(group){
       this.selectedGroupNumber = group.groupNumber
+    },
+    async submitRequest(){
+      var self = this;
+      try {
+        return await axios.post("/api/v1/request", {
+          group_number: self.selectedGroupNumber,
+          selected_post_id: self.selectedPostId
+        })
+      } catch(e) {
+        console.log(e)
+      }
     }
   }
 }
