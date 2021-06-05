@@ -5,6 +5,8 @@ class Api::V1::RequestsController < Api::ApplicationController
 
     begin
       ActiveRecord::Base.transaction do
+        return if Request.find_by(attack_group: attack_group, post: selected_post).present?
+
         Request.create!(
           attack_group: attack_group,
           post: selected_post
