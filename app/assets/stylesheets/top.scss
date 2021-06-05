@@ -132,6 +132,10 @@
       width: 64px;
       height: 64px;
     }
+    @media(max-width: 415px){
+      width: 54px;
+      height: 54px;
+    }
   }
   .top__user-name{
     font-size: 14px;
