@@ -76,6 +76,7 @@ export default {
       searchImage,
       keyword: "",
       listedType: "",
+      invitableNumber: "",
       anyFriends: false,
       listedFriends: "",
       searchedUsers: "",
@@ -88,6 +89,7 @@ export default {
     let selectMemberElement = document.getElementById("select-member");
     let data = JSON.parse(selectMemberElement.getAttribute('data'));
     this.listedType = data.listedType
+    this.invitableNumber = data.invitableNumber
     this.fetchfriends();
   },
   methods: {
@@ -118,9 +120,11 @@ export default {
     },
     async selectUser(userId){
       var self = this
+      
       if(self.selectedUserIds.includes(userId)){
         self.selectedUserIds = self.selectedUserIds.filter(n => n !== userId);
       }else{
+        if(self.selectedUserIds.length >= self.invitableNumber) return;
         self.selectedUserIds.push(userId)
       }
     }
@@ -205,7 +209,8 @@ export default {
 }
 
 .selectedUser{
-  border-color: #8bd3dd;
+  border: 1px solid #8bd3dd;
+  box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 [v-cloak] {
