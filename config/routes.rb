@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       #メンバー追加(PostMember, Attacker)
       resources :check_friends, only: [:index]
       resources :search_users, only: [:index]
+      resources :add_post_members, only: [:create]
 
       resources :add_attackers, only: [:index, :create]
     end

@@ -141,7 +141,9 @@ export default {
     async confirmMember(){
       var self = this
       try {
-        
+        return await axios.post("/api/v1/add_post_members", {
+          user_ids: self.selectedUserIds
+        })
       } catch(e) {
         console.log(e)
       }
