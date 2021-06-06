@@ -1,8 +1,25 @@
 <template>
   <div class="select-member__invite-form-wrapper">
-    <div class="select-member__form form">
-      <input v-model="keyword" placeholder="ユーザー名で検索" type="text">
-      <img :src="searchImage" @click="searchKeyword" class="search-img hover-opacity">
+    <div class="select-member__form-area form">
+      <div class="select-member__form-wrapper">
+        <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
+        <img :src="searchImage" @click="searchKeyword" class="search-img hover-opacity">
+      </div>
+
+      <div class="select-member__list-wrapper">
+        <clip-loader :loading="isLoading" :color="color"></clip-loader>
+        <template v-for="(user, index) in searchedUsers">
+          <div
+            @click="selectUser(user.id)"
+            v-bind:class="{ selectedUser: selectedUserIds.includes(user.id) }"
+            class="select-member__list-item"
+            :key="`friend-${index}`"
+          >
+            <img :src="user.image" class="select-member__list-item-img">
+            <span class="select-member__list-item-name text-ellipsis">{{user.name}}</span>
+          </div>
+        </template>
+      </div>
     </div>
 
     <span class="select-member__list-title">フレンドから選ぶ</span>
@@ -27,7 +44,12 @@
         <div class="select-member__list-wrapper">
           <clip-loader :loading="isLoading" :color="color"></clip-loader>
           <template v-for="(friend, index) in listedFriends">
-            <div class="select-member__list-item" :key="`friend-${index}`">
+            <div
+              @click="selectUser(friend.id)"
+              v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
+              class="select-member__list-item"
+              :key="`friend-${index}`"
+            >
               <img :src="friend.image" class="select-member__list-item-img">
               <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
             </div>
@@ -56,6 +78,8 @@ export default {
       listedType: "",
       anyFriends: false,
       listedFriends: "",
+      searchedUsers: "",
+      selectedUserIds: [],
       isLoading: false,
       color: "#8bd3dd",
     }
@@ -80,7 +104,25 @@ export default {
       }
     },
     async searchKeyword(){
-
+      var self = this;
+      try {
+        const res = await axios.get("/api/v1/search_users", {
+          params:{
+            keyword: self.keyword
+          },
+        })
+        self.searchedUsers = res.data.searchedUsers;
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async selectUser(userId){
+      var self = this
+      if(self.selectedUserIds.includes(userId)){
+        self.selectedUserIds = self.selectedUserIds.filter(n => n !== userId);
+      }else{
+        self.selectedUserIds.push(userId)
+      }
     }
   }
 }
@@ -98,11 +140,17 @@ export default {
 .select-member__invite-form-wrapper{
   padding: 32px 0;
 }
-.select-member__form{
+.select-member__form-area{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+.select-member__form-wrapper{
   display: flex;
   align-items: center;
-  margin-bottom: 32px;
   position: relative;
+  width: 100%;
 }
 
 .select-member__exception-title{
@@ -128,17 +176,19 @@ export default {
   white-space: nowrap;
   display: flex;
   padding: 4px 0;
+  width: 100%;
 }
 
 .select-member__list-item{
   border: 1px solid #001858;
-  border-radius: 8px;
+  border-radius: 5rem;
   padding: 4px;
   min-width: 140px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   margin-right: 12px;
+  cursor: pointer;
 }
 
 .select-member__list-item-img{
@@ -152,6 +202,10 @@ export default {
 .select-member__list-item-name{
   font-size: 12px;
   font-weight: 700;
+}
+
+.selectedUser{
+  border-color: #8bd3dd;
 }
 
 [v-cloak] {
