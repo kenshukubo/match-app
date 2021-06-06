@@ -30,21 +30,33 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     namespace :v1 do
+      #stripe
       resource  :stripe_checkout_session, only: [:create]
       resource  :stripe_webhook, only: [:create]
+
+      #通知
       resources :usuall_notifications, only: [:index]
       resources :admin_notifications, only: [:index]
       resource  :notification_count, only: [:show]
+
+      #フレンド検索、追加、削除
       resources :searches, only: [:index]
       resources :search_friends, only: [:index]
       resource  :friends, only: [:create, :destroy]
+
+      #トップページ
       resources :posts, only: [:index, :destroy]
       resource  :zoom_in_profile, only: [:show]
       resource  :post_listed_check, only: [:update]
       resource  :attack_group_check, only: [:show]
-      resources :add_attackers, only: [:index, :create]
       resources :attack_groups, only: [:index]
       resource  :request, only: [:create]
+
+      #メンバー追加(PostMember, Attacker)
+      resources :check_friends, only: [:index]
+      resources :search_users, only: [:index]
+
+      resources :add_attackers, only: [:index, :create]
     end
   end
 
