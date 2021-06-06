@@ -22,40 +22,50 @@
       </div>
     </div>
 
-    <span class="select-member__list-title">フレンドから選ぶ</span>
+    <div style="margin-bottom:1rem;">
+      <span class="select-member__list-title">フレンドから選ぶ</span>
 
-    <div v-if="!anyFriends" v-cloak>
-      <p class="select-member__exception-title">
-        <span>(同性の)フレンドがいません</span>
-        <span>
-          ヘッダーの
-          <img :src="addFriendImage" class="select-member__exception-search-img">
-          からフレンド追加できます
-        </span>
-      </p>
-    </div>
-    <div v-else>
-      <div v-if="!listedFriends">
+      <div v-if="!anyFriends" v-cloak>
         <p class="select-member__exception-title">
-          <span>全フレンド選択済みです</span>
+          <span>(同性の)フレンドがいません</span>
+          <span>
+            ヘッダーの
+            <img :src="addFriendImage" class="select-member__exception-search-img">
+            からフレンド追加できます
+          </span>
         </p>
       </div>
-      <div v-else v-cloak>
-        <div class="select-member__list-wrapper">
-          <clip-loader :loading="isLoading" :color="color"></clip-loader>
-          <template v-for="(friend, index) in listedFriends">
-            <div
-              @click="selectUser(friend.id)"
-              v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
-              class="select-member__list-item"
-              :key="`friend-${index}`"
-            >
-              <img :src="friend.image" class="select-member__list-item-img">
-              <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
-            </div>
-          </template>
+      <div v-else>
+        <div v-if="!listedFriends">
+          <p class="select-member__exception-title">
+            <span>全フレンド選択済みです</span>
+          </p>
+        </div>
+        <div v-else v-cloak>
+          <div class="select-member__list-wrapper">
+            <clip-loader :loading="isLoading" :color="color"></clip-loader>
+            <template v-for="(friend, index) in listedFriends">
+              <div
+                @click="selectUser(friend.id)"
+                v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
+                class="select-member__list-item"
+                :key="`friend-${index}`"
+              >
+                <img :src="friend.image" class="select-member__list-item-img">
+                <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
+              </div>
+            </template>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="button-wrapper">
+      <button
+        @click="confirmMember"
+        class="app-button conversion"
+        style="min-width: 180px;"
+      >招待確定する</button>
     </div>
   </div>
 </template>
@@ -126,6 +136,14 @@ export default {
       }else{
         if(self.selectedUserIds.length >= self.invitableNumber) return;
         self.selectedUserIds.push(userId)
+      }
+    },
+    async confirmMember(){
+      var self = this
+      try {
+        
+      } catch(e) {
+        console.log(e)
       }
     }
   }
