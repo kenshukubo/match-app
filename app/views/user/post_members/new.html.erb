@@ -19,6 +19,18 @@
       <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
     </div>
 
+    <% props = {
+        listedType: "post_member",
+        invitableNumber: @invitable_number
+      }.to_json
+    %>
+    <div id="select-member" data="<%= props %>">
+        <select-member />
+    </div>
+    <%= javascript_pack_tag 'select_member' %>
+    <%= stylesheet_pack_tag 'select_member' %>
+
+    <!--
     <% if current_user.friend_users.same_sex(current_user).blank? %>
         <p class="post-member__exception-title">
           <span>(同性の)フレンドがいません</span>
@@ -39,6 +51,7 @@
             %>
         <% end %>
     <% end %>
+    -->
 
     <div class="lines-on-sides">
       <span>アカウントを持っていない人を招待する</span>
@@ -56,8 +69,9 @@
 <style>
 .invitable-number{
   text-align: center;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 24px;
+  color:#f582ae;
 }
 </style>

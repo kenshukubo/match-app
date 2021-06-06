@@ -13,8 +13,6 @@ class User::PostMembersController < ApplicationController
       @sex = "女子"
     end
 
-    @post_members = PostMember.new
-
     post = current_user.post
     @invitable_number = post.number - PostMember.where(post: post).count
 
@@ -26,11 +24,6 @@ class User::PostMembersController < ApplicationController
     @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
     @attend_members      = @invited_user_exclude_me.where(status: "attend")
     @absent_members      = @invited_user_exclude_me.where(status: "absent")
-
-    @not_invited_friends = current_user.friend_users
-    .same_sex(current_user)
-    .includes(:post_members)
-    .where.not(id: PostMember.where(post: post).pluck(:user_id))
   end
 
   def create
