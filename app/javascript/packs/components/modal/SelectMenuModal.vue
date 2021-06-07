@@ -66,8 +66,9 @@ export default {
 }
 
 .team-create-btn{
-  border: 1px solid #f582ae;
-  color: #f582ae;
+  // background: #8bd3dd;  
+  border: 1px solid #8bd3dd;
+  color: #8bd3dd;
   cursor: pointer;
 }
 
