@@ -88,6 +88,7 @@ header > .container{
 }
 
 .drawer-menu__title{
+  color: #001858;
   display: block;
   font-size: 12px;
   margin-right: 10px;
@@ -95,25 +96,10 @@ header > .container{
   font-weight: 700;
 }
 
-.drawer-menu__attack-menu{
-  color: #8bd3dd;
-}
-
-.drawer-menu__post-menu{
-  color: #f582ae;
-}
-
 .drawer-menu__title-line{
   display: block;
   width: 100%;
   position: relative;
   bottom: 8px;
-}
-
-.attack-title-line{
-  border-bottom: 1px solid #8bd3dd;
-}
-
-.post-title-line{
-  border-bottom: 1px solid #f582ae;
+  border-bottom: 1px solid #ddd;
 }
