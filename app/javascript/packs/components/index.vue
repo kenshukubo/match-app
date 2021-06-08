@@ -318,6 +318,7 @@ export default {
   width: 100%;
   color: #fff;
   font-weight: 700;
+  line-height: 24px;
 }
 
 .profile-image{
