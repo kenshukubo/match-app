@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="top">
+  
     <% unless current_user %>
       <div class="top__background">
         <div class="top__main">
@@ -25,15 +25,17 @@
         </div>
       </div>
     <% else %>
-      <%= render "shared/top/profile" %>
+      <div class="top">
+        <%= render "shared/top/profile" %>
 
-      <div class="index-title-wrapper">
-        <span class="index-title">募集一覧</span>
+        <div class="index-title-wrapper">
+          <span class="index-title">募集一覧</span>
+        </div>
+
+        <%= render "shared/top/index" %>
       </div>
-
-      <%= render "shared/top/index" %>
     <% end %>
-  </div>
+  
 </div>
 
 <style>
