@@ -1,16 +1,22 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
-
-<%= form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <% resource.class.invite_key_fields.each do |field| -%>
-    <div class="field">
-      <%= f.label field %><br />
-      <%= f.text_field field %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit t("devise.invitations.new.submit_button") %>
+<div class="container">
+  <div class="single-page">
+    <%= form_for(resource, as: resource_name, url: invitation_path(resource_name)) do |f| %>
+      <%= render "shared/error_messages", resource: resource %>
+      <div class="form">
+        <div class="field">
+          <div class="label">
+            <label>
+              招待したい人のメールアドレス
+            </label>
+          </div>
+          <%= f.email_field :email, type: "email", :placeholder => "example@matchapp.jp", required: "required" %>
+        </div>
+        <div class="field">
+          <div class="button-wrapper">
+            <%= f.submit "✉ 招待メールを送信", class:"app-button conversion", style: "min-width: 180px;" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

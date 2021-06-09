@@ -17,7 +17,7 @@
       <% else %>
         <h1 style="padding-bottom:20px;">作成した募集にメンバーを招待しましょう</h1>
 
-        <p>
+        <p class="invitable-number">
           <span>招待可能人数：<%= @invitable_number %>人</span>
         </p>
 
@@ -29,14 +29,13 @@
           <%= link_to "✉ 招待メンバーを選ぶ", new_post_member_path, class:"invite-send-btn app-button conversion" %>
         </div>
 
-        <% if current_user.invite_any? %>
-          <p class="post-preview-title">投稿イメージ</p>
-          <%= render "shared/posts/post_image",
-            place: @post.place,
-            time: @post.time.strftime("%-m月%-d日 %H:%M"),
-            join_member: @join_member
-          %>
-        <% end %>
+        <p class="post-preview-title">投稿イメージ</p>
+        <%= render "shared/posts/post_image",
+          place: @post.place,
+          time: @post.time.strftime("%-m月%-d日 %H:%M"),
+          join_member: @join_member
+        %>
+
       <% end %>
       <div class="post-select-link-wrapper">
         募集を<%= link_to "編集する", edit_post_path(@post.id), class:"post-select-link" %>・<%= link_to "削除する", post_path(@post.id), method: :delete, data: { confirm: "参加者全員に通知がいきます。よろしいでしょうか？" }, class:"post-select-link" %>
@@ -48,6 +47,13 @@
 </div>
 
 <style>
+.invitable-number{
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 24px;
+  color:#f582ae;
+}
+
 .invite-send-btn-wrapper{
   display: flex;
   justify-content: center;

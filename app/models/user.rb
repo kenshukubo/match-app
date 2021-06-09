@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def invite_any?
-    PostMember.find_by(post: self.post).present?
+    PostMember.where.not(user: self).find_by(post: self.post).present?
   end
 
   def all_member_invite?(post)

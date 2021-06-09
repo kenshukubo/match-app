@@ -162,7 +162,7 @@ export default {
 }
 
 .select-member__invite-form-wrapper{
-  padding: 32px 0;
+  padding: 16px 0;
 }
 .select-member__form-area{
   display: flex;

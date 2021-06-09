@@ -12,12 +12,14 @@
       <%= render "shared/inviting" %>
     <% end %>
 
+    <!--
     <div class="lines-on-sides">
       <span>すでにアカウントを持っている人を選択する</span>
     </div>
     <div class="sp-sub-text-wrapper">
       <span class="sp-sub-title">すでにアカウントを持っている人を選択する</span>
     </div>
+    -->
 
     <% props = {
         listedType: "post_member",
@@ -30,6 +32,7 @@
     <%= javascript_pack_tag 'select_member' %>
     <%= stylesheet_pack_tag 'select_member' %>
 
+    <%= link_to "アカウントを持っていない人を招待する", new_user_invitation_path, class:"invitation-link" %>
     <!--
     <% if current_user.friend_users.same_sex(current_user).blank? %>
         <p class="post-member__exception-title">
@@ -54,6 +57,7 @@
     -->
   </div>
 
+  <!--
   <div class="single-page">
     <div class="lines-on-sides">
       <span>アカウントを持っていない人を招待する</span>
@@ -66,6 +70,7 @@
       <%= render "shared/register_invite" %>
     </div>
   </div>
+  -->
 </div>
 
 <style>
@@ -75,5 +80,10 @@
   font-weight: 700;
   margin-bottom: 24px;
   color:#f582ae;
+}
+
+.invitation-link{
+  font-size: 12px;
+  text-decoration: underline;
 }
 </style>
