@@ -40,10 +40,17 @@ input[type=text],input[type=password],input[type=email],input[type=submit],selec
   overflow: hidden;
 }
 
-.hover-opacity{
-  &:hover{
-    opacity: .7;
-  }
+.hover-opacity:hover{
+  opacity: .7;
+}
+
+.hover-scale:hover{
+  transition: .5s;
+  -webkit-transform: scale(0.94);
+  -moz-transform: scale(0.94);
+  -o-transform: scale(0.94);
+  -ms-transform: scale(0.94);
+  transform: scale(0.94);
 }
 
 .invite-cancel-img{
