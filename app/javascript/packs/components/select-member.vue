@@ -53,6 +53,9 @@
               >
                 <img :src="friend.image" class="select-member__list-item-img">
                 <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
+                <div v-bind:class="{ checkRound: selectedUserIds.includes(friend.id) }">
+                  <span v-bind:class="{ checkMark: selectedUserIds.includes(friend.id) }"></span>
+                </div>
               </div>
             </template>
           </div>
@@ -199,8 +202,33 @@ export default {
   overflow-x: auto;
   white-space: nowrap;
   display: flex;
-  padding: 4px 0;
+  padding: 4px;
   width: 100%;
+}
+
+.checkRound{
+  position: absolute;
+  top: -0.2em;
+  left: 7.7em;
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #f582ae;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkMark{
+  content: '';
+  display: block;
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #f582ae;
+  border-bottom: 2px solid #f582ae;
+  transform: rotate(-45deg);
 }
 
 .select-member__list-item{
@@ -213,6 +241,12 @@ export default {
   align-items: center;
   margin-right: 12px;
   cursor: pointer;
+  position: relative;
+  &:hover{
+    background: #f582ae;
+    color: #fff;
+    border: 1px solid #f582ae;
+  }
 }
 
 .select-member__list-item-img{
@@ -229,7 +263,9 @@ export default {
 }
 
 .selectedUser{
-  border: 1px solid #8bd3dd;
+  background: #f582ae;
+  color: #fff;
+  border: 1px solid #f582ae;
   box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
 
