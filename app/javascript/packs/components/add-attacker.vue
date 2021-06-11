@@ -58,15 +58,18 @@ export default {
       }
     },
     async addAttacker(userId){
-      try {
-        this.isInvite = true;
-        return await axios.post("/api/v1/add_attackers", {
-          user_id: userId,
-          group_id: this.attackGroupId
-        })
-      } catch(e) {
-        console.log(e)
-      }
+      var self = this
+      const res =  await axios.post("/api/v1/add_attackers", {
+        user_id: userId,
+        group_id: self.attackGroupId
+      })
+      .then( res => {
+        self.isInvite = true;
+      })
+      .catch( error => {
+        console.log(error)
+      })
+      
     },
     async closeFriendList(){
       this.showList = false
