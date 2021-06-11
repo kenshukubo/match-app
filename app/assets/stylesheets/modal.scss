@@ -17,3 +17,20 @@
     overflow: hidden;
   }
 }
+
+// DoneModal
+.post-listed__popper-img{
+  width: 260px;
+}
+
+.post-listed__popper-title-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.post-listed__popper-title{
+  font-weight: 700;
+  font-size: 20px;
+}

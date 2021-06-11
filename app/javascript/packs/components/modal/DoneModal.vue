@@ -2,11 +2,11 @@
   <transition name="modal" appear>
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
-        <img :src="popperImage" class="post-listed__popper-img">
+        <slot name="image" class="post-listed__popper-img"></slot>
         <div class="modal-content">
           <div class="post-listed__popper-title-wrapper">
-            <span class="post-listed__popper-title">募集が投稿されました</span>
-            <span>アタックを待ちましょう</span>
+            <slot name="title"></slot>
+            <slot name="text"></slot>
           </div>
         </div>
       </div>

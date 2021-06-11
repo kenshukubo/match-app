@@ -57,8 +57,11 @@
       </template>
     </ZoomInModal>
 
-    <PostListedModal v-if="postListed" @close="closeModal">
-    </PostListedModal>
+    <DoneModal v-if="postListed" @close="closeModal">
+      <img :src="popperImage" slot="image" class="post-listed__popper-img">
+      <span slot="title" class="post-listed__popper-title">募集が投稿されました</span>
+      <span slot="text">アタックを待ちましょう</span>
+    </DoneModal>
 
     <SelectMenuModal
       v-if="selectMenuModal"
@@ -86,15 +89,17 @@ import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './modal/ZoomInModal.vue'
 import SelectMenuModal from './modal/SelectMenuModal.vue'
 import FriendListModal from './modal/FriendListModal.vue';
-import PostListedModal from './modal/PostListedModal.vue'
+import DoneModal from './modal/DoneModal.vue'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
+
+import popperImage from 'packs/assets/images/popper.png'
 
 export default {
   components: {
     ZoomInModal,
     SelectMenuModal,
     FriendListModal,
-    PostListedModal,
+    DoneModal,
     ClipLoader,
   },
   data() {
@@ -102,6 +107,7 @@ export default {
       postBackgroundImage,
       trashImage,
       editImage,
+      popperImage,
       postList: "",
       zoomInModal: false,
       zoomInProfile: "",
