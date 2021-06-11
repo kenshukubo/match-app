@@ -47,15 +47,16 @@ export default {
     async showFriendsList(){
       var self = this;
       self.isInvite = false
-      try {
-        const res = await axios.get("/api/v1/add_attackers", {
-          params: {attack_group_id: self.attackGroupId}
-        })
+      const res = await axios.get("/api/v1/add_attackers", {
+        params: {attack_group_id: self.attackGroupId}
+      })
+      .then( res => {
         self.friends = res.data.friends
         self.showList = true
-      } catch(e) {
-        console.log(e)
-      }
+      })
+      .catch( error => {
+        console.log(error)
+      })
     },
     async addAttacker(userId){
       var self = this
