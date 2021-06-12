@@ -1,4 +1,8 @@
 class Api::V1::RequestsController < Api::ApplicationController
+  def index
+    @attack_groups = AttackGroup.includes(:attackers).where(user: current_user)
+  end
+  
   def create
     user_attack_group_ids = current_user.attack_groups.pluck(:id)
     attack_group = AttackGroup.find_by(user: current_user, group_number: params[:group_number])

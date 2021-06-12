@@ -159,7 +159,7 @@ export default {
           params: {id: member.id}
         })
         self.zoomInProfile = res.data.zoomInProfile;
-        self.zoomInModal = true;
+        self.showZoomInModal = true;
       } catch(e) {
         console.log(e)
       }
@@ -169,7 +169,7 @@ export default {
       try {
         const res = await axios.get('/api/v1/attack_group_check')
         self.hasAnyAttackGropups = res.data.anyAttackGroups
-        self.selectMenuModal = true;
+        self.showSelectMenuModal = true;
         self.selectedPostId = postId
       } catch(e) {
         console.log(e)

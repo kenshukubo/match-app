@@ -49,8 +49,7 @@ Rails.application.routes.draw do
       resource  :zoom_in_profile, only: [:show]
       resource  :post_listed_check, only: [:update]
       resource  :attack_group_check, only: [:show]
-      resources :attack_groups, only: [:index]
-      resource  :request, only: [:create]
+      resources :requests, only: [:index, :create]
 
       #メンバー追加(PostMember, Attacker)
       resources :check_friends, only: [:index]

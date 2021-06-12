@@ -93,7 +93,7 @@ export default {
       var self = this;
       self.isLoading = true;
       try {
-        const res = await axios.get("/api/v1/attack_groups")
+        const res = await axios.get("/api/v1/requests")
         self.attackGroups = res.data.attackGroups;
         self.isLoading = false;
       } catch(e) {
@@ -106,7 +106,7 @@ export default {
     async submitRequest(){
       var self = this;
       
-      const res = await axios.post("/api/v1/request", {
+      const res = await axios.post("/api/v1/requests", {
         group_number: self.selectedGroupNumber,
         selected_post_id: self.selectedPostId
       })
