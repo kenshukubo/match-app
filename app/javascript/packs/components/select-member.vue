@@ -18,6 +18,9 @@
             >
               <img :src="user.image" class="select-member__list-item-img">
               <span class="select-member__list-item-name text-ellipsis">{{user.name}}</span>
+              <div v-bind:class="{ checkRound: selectedUserIds.includes(user.id) }" class="check-position">
+                <span v-bind:class="{ checkMark: selectedUserIds.includes(user.id) }"></span>
+              </div>
             </div>
           </template>
         </div>
