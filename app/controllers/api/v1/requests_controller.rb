@@ -21,7 +21,7 @@ class Api::V1::RequestsController < Api::ApplicationController
 
         # 通知作成
         category = "request"
-        message = "あなたの募集にアタックされました"
+        message = "あなたの募集がアタックされました"
 
         post_member_ids.each do |user_id|
           Notification.create!(
