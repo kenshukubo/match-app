@@ -8,6 +8,8 @@ class Api::V1::PostsController < Api::ApplicationController
     .includes(:post_members, :user)
     .where.not(users: {sex: current_user.sex})
     .all_member_join
+
+    @attack_group_ids = current_user.attack_groups.pluck(:id)
   end
 
   def destroy

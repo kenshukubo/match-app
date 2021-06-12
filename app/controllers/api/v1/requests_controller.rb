@@ -1,11 +1,12 @@
 class Api::V1::RequestsController < Api::ApplicationController
   def create
+    user_attack_group_ids = current_user.attack_groups.pluck(:id)
     attack_group = AttackGroup.find_by(user: current_user, group_number: params[:group_number])
     selected_post = Post.find(params[:selected_post_id])
 
     begin
       ActiveRecord::Base.transaction do
-        return if Request.find_by(attack_group: attack_group, post: selected_post).present?
+        raise if Request.find_by(attack_group_id: user_attack_group_ids, post: selected_post).present?
 
         Request.create!(
           attack_group: attack_group,
@@ -31,6 +32,7 @@ class Api::V1::RequestsController < Api::ApplicationController
       end
     rescue => error
       p error
+      status 400 
     end
   end
 end

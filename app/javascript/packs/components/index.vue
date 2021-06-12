@@ -33,9 +33,12 @@
             </div>
           </div>
           <div v-else class="post-item__request">
-            <button class="post-item__request-btn hover-opacity hover-scale">
-              <span v-if="post.sex=='female'" @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♂️ アタックする</span>
-              <span v-else @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♀️ アタックする</span>
+            <button v-if="post.isAttacked" class="post-item__request-btn post-item__attacked">
+                <span class="post-item__chat-text">アタック済み</span>
+            </button>
+            <button v-else class="post-item__request-btn hover-opacity hover-scale">
+                <span v-if="post.sex == 'female'" @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♂️ アタックする</span>
+                <span v-else @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♀️ アタックする</span>
             </button>
           </div>
         </div>
@@ -60,7 +63,7 @@
     <DoneModal v-if="postListed" @close="closeModal">
       <img :src="popperImage" slot="image" class="post-listed__popper-img">
       <span slot="title" class="post-listed__popper-title">募集が投稿されました</span>
-      <span slot="text">アタックを待ちましょう</span>
+      <span slot="text" class="post-listed__popper-text">アタックを待ちましょう</span>
     </DoneModal>
 
     <SelectMenuModal
@@ -74,10 +77,21 @@
 
     <FriendListModal
       v-if="friendListModal"
+      @show-attack-done-modal='attackDone = $event'
+      @hide-attack-group-modal='friendListModal = $event'
       @close="closeModal"
       :selectedPostId="selectedPostId"
     >
     </FriendListModal>
+
+    <DoneModal
+      v-if="attackDone"
+      @close="closeModal"
+    >
+      <img :src="popperImage" slot="image" class="post-listed__popper-img">
+      <span slot="title" class="post-listed__popper-title">💥 アタックしました</span>
+      <span slot="text" class="post-listed__popper-text">反応を待ちましょう</span>
+    </DoneModal>
 
   </div>
 </template>
@@ -118,6 +132,7 @@ export default {
       friendListModal: false,
       isLoading: false,
       color: "#8bd3dd",
+      attackDone: false,
     }
   },
   created() {
@@ -175,6 +190,7 @@ export default {
       self.selectMenuModal = false;
       self.postListed = false;
       self.friendListModal = false
+      self.attackDone = false
       this.confettiStop();
     },
     async deletePost(postId){
@@ -318,6 +334,12 @@ export default {
   border-radius: 10px;
   min-width: 150px;
   text-align: center;
+}
+
+.post-item__attacked{
+  background: #ddd;
+  border: 1px solid #ddd;
+  cursor: unset;
 }
 
 .post-item__chat-text{

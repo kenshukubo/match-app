@@ -76,7 +76,7 @@
     <DoneModal v-if="showModal" @close="showModal = false">
       <img :src="megaphoneImage" slot="image" class="post-listed__popper-img">
       <span slot="title" class="post-listed__popper-title">招待完了しました</span>
-      <span slot="text">招待の承認を待ちましょう</span>
+      <span slot="text" class="post-listed__popper-text">招待の承認を待ちましょう</span>
     </DoneModal>
   </div>
 </template>

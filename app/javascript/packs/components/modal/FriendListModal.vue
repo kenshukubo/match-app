@@ -105,14 +105,19 @@ export default {
     },
     async submitRequest(){
       var self = this;
-      try {
-        return await axios.post("/api/v1/request", {
-          group_number: self.selectedGroupNumber,
-          selected_post_id: self.selectedPostId
-        })
-      } catch(e) {
-        console.log(e)
-      }
+      
+      const res = await axios.post("/api/v1/request", {
+        group_number: self.selectedGroupNumber,
+        selected_post_id: self.selectedPostId
+      })
+      .then( res => {
+        console.log("リクエスト完了")
+        this.$emit('show-attack-done-modal', true);
+        this.$emit('hide-attack-group-modal', false);
+      })
+      .catch( error => {
+        console.log(error)
+      })
     }
   }
 }
@@ -124,6 +129,24 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 16px 32px;
+  }
+}
+// オーバーレイのトランジション
+.modal-enter-active {
+  transition: opacity 0.4s;
+
+  // オーバーレイに包含されているモーダルウィンドウのトランジション
+  .modal-window {
+    transition: opacity 0.4s, transform 0.4s;
+  }
+}
+
+.modal-enter {
+  opacity: 0;
+
+  .modal-window {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 

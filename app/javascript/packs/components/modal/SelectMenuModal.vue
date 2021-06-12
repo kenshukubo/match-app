@@ -48,7 +48,7 @@ export default {
 }
 
 // オーバーレイのトランジション
-.modal-enter-active, .modal-leave-active {
+.modal-enter-active {
   transition: opacity 0.4s;
 
   // オーバーレイに包含されているモーダルウィンドウのトランジション
@@ -57,12 +57,7 @@ export default {
   }
 }
 
-// ディレイを付けるとモーダルウィンドウが消えた後にオーバーレイが消える
-.modal-leave-active {
-  transition: opacity 0.6s ease 0.4s;
-}
-
-.modal-enter, .modal-leave-to {
+.modal-enter {
   opacity: 0;
 
   .modal-window {
