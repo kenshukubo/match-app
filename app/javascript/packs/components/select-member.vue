@@ -54,7 +54,7 @@
                 >
                   <img :src="friend.image" class="select-member__list-item-img">
                   <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
-                  <div v-bind:class="{ checkRound: selectedUserIds.includes(friend.id) }">
+                  <div v-bind:class="{ checkRound: selectedUserIds.includes(friend.id) }" class="check-position">
                     <span v-bind:class="{ checkMark: selectedUserIds.includes(friend.id) }"></span>
                   </div>
                 </div>
@@ -223,29 +223,10 @@ export default {
   width: 100%;
 }
 
-.checkRound{
+.check-position{
   position: absolute;
   top: -0.2em;
   left: 7.7em;
-  background: #fff;
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid #f582ae;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checkMark{
-  content: '';
-  display: block;
-  width: 10px;
-  height: 5px;
-  border-left: 2px solid #f582ae;
-  border-bottom: 2px solid #f582ae;
-  transform: rotate(-45deg);
 }
 
 .select-member__list-item{

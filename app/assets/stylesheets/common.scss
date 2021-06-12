@@ -65,6 +65,29 @@ input[type=text],input[type=password],input[type=email],input[type=submit],selec
   margin-right: 6px;
 }
 
+// 選択時チェックマーク
+.checkRound{
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #f582ae;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkMark{
+  content: '';
+  display: block;
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid #f582ae;
+  border-bottom: 2px solid #f582ae;
+  transform: rotate(-45deg);
+}
+
 .swiper-button-disabled{
   display: none!important;
 }

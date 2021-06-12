@@ -24,6 +24,9 @@
                     <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
                   </div>
                 </div>
+                <div v-bind:class="{ checkRound: selectedGroupNumber == attackGroup.groupNumber }" class="check-position">
+                  <span v-bind:class="{ checkMark: selectedGroupNumber == attackGroup.groupNumber }"></span>
+                </div>
               </div>
             </div>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -136,6 +139,7 @@ export default {
   border-radius: 8px;
   padding: 8px 12px;
   border: 1px solid transparent;
+  position: relative;
   &:hover{
     border-color: #f582ae;
     background: #ffc6c7;
@@ -145,6 +149,12 @@ export default {
 .groupSelectActive{
   border-color:#f582ae;
   background: #ffc6c7;
+}
+
+.check-position{
+  position: absolute;
+  top: -0.05em;
+  right: 106px;
 }
 
 .attack-group-item__team-name{
