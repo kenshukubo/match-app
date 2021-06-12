@@ -1,75 +1,83 @@
 <template>
-  <div class="select-member__invite-form-wrapper">
-    <div class="select-member__form-area form">
-      <div class="select-member__form-wrapper">
-        <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
-        <img :src="searchImage" @click="searchKeyword" class="search-img hover-opacity">
+  <div>
+    <div class="select-member__invite-form-wrapper">
+      <div class="select-member__form-area form">
+        <div class="select-member__form-wrapper">
+          <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
+          <img :src="searchImage" @click="searchKeyword" class="search-img hover-opacity">
+        </div>
+
+        <div class="select-member__list-wrapper">
+          <clip-loader :loading="isLoading" :color="color"></clip-loader>
+          <template v-for="(user, index) in searchedUsers">
+            <div
+              @click="selectUser(user.id)"
+              v-bind:class="{ selectedUser: selectedUserIds.includes(user.id) }"
+              class="select-member__list-item"
+              :key="`friend-${index}`"
+            >
+              <img :src="user.image" class="select-member__list-item-img">
+              <span class="select-member__list-item-name text-ellipsis">{{user.name}}</span>
+            </div>
+          </template>
+        </div>
       </div>
 
-      <div class="select-member__list-wrapper">
-        <clip-loader :loading="isLoading" :color="color"></clip-loader>
-        <template v-for="(user, index) in searchedUsers">
-          <div
-            @click="selectUser(user.id)"
-            v-bind:class="{ selectedUser: selectedUserIds.includes(user.id) }"
-            class="select-member__list-item"
-            :key="`friend-${index}`"
-          >
-            <img :src="user.image" class="select-member__list-item-img">
-            <span class="select-member__list-item-name text-ellipsis">{{user.name}}</span>
-          </div>
-        </template>
-      </div>
-    </div>
+      <div style="margin-bottom:1rem;">
+        <span class="select-member__list-title">フレンドから選ぶ</span>
 
-    <div style="margin-bottom:1rem;">
-      <span class="select-member__list-title">フレンドから選ぶ</span>
-
-      <div v-if="!anyFriends" v-cloak>
-        <p class="select-member__exception-title">
-          <span>(同性の)フレンドがいません</span>
-          <span>
-            ヘッダーの
-            <img :src="addFriendImage" class="select-member__exception-search-img">
-            からフレンド追加できます
-          </span>
-        </p>
-      </div>
-      <div v-else>
-        <div v-if="!listedFriends">
+        <div v-if="!anyFriends" v-cloak>
           <p class="select-member__exception-title">
-            <span>全フレンド選択済みです</span>
+            <span>(同性の)フレンドがいません</span>
+            <span>
+              ヘッダーの
+              <img :src="addFriendImage" class="select-member__exception-search-img">
+              からフレンド追加できます
+            </span>
           </p>
         </div>
-        <div v-else v-cloak>
-          <div class="select-member__list-wrapper">
-            <clip-loader :loading="isLoading" :color="color"></clip-loader>
-            <template v-for="(friend, index) in listedFriends">
-              <div
-                @click="selectUser(friend.id)"
-                v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
-                class="select-member__list-item"
-                :key="`friend-${index}`"
-              >
-                <img :src="friend.image" class="select-member__list-item-img">
-                <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
-                <div v-bind:class="{ checkRound: selectedUserIds.includes(friend.id) }">
-                  <span v-bind:class="{ checkMark: selectedUserIds.includes(friend.id) }"></span>
+        <div v-else>
+          <div v-if="!listedFriends">
+            <p class="select-member__exception-title">
+              <span>全フレンド選択済みです</span>
+            </p>
+          </div>
+          <div v-else v-cloak>
+            <div class="select-member__list-wrapper">
+              <clip-loader :loading="isLoading" :color="color"></clip-loader>
+              <template v-for="(friend, index) in listedFriends">
+                <div
+                  @click="selectUser(friend.id)"
+                  v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
+                  class="select-member__list-item"
+                  :key="`friend-${index}`"
+                >
+                  <img :src="friend.image" class="select-member__list-item-img">
+                  <span class="select-member__list-item-name text-ellipsis">{{friend.name}}</span>
+                  <div v-bind:class="{ checkRound: selectedUserIds.includes(friend.id) }">
+                    <span v-bind:class="{ checkMark: selectedUserIds.includes(friend.id) }"></span>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="button-wrapper">
+        <button
+          @click="confirmMember"
+          class="app-button conversion"
+          style="min-width: 180px;"
+        >招待確定する</button>
+      </div>
     </div>
 
-    <div class="button-wrapper">
-      <button
-        @click="confirmMember"
-        class="app-button conversion"
-        style="min-width: 180px;"
-      >招待確定する</button>
-    </div>
+    <DoneModal v-if="showModal" @close="showModal = false">
+      <img :src="megaphoneImage" slot="image" class="post-listed__popper-img">
+      <span slot="title" class="post-listed__popper-title">招待完了しました</span>
+      <span slot="text">招待の承認を待ちましょう</span>
+    </DoneModal>
   </div>
 </template>
 
@@ -77,16 +85,20 @@
 import axios from 'packs/axios'
 import addFriendImage from 'packs/assets/images/add-friend.png'
 import searchImage from 'packs/assets/images/search.png'
+import megaphoneImage from 'packs/assets/images/megaphone.png'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
+import DoneModal from './modal/DoneModal.vue'
 
 export default {
   components: {
-    ClipLoader
+    ClipLoader,
+    DoneModal
   },
   data() {
     return {
       addFriendImage,
       searchImage,
+      megaphoneImage,
       keyword: "",
       listedType: "",
       invitableNumber: "",
@@ -96,6 +108,7 @@ export default {
       selectedUserIds: [],
       isLoading: false,
       color: "#8bd3dd",
+      showModal: false,
     }
   },
   created() {
@@ -143,13 +156,17 @@ export default {
     },
     async confirmMember(){
       var self = this
-      try {
-        return await axios.post("/api/v1/add_post_members", {
-          user_ids: self.selectedUserIds
-        })
-      } catch(e) {
-        console.log(e)
-      }
+      if(self.selectedUserIds.length == 0) return;
+
+      const res = await axios.post("/api/v1/add_post_members", {
+        user_ids: self.selectedUserIds
+      })
+      .then( res => {
+        self.showModal = true
+      })
+      .catch( error => {
+        console.log(error)
+      })
     }
   }
 }
