@@ -75,14 +75,14 @@
     >
     </SelectMenuModal>
 
-    <FriendListModal
+    <AttackGroupModal
       v-if="friendListModal"
       @show-attack-done-modal='attackDone = $event'
       @hide-attack-group-modal='friendListModal = $event'
       @close="closeModal"
       :selectedPostId="selectedPostId"
     >
-    </FriendListModal>
+    </AttackGroupModal>
 
     <DoneModal
       v-if="attackDone"
@@ -102,7 +102,7 @@ import trashImage from 'packs/assets/images/trash.png'
 import editImage from 'packs/assets/images/edit.png'
 import ZoomInModal from './modal/ZoomInModal.vue'
 import SelectMenuModal from './modal/SelectMenuModal.vue'
-import FriendListModal from './modal/FriendListModal.vue';
+import AttackGroupModal from './modal/AttackGroupModal.vue';
 import DoneModal from './modal/DoneModal.vue'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
@@ -112,7 +112,7 @@ export default {
   components: {
     ZoomInModal,
     SelectMenuModal,
-    FriendListModal,
+    AttackGroupModal,
     DoneModal,
     ClipLoader,
   },
