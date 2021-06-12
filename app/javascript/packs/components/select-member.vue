@@ -260,9 +260,8 @@ export default {
   cursor: pointer;
   position: relative;
   &:hover{
-    background: #f582ae;
-    color: #fff;
-    border: 1px solid #f582ae;
+    background: #ffc6c7;
+    border: 1px solid #ffc6c7;
   }
 }
 
@@ -280,9 +279,8 @@ export default {
 }
 
 .selectedUser{
-  background: #f582ae;
-  color: #fff;
-  border: 1px solid #f582ae;
+  background: #ffc6c7;
+  border: 1px solid #ffc6c7;
   box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
 
