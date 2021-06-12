@@ -111,7 +111,6 @@ export default {
         selected_post_id: self.selectedPostId
       })
       .then( res => {
-        console.log("リクエスト完了")
         this.$emit('show-attack-done-modal', true);
         this.$emit('hide-attack-group-modal', false);
       })
