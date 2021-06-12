@@ -45,7 +45,7 @@
       </template>
     </div>
 
-    <ZoomInModal v-if="zoomInModal" @close="closeModal">
+    <ZoomInModal v-if="showZoomInModal" @close="closeModal">
       <template slot="image">
         <img :src="zoomInProfile.image" class="profile-image">
       </template>
@@ -67,18 +67,18 @@
     </DoneModal>
 
     <SelectMenuModal
-      v-if="selectMenuModal"
+      v-if="showSelectMenuModal"
       @close="closeModal"
       :hasAnyAttackGropups="hasAnyAttackGropups"
-      @show-friend-list-modal='friendListModal = $event'
-      @hide-menu-modal='selectMenuModal = $event'
+      @show-friend-list-modal='showAttackGroupModal = $event'
+      @hide-menu-modal='showSelectMenuModal = $event'
     >
     </SelectMenuModal>
 
     <AttackGroupModal
-      v-if="friendListModal"
+      v-if="showAttackGroupModal"
       @show-attack-done-modal='attackDone = $event'
-      @hide-attack-group-modal='friendListModal = $event'
+      @hide-attack-group-modal='showAttackGroupModal = $event'
       @close="closeModal"
       :selectedPostId="selectedPostId"
     >
@@ -122,17 +122,21 @@ export default {
       trashImage,
       editImage,
       popperImage,
+
       postList: "",
-      zoomInModal: false,
       zoomInProfile: "",
-      postListed: false,
       hasAnyAttackGropups: "",
       selectedPostId: "",
-      selectMenuModal: false,
-      friendListModal: false,
+
+      showZoomInModal: false,
+      showSelectMenuModal: false,
+      showAttackGroupModal: false,
+      attackDone: false,
+      postListed: false,
+
       isLoading: false,
       color: "#8bd3dd",
-      attackDone: false,
+      
     }
   },
   created() {
@@ -186,11 +190,11 @@ export default {
     },
     closeModal() {
       var self = this;
-      self.zoomInModal = false;
-      self.selectMenuModal = false;
-      self.postListed = false;
-      self.friendListModal = false
-      self.attackDone = false
+      self.showZoomInModal      = false;
+      self.showSelectMenuModal  = false;
+      self.postListed           = false;
+      self.showAttackGroupModal = false;
+      self.attackDone           = false;
       this.confettiStop();
     },
     async deletePost(postId){
