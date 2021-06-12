@@ -37,8 +37,8 @@
                 <span class="post-item__chat-text">アタック済み</span>
             </button>
             <button v-else class="post-item__request-btn hover-opacity hover-scale">
-                <span v-if="post.sex == 'female'" @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♂️ アタックする</span>
-                <span v-else @click="showSelectMenuModal(post.id)" class="post-item__chat-text">🙋‍♀️ アタックする</span>
+                <span v-if="post.sex == 'female'" @click="showMenuModal(post.id)" class="post-item__chat-text">🙋‍♂️ アタックする</span>
+                <span v-else @click="showMenuModal(post.id)" class="post-item__chat-text">🙋‍♀️ アタックする</span>
             </button>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default {
         console.log(e)
       }
     },
-    async showSelectMenuModal(postId) {
+    async showMenuModal(postId) {
       var self = this;
       try {
         const res = await axios.get('/api/v1/attack_group_check')
