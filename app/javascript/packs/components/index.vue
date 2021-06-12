@@ -60,12 +60,6 @@
       </template>
     </ZoomInModal>
 
-    <DoneModal v-if="postListed" @close="closeModal">
-      <img :src="popperImage" slot="image" class="post-listed__popper-img">
-      <span slot="title" class="post-listed__popper-title">募集が投稿されました</span>
-      <span slot="text" class="post-listed__popper-text">アタックを待ちましょう</span>
-    </DoneModal>
-
     <SelectMenuModal
       v-if="showSelectMenuModal"
       @close="closeModal"
@@ -84,10 +78,13 @@
     >
     </AttackGroupModal>
 
-    <DoneModal
-      v-if="attackDone"
-      @close="closeModal"
-    >
+    <DoneModal v-if="postListed" @close="closeModal">
+      <img :src="popperImage" slot="image" class="post-listed__popper-img">
+      <span slot="title" class="post-listed__popper-title">募集が投稿されました</span>
+      <span slot="text" class="post-listed__popper-text">アタックを待ちましょう</span>
+    </DoneModal>
+
+    <DoneModal v-if="attackDone" @close="closeModal">
       <img :src="popperImage" slot="image" class="post-listed__popper-img">
       <span slot="title" class="post-listed__popper-title">💥 アタックしました</span>
       <span slot="text" class="post-listed__popper-text">反応を待ちましょう</span>
