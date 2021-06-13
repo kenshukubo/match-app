@@ -125,6 +125,7 @@ export default {
   width: 42px;
   height: 42px;
   object-fit: cover;
+  border-radius: 50%;
   margin-right: 8px;
 }
 .friend-name{
