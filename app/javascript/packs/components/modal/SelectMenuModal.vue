@@ -84,13 +84,6 @@ export default {
   margin-bottom: 8px;
 }
 
-.team-create-btn{
-  // background: #8bd3dd;  
-  border: 1px solid #8bd3dd;
-  color: #8bd3dd;
-  cursor: pointer;
-}
-
 .attack-select-link{
   display: inline-block;
   width: 100%;
