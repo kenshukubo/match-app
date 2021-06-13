@@ -11,8 +11,12 @@
                   <div class="attack-group__member-info">
                     <span><%= attacker.user.user_profile.name %></span>
                     <div class="attack-group__member-info-detail">
-                      <span><%= attacker.user.user_profile.age %>才</span>
-                      <span><%= attacker.user.user_profile.job %></span>
+                      <% if attacker.user.user_profile.age.present? %>
+                        <span><%= attacker.user.user_profile.age %>才</span>
+                      <% end %>
+                      <% if attacker.user.user_profile.job.present? %>
+                        <span><%= attacker.user.user_profile.job %></span>
+                      <% end %>
                     </div>
                   </div>
               </div>
@@ -20,7 +24,12 @@
         </div>
 
         <div class="attack-group__btn-wrapper">
-          <%= button_to "承認する", root_path, class:"select-btn activeModalBtn" %>
+          <%= button_to "承認する", 
+            request_path,
+            method: :patch,
+            class:"select-btn activeModalBtn",
+            data: { confirm: "このグループとマッチングします。よろしいでしょうか？" }
+          %>
         </div>
     </div>
 
