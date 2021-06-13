@@ -1,6 +1,6 @@
 class Api::V1::RequestsController < Api::ApplicationController
   def index
-    @attack_groups = AttackGroup.includes(:attackers).where(user: current_user, all_member_ready: true)
+    @attack_groups = AttackGroup.includes(:attackers).where(user: current_user)
   end
   
   def create
@@ -12,9 +12,6 @@ class Api::V1::RequestsController < Api::ApplicationController
       ActiveRecord::Base.transaction do
         # 自分の他のアタックチームで、この募集にアタックしているものがあれば飛ばす
         raise if Request.find_by(attack_group_id: user_attack_group_ids, post: selected_post).present?
-
-        # アタックグループのメンバーが揃っていなければ飛ばす
-        raise if attack_group.all_member_ready == false
 
         request = Request.create!(
           attack_group: attack_group,
