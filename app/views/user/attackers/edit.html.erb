@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="single-page">
+    <h1>
+      チームへの招待を確認する
+    </h1>
+
+    <div>
+      <%= form_with model: @attacker, url: attacker_path, local: true, method: :patch do |f| %>
+        <%= render "shared/error_messages", resource: resource %>
+        <div class="form">
+          <div class="field">
+            <%= f.radio_button :status, :attend %>
+            <%= f.label :status_attend, "参加", class:"sex-radio-btn male-radio" %>
+            <%= f.radio_button :status, :absent %>
+            <%= f.label :status_absent, "不参加", class:"sex-radio-btn female-radio" %>
+          </div>
+          <div class="field">
+            <div class="button-wrapper">
+              <%= f.submit "更新", class:"app-button conversion" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

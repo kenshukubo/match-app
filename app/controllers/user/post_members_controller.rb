@@ -99,8 +99,7 @@ class User::PostMembersController < ApplicationController
           url: post_path(post.id)
         )
 
-        user_notification = UserNotification.find_by(user_id: host_user_id)
-        user_notification.add_unchecked_notification_count
+        UserNotification.find_by(user_id: host_user_id).add_unchecked_notification_count
       end
       flash[:notice] = "更新完了！"
       redirect_to root_path
