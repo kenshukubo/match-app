@@ -1,6 +1,6 @@
 class Api::V1::RequestsController < Api::ApplicationController
   def index
-    @attack_groups = AttackGroup.includes(:attackers).where(user: current_user)
+    @attack_groups = AttackGroup.includes(:attackers).where(user: current_user, all_member_ready: true)
   end
   
   def create

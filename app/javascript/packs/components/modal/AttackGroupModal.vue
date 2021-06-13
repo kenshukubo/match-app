@@ -2,7 +2,7 @@
   <transition name="modal" appear>
     <div class="modal modal-overlay" @click.self="$emit('close')">
       <div class="modal-window">
-        <div class="modal-content">
+        <div v-if="!!attackGroups" class="modal-content">
           <h3 class="attack-group-select__header-title">チームを選んでください</h3>
 
           <div v-swiper:mySwiper="swiperOption">
@@ -46,6 +46,7 @@
             チームを確定する
           </button>
         </div>
+
       </div>
     </div>
   </transition>
