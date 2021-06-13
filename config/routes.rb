@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resource  :user_profile, only: [:edit, :update]
       resources :posts, only: [:new, :show, :create, :edit, :update, :destroy]
       resources :post_members, only: [:new, :create, :edit, :update, :destroy]
-      resources :attack_groups, only: [:index, :create, :new, :destroy]
+      resources :attack_groups, only: [:index, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]
       resources :social_profiles, only: :destroy
       resources :requests, only: [:index, :edit, :update]
@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       resources :check_friends, only: [:index]
       resources :search_users, only: [:index]
       resources :add_post_members, only: [:create]
+      resources :attack_groups, only: [:create]
 
       resources :add_attackers, only: [:index, :create]
     end

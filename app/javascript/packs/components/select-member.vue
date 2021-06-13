@@ -72,7 +72,10 @@
           @click="confirmMember"
           class="app-button conversion"
           style="min-width: 180px;"
-        >招待確定する</button>
+        >
+          <span v-if="listedType == 'post_member'">招待確定する</span>
+          <span v-else-if="listedType == 'attack_group'">チーム作成する</span>
+        </button>
       </div>
     </div>
 
@@ -162,15 +165,27 @@ export default {
       var self = this
       if(self.selectedUserIds.length == 0) return;
 
-      const res = await axios.post("/api/v1/add_post_members", {
-        user_ids: self.selectedUserIds
-      })
-      .then( res => {
-        self.showModal = true
-      })
-      .catch( error => {
-        console.log(error)
-      })
+      if(self.listedType == "post_member"){
+        const res = await axios.post("/api/v1/add_post_members", {
+          user_ids: self.selectedUserIds
+        })
+        .then( res => {
+          self.showModal = true
+        })
+        .catch( error => {
+          console.log(error)
+        })
+      }else if(self.listedType == "attack_group"){
+        const res = await axios.post("/api/v1/attack_groups", {
+          user_ids: self.selectedUserIds
+        })
+        .then( res => {
+          self.showModal = true
+        })
+        .catch( error => {
+          console.log(error)
+        })
+      }
     }
   }
 }
