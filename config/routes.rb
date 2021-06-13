@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   authenticated :user do
     scope module: :user do
       resource  :user_profile, only: [:edit, :update]
-      resources :posts, only: [:new, :create, :edit, :update, :destroy]
+      resources :posts, only: [:new, :show, :create, :edit, :update, :destroy]
       resources :post_members, only: [:new, :create, :edit, :update, :destroy]
       resources :attack_groups, only: [:index, :create, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]

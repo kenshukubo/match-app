@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="single-page">
+        <h1>相手グループ情報</h1>
+
+        <div style="margin-bottom: 42px;">
+          <% @post_members.each do |post_member| %>
+              <div class="attack-group__member-item">
+                  <div class="attack-group__member-icon-wrapper">
+                    <%= image_tag post_member.user.user_profile.image.icon.url, class:"attack-group__member-icon-img" %>
+                  </div>
+                  <div class="attack-group__member-info">
+                    <span><%= post_member.user.user_profile.name %></span>
+                    <div class="attack-group__member-info-detail">
+                      <% if post_member.user.user_profile.age.present? %>
+                        <span><%= post_member.user.user_profile.age %>才</span>
+                      <% end %>
+                      <% if post_member.user.user_profile.job.present? %>
+                        <span><%= post_member.user.user_profile.job %></span>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+          <% end %>
+        </div>
+    </div>
+</div>

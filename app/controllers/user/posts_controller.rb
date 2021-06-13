@@ -20,6 +20,11 @@ class User::PostsController < ApplicationController
     .where(post: current_user.post, status: "attend")
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @post_members = @post.post_members
+  end
+
   def create
     @post = current_user.build_post(post_params)
     if @post.save
