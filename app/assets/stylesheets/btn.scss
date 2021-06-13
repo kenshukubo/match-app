@@ -32,3 +32,24 @@
   align-items: center;
   margin-right: 6px;
 }
+
+//戻る進む系
+.page-link-wrapper{
+  margin: 20px 12px 0px 12px;
+}
+.page-link-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.page-link-left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.page-link-text-right{
+  margin-right: 4px;
+}
+.page-link-text-left{
+  margin-left: 4px;
+}

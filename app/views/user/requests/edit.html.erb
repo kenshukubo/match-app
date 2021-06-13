@@ -24,9 +24,9 @@
         </div>
     </div>
 
-    <div class="attack-group__requests-link-wrapper">
-      <%= link_to requests_path, class:"attack-group__requests-link hover-opacity" do %>
-        <span class="attack-group__requests-link-text">アタック一覧へ</span>
+    <div class="page-link-wrapper">
+      <%= link_to requests_path, class:"page-link-right hover-opacity" do %>
+        <span class="page-link-text-right">アタック一覧へ</span>
         <div>
           <i class="fas fa-chevron-circle-right"></i>
         </div>
@@ -61,19 +61,5 @@
 .attack-group__btn-wrapper{
   display: flex;
   justify-content: center;
-}
-.attack-group__requests-link-wrapper{
-  margin: 20px 12px 0px 12px;
-}
-.attack-group__requests-link{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-.attack-group__requests-link-text{
-  margin-right: 4px;
-}
-.fa-chevron-circle-right:before{
-  width: 42px;
 }
 </style>
