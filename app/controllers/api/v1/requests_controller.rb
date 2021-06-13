@@ -12,7 +12,7 @@ class Api::V1::RequestsController < Api::ApplicationController
       ActiveRecord::Base.transaction do
         raise if Request.find_by(attack_group_id: user_attack_group_ids, post: selected_post).present?
 
-        Request.create!(
+        request = Request.create!(
           attack_group: attack_group,
           post: selected_post
         )
@@ -28,7 +28,7 @@ class Api::V1::RequestsController < Api::ApplicationController
             target_user_id: user_id,
             message: message,
             category: category,
-            url: edit_request_path(attack_group.id)
+            url: edit_request_path(request.id)
           )
 
           UserNotification.find_by(user_id: user_id).add_unchecked_notification_count
