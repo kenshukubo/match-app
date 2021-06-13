@@ -8,7 +8,7 @@
         </div>
 
         <div class="select-member__list-wrapper">
-          <clip-loader :loading="isLoading" :color="color"></clip-loader>
+          <clip-loader :loading="isSearching" :color="color"></clip-loader>
           <template v-for="(user, index) in searchedUsers">
             <div
               @click="selectUser(user.id)"
@@ -29,7 +29,7 @@
       <div style="margin-bottom:1rem;">
         <span class="select-member__list-title">フレンドから選ぶ</span>
 
-        <div v-if="!anyFriends" v-cloak>
+        <div v-if="!anyFriends && !isLoading">
           <p class="select-member__exception-title">
             <span>(同性の)フレンドがいません</span>
             <span>
@@ -40,12 +40,12 @@
           </p>
         </div>
         <div v-else>
-          <div v-if="!listedFriends">
+          <div v-if="!listedFriends && !isLoading">
             <p class="select-member__exception-title">
               <span>全フレンド選択済みです</span>
             </p>
           </div>
-          <div v-else v-cloak>
+          <div v-else>
             <div class="select-member__list-wrapper">
               <clip-loader :loading="isLoading" :color="color"></clip-loader>
               <template v-for="(friend, index) in listedFriends">
@@ -110,6 +110,7 @@ export default {
       searchedUsers: "",
       selectedUserIds: [],
       isLoading: false,
+      isSearching: false,
       color: "#8bd3dd",
       showModal: false,
     }
@@ -136,6 +137,7 @@ export default {
     },
     async searchKeyword(){
       var self = this;
+      self.isSearching = true;
       try {
         const res = await axios.get("/api/v1/search_users", {
           params:{
@@ -143,6 +145,7 @@ export default {
           },
         })
         self.searchedUsers = res.data.searchedUsers;
+        self.isSearching = false;
       } catch(e) {
         console.log(e)
       }
@@ -267,9 +270,4 @@ export default {
   border: 1px solid #ffc6c7;
   box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
-
-[v-cloak] {
-  display: none;
-}
-
 </style>

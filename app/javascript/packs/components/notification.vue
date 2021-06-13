@@ -16,44 +16,51 @@
         </ul>
       </div>
 
-      <div v-if="!selectedMenu" class="notification-item-wrapper">
-        <div v-if="!Object.keys(usuallNotifications).length">
-          <div class="notification-item">
-            <span>ただいま通知はありません</span>
-          </div>
-        </div>
-        <template v-else v-for="(notification, index) in usuallNotifications">
-          <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
-            <div class="notification-img-wrapper">
-              <img :src="notificationImage(notification.category)" class="notification-item-img">
-            </div>
-            <div class="notification-text-wrapper">
-              <div>
-                <span>{{notification.message}}</span>
+      <div>
+        <div v-if="!selectedMenu" class="notification-item-wrapper">
+            <clip-loader :loading="isLoading" :color="color"></clip-loader>
+            <div v-if="!Object.keys(usuallNotifications).length && !isLoading">
+              <div class="notification-item">
+                <span>ただいま通知はありません</span>
               </div>
             </div>
-          </a>
-        </template>
-      </div>
-      <div v-else class="notification-item-wrapper">
-        <div v-if="!Object.keys(adminNotifications).length">
-          <div class="notification-item">
-            <span>ただいま通知はありません</span>
-          </div>
-        </div>
-        <template v-else v-for="(notification, index) in adminNotifications">
-          <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
-            <div class="notification-img-wrapper">
-              <img :src="notificationImage(notification.category)" class="notification-item-img">
+            <div v-else>
+              <template v-for="(notification, index) in usuallNotifications">
+                <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
+                  <div class="notification-img-wrapper">
+                    <img :src="notificationImage(notification.category)" class="notification-item-img">
+                  </div>
+                  <div class="notification-text-wrapper">
+                    <div>
+                      <span>{{notification.message}}</span>
+                    </div>
+                  </div>
+                </a>
+              </template>
             </div>
-            <div class="notification-text-wrapper">
-              <div>
-                <span>{{notification.message}}</span>
+        </div>
+        <div v-else class="notification-item-wrapper">
+            <clip-loader :loading="isLoading" :color="color"></clip-loader>
+            <div v-if="!Object.keys(adminNotifications).length && !isLoading">
+              <div class="notification-item">
+                <span>ただいま通知はありません</span>
               </div>
             </div>
-          </a>
-        </template>
+            <template v-else v-for="(notification, index) in adminNotifications">
+              <a :href="notification.url" class="notification-item" :key="`notification-${index}`">
+                <div class="notification-img-wrapper">
+                  <img :src="notificationImage(notification.category)" class="notification-item-img">
+                </div>
+                <div class="notification-text-wrapper">
+                  <div>
+                    <span>{{notification.message}}</span>
+                  </div>
+                </div>
+              </a>
+            </template>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -65,8 +72,12 @@ import changeImage from 'packs/assets/images/notifications/change.png'
 import attendImage from 'packs/assets/images/notifications/attend.png'
 import absentImage from 'packs/assets/images/notifications/absent.png'
 import heartImage from 'packs/assets/images/notifications/heart.png'
+import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
+  components:{
+    ClipLoader
+  },
   computed: {
     selectedUserNotification(){
       return !!this.selectedMenu ? '':'is-active'
@@ -112,9 +123,11 @@ export default {
       heartImage,
       notificationCount: 0,
       showNotificationList: false,
+      isLoading: false,
       selectedMenu: "",
       usuallNotifications: [],
       adminNotifications: [],
+      color: "#8bd3dd",
     }
   },
   created() {
@@ -150,9 +163,11 @@ export default {
     },
     async fetchNotification(){
       var self = this;
+      self.isLoading = true;
       try {
         const res = await axios.get("/api/v1/usuall_notifications")
         self.usuallNotifications = res.data.usuallNotifications;
+        self.isLoading = false;
       } catch(e) {
         console.log(e)
       }
@@ -161,9 +176,11 @@ export default {
       this.selectedMenu = type;
       if(type == "admin"){
         var self = this;
+        self.isLoading = true;
         try {
           const res = await axios.get("/api/v1/admin_notifications")
           self.adminNotifications = res.data.adminNotifications;
+          self.isLoading = false;
         } catch(e) {
           console.log(e)
         }

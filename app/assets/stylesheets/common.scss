@@ -55,6 +55,10 @@ input[type=text],input[type=password],input[type=email],input[type=submit],selec
   transform: scale(0.94);
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .invite-cancel-img{
   width: 18px;
 }
