@@ -22,7 +22,7 @@
 
     <% if @attend_members.present? %>
       <ul style="margin-bottom: 16px;">
-        <span class="invited-member-list-sub-title">参加希望メンバー</span>
+        <span class="invited-member-list-sub-title">参加メンバー</span>
         <% @attend_members.each do |member| %>
           <li class="invited-member-item">
             <%= link_to post_member_path(member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
