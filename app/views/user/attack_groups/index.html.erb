@@ -10,44 +10,40 @@
             </p>
         <% else %>
             <div class="attack_groups__wrapper">
-                <% @attack_groups.each do |group| %>
-                    <div class="attack_groups__item">
-                        <div class="attack_groups__item-title-wrapper">
-                            <span class="attack_groups__item-title">チーム<%= group.group_number %></span>
-                            <div class="attack_groups__item-option">
-
-                              <% props = {
-                                  attackGroupId: group.id
-                                }.to_json
-                              %>
-                              <div id="add-attacker" data="<%= props %>">
-                                  <add-attacker />
+                <div id="add-attacker">
+                    <% @attack_groups.each do |group| %>
+                        <div class="attack_groups__item">
+                            <div class="attack_groups__item-title-wrapper">
+                              <span class="attack_groups__item-title">チーム<%= group.group_number %></span>
+                              <div class="attack_groups__item-option">
+                                <div>
+                                  <add-attacker :attack-group-id="<%= group.id %>">
+                                </div>
+                                <%= link_to "削除する", attack_group_path(group.id), method: :delete, data: { confirm: "チームを削除します。よろしいでしょうか？" }, class:"attack_groups__option-btn hover-opacity" %>
                               </div>
-                              <%= javascript_pack_tag 'add_attacker' %>
-                              <%= stylesheet_pack_tag 'add_attacker' %>
-                              <%= link_to "削除する", attack_group_path(group.id), method: :delete, data: { confirm: "チームを削除します。よろしいでしょうか？" }, class:"attack_groups__option-btn hover-opacity" %>
-
+                            </div>
+                            <div class="attack_groups__users-item-wrapper">
+                                <% group.attackers.is_participant.each do |attacker| %>
+                                    <div class="attack_groups__user-item">
+                                      <div>
+                                        <%= image_tag attacker.user.user_profile.image.icon.url, class:"attack_groups__user-item-img" %>
+                                      </div>
+                                      <div class="attack_groups__name-wrapper">
+                                        <%= link_to attacker_path(attacker.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
+                                          <i class="far fa-times-circle"></i>
+                                        <% end %>
+                                        <span>
+                                          <%= attacker.user.user_profile.name %>
+                                        </span>
+                                      </div>
+                                    </div>
+                                <% end %>
                             </div>
                         </div>
-                        <div class="attack_groups__users-item-wrapper">
-                            <% group.attackers.is_participant.each do |attacker| %>
-                                <div class="attack_groups__user-item">
-                                  <div>
-                                    <%= image_tag attacker.user.user_profile.image.icon.url, class:"attack_groups__user-item-img" %>
-                                  </div>
-                                  <div class="attack_groups__name-wrapper">
-                                    <%= link_to attacker_path(attacker.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-                                      <i class="far fa-times-circle"></i>
-                                    <% end %>
-                                    <span>
-                                      <%= attacker.user.user_profile.name %>
-                                    </span>
-                                  </div>
-                                </div>
-                            <% end %>
-                        </div>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
+                <%= javascript_pack_tag 'add_attacker' %>
+                <%= stylesheet_pack_tag 'add_attacker' %>
             </div>
         <% end %>
     </div>

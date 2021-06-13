@@ -30,18 +30,15 @@
 import axios from 'packs/axios'
 
 export default {
+  props: ['attackGroupId'],
   data() {
     return {
-      attackGroupId: "",
       friends: "",
       showList: false,
       isInvite: false
     }
   },
   created() {
-    let addAttackerElement = document.getElementById("add-attacker");
-    let data = JSON.parse(addAttackerElement.getAttribute('data'));
-    this.attackGroupId = data.attackGroupId
   },
   methods: {
     async showFriendsList(){
