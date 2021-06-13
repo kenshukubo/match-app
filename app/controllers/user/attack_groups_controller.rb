@@ -69,7 +69,11 @@ class User::AttackGroupsController < ApplicationController
   def destroy
     group = AttackGroup.find(params[:id])
     if group.destroy
-      Attacker.where(attack_group: group).destroy_all
+
+      AttackGroup.all.each.with_index(1) do |attack_group, index|
+        attack_group.update!(group_number: index)
+      end
+
       redirect_to attack_groups_path, notice: 'チームを削除しました'
     else
       redirect_to attack_groups_path, notice: 'チームの削除に失敗しました'
