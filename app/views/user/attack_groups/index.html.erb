@@ -10,6 +10,7 @@
             </p>
         <% else %>
             <div class="attack_groups__wrapper">
+
                 <div id="add-attacker">
                     <% @attack_groups.each do |group| %>
                         <div class="attack_groups__item">
@@ -44,6 +45,7 @@
                 </div>
                 <%= javascript_pack_tag 'add_attacker' %>
                 <%= stylesheet_pack_tag 'add_attacker' %>
+
             </div>
         <% end %>
     </div>
