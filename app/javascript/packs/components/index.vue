@@ -64,6 +64,7 @@
       v-if="showSelectMenuModal"
       @close="closeModal"
       :hasAnyAttackGropups="hasAnyAttackGropups"
+      :anyRequest="anyRequest"
       @show-friend-list-modal='showAttackGroupModal = $event'
       @hide-menu-modal='showSelectMenuModal = $event'
     >
@@ -123,6 +124,7 @@ export default {
       postList: "",
       zoomInProfile: "",
       hasAnyAttackGropups: "",
+      anyRequest: "",
       selectedPostId: "",
 
       showZoomInModal: false,
@@ -167,8 +169,9 @@ export default {
     async showMenuModal(postId) {
       var self = this;
       try {
-        const res = await axios.get('/api/v1/attack_group_check')
+        const res = await axios.get('/api/v1/attack_group_check', {params: {post_id: postId}})
         self.hasAnyAttackGropups = res.data.anyAttackGroups
+        self.anyRequest = res.data.anyRequest
         self.showSelectMenuModal = true;
         self.selectedPostId = postId
       } catch(e) {
