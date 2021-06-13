@@ -37,7 +37,7 @@
                                   </div>
                                   <div class="attack_groups__name-wrapper">
                                     <%= link_to attacker_path(attacker.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-                                      <%= image_tag "sm-cancel.png", style:"width: 12px;" %>
+                                      <i class="far fa-times-circle"></i>
                                     <% end %>
                                     <span>
                                       <%= attacker.user.user_profile.name %>

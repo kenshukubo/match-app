@@ -12,7 +12,7 @@
         <% @unconfirmed_members.each do |member| %>
           <li class="invited-member-item">
             <%= link_to post_member_path(member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-              <%= image_tag "sm-cancel.png", class:"invite-cancel-img" %>
+              <i class="far fa-times-circle"></i>
             <% end %>
             <span class="invited-email text-ellipsis"><%= member.user.user_profile.name %></span>
           </li>
@@ -26,7 +26,7 @@
         <% @attend_members.each do |member| %>
           <li class="invited-member-item">
             <%= link_to post_member_path(member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-              <%= image_tag "sm-cancel.png", class:"invite-cancel-img" %>
+              <i class="far fa-times-circle"></i>
             <% end %>
             <span class="invited-email text-ellipsis"><%= member.user.user_profile.name %></span>
           </li>
@@ -40,7 +40,7 @@
         <% @absent_members.each do |member| %>
           <li class="invited-member-item">
             <%= link_to post_member_path(member.id), method: :delete, data: { confirm: "招待した方にキャンセル通知がいきます。よろしいでしょうか？" }, class:"invite-cancel-link" do %>
-              <%= image_tag "sm-cancel.png", class:"invite-cancel-img" %>
+              <i class="far fa-times-circle"></i>
             <% end %>
             <span class="invited-email text-ellipsis"><%= member.user.user_profile.name %></span>
           </li>
