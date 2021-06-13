@@ -1,7 +1,7 @@
 <template>
   <div class="header-notification" ref="elRoot">
     <div class="header-notification-wrapper">
-      <img :src="bellImage" class="notification-img hover-opacity" @click="openNotificationList">
+      <i class="far fa-bell hover-opacity" @click="openNotificationList"></i>
       <span class="header-notification-dot" v-if="notificationCount > 0"></span>
     </div>
     <div class="notification-list-wrapper" v-if="showNotificationList">
@@ -66,7 +66,6 @@
 </template>
 <script>
 import axios from 'packs/axios'
-import bellImage from 'packs/assets/images/bell.png'
 import inviteImage from 'packs/assets/images/notifications/invite.png'
 import changeImage from 'packs/assets/images/notifications/change.png'
 import attendImage from 'packs/assets/images/notifications/attend.png'
@@ -117,7 +116,6 @@ export default {
   },
   data() {
     return {
-      bellImage,
       inviteImage,
       changeImage,
       heartImage,
@@ -190,6 +188,10 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.fa-bell{
+  font-size: 20px;
+  cursor: pointer;
+}
 .header-notification{
   position: relative;
 }
@@ -208,11 +210,6 @@ export default {
   height: 12px;
   border-radius: 50%;
   background-color: #FF3654;
-}
-
-.notification-img{
-  cursor: pointer;
-  width: 20px;
 }
 
 .notification-list-wrapper{

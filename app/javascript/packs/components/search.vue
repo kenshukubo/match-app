@@ -9,9 +9,9 @@
         <div class="search-area-header">
           <div class="search-area-wrapper">
             <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名でフレンド検索" class="search-area">
-            <img :src="searchImage" @click="searchKeyword" class="modal-search-img hover-opacity">
+            <i class="fas fa-search hover-opacity" @click="searchKeyword"></i>
           </div>
-          <img :src="closeImage" class="close-img hover-opacity" @click="closeSearchModal">
+          <i class="fas fa-times hover-opacity" @click="closeSearchModal"></i>
         </div>
 
         <div>
@@ -54,8 +54,6 @@
 <script>
 import axios from 'packs/axios'
 import addFriendImage from 'packs/assets/images/add-friend.png'
-import searchImage from 'packs/assets/images/search.png'
-import closeImage from 'packs/assets/images/close.png'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
@@ -79,9 +77,7 @@ export default {
   },
   data() {
     return {
-      searchImage,
       addFriendImage,
-      closeImage,
       showSearchModal: false,
       keyword: "",
       users: "",
@@ -200,19 +196,18 @@ export default {
   border-width: 1px;
 }
 
-.modal-search-img{
-  width: 18px;
-  height: 18px;
+.fas{
+  cursor: pointer;
+}
+.fa-search{
+  font-size: 20px;
   padding: 8px;
   position: absolute;
   right: 12px;
-  cursor: pointer;
 }
-.close-img{
-  width: 16px;
-  height: 16px;
+.fa-times{
+  font-size: 28px;
   padding: 8px;
-  cursor: pointer;
 }
 
 .results-menu-wrapper{
