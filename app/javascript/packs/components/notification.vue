@@ -71,6 +71,7 @@ import changeImage from 'packs/assets/images/notifications/change.png'
 import attendImage from 'packs/assets/images/notifications/attend.png'
 import absentImage from 'packs/assets/images/notifications/absent.png'
 import heartImage from 'packs/assets/images/notifications/heart.png'
+import matchImage from 'packs/assets/images/notifications/match.png'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 
 export default {
@@ -107,6 +108,10 @@ export default {
             return heartImage;
             break
           }
+          case "match":{
+            return matchImage;
+            break
+          }
           default: {
             return inviteImage;
           }
@@ -119,6 +124,7 @@ export default {
       inviteImage,
       changeImage,
       heartImage,
+      matchImage,
       notificationCount: 0,
       showNotificationList: false,
       isLoading: false,
