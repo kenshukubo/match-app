@@ -25,7 +25,7 @@
 
         <div class="attack-group__btn-wrapper">
           <%= button_to "承認する", 
-            request_path,
+            request_path(@request_id),
             method: :patch,
             class:"select-btn activeModalBtn",
             data: { confirm: "このグループとマッチングします。よろしいでしょうか？" }

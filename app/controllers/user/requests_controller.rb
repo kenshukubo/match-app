@@ -1,16 +1,46 @@
 class User::RequestsController < ApplicationController
   def edit
-    @attack_group = AttackGroup.includes(:attackers).find(params[:id])
-    request = Request.find_by(attack_group: @attack_group, post: current_user.post)
+    request = Request.find(params[:id])
 
-    if request.blank?
+    if request.post.user != current_user
       redirect_to root_path
       flash[:alert] = "閲覧権限がありません"
     end
 
-    @attackers = @attack_group.attackers
+    @attack_group = request.attack_group
+    @request_id   = request.id
+    @attackers    = @attack_group.attackers
   end
 
   def update
+    request   = Request.find(params[:id])
+    attackers = request.attack_group.attackers
+    post      = request.post
+    begin
+      ActiveRecord::Base.transaction do
+        request.update!(is_confirmed: true)
+        
+        # 通知作成
+        category = "match"
+        message = "マッチしました！"
+
+        attackers.each do |attacker|
+          Notification.create!(
+            target_user_id: attacker.user_id,
+            message: message,
+            category: category,
+            url: post_path(post.id)
+          )
+
+          UserNotification.find_by(user_id: attacker.user_id).add_unchecked_notification_count
+        end
+        flash[:notice] = "アタックを承認しました"
+        redirect_to root_path
+      end
+    rescue => error
+      p error
+      flash[:alert] = "アタックの承認に失敗しました"
+      redirect_to edit_request_path(request.id)
+    end
   end
 end
