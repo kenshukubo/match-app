@@ -28,7 +28,7 @@ class Api::V1::RequestsController < Api::ApplicationController
             target_user_id: user_id,
             message: message,
             category: category,
-            url: attack_group_path(attack_group.id)
+            url: edit_request_path(attack_group.id)
           )
 
           UserNotification.find_by(user_id: user_id).add_unchecked_notification_count

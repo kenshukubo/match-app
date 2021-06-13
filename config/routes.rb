@@ -19,9 +19,10 @@ Rails.application.routes.draw do
       resource  :user_profile, only: [:edit, :update, :show]
       resources :posts, only: [:new, :create, :edit, :update, :destroy]
       resources :post_members, only: [:new, :create, :edit, :update, :destroy]
-      resources :attack_groups, only: [:index, :show, :create, :new, :destroy]
+      resources :attack_groups, only: [:index, :create, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]
       resources :social_profiles, only: :destroy
+      resources :requests, only: [:edit, :update]
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]

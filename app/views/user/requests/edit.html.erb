@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="single-page">
+        <h1>相手グループ情報</h1>
+
+        <div style="margin-bottom: 42px;">
+          <% @attackers.each do |attacker| %>
+              <div class="attack-group__member-item">
+                  <div class="attack-group__member-icon-wrapper">
+                    <%= image_tag attacker.user.user_profile.image.icon.url, class:"attack-group__member-icon-img" %>
+                  </div>
+                  <div class="attack-group__member-info">
+                    <span><%= attacker.user.user_profile.name %></span>
+                    <div class="attack-group__member-info-detail">
+                      <span><%= attacker.user.user_profile.age %>才</span>
+                      <span><%= attacker.user.user_profile.job %></span>
+                    </div>
+                  </div>
+              </div>
+          <% end %>
+        </div>
+
+        <div class="attack-group__btn-wrapper">
+          <%= button_to "承認する", root_path, class:"select-btn activeModalBtn" %>
+        </div>
+    </div>
+</div>
+
+<style>
+.attack-group__member-item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.attack-group__member-icon-wrapper{
+  display: flex;
+  align-items: center;
+  margin-right: 18px;
+}
+.attack-group__member-icon-img{
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.attack-group__member-info{
+  display: flex;
+  flex-direction: column;
+}
+.attack-group__member-info-detail{
+  font-size: 14px;
+}
+.attack-group__btn-wrapper{
+  display: flex;
+  justify-content: center;
+}
+</style>

@@ -6,9 +6,6 @@ class User::AttackGroupsController < ApplicationController
     .order(group_number: :asc)
   end
 
-  def show
-  end
-
   def new
     @attackers = Attacker.new
     @hosts_friends = current_user.friend_users.same_sex(current_user)
