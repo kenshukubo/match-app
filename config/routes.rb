@@ -16,13 +16,13 @@ Rails.application.routes.draw do
 
   authenticated :user do
     scope module: :user do
-      resource  :user_profile, only: [:edit, :update, :show]
+      resource  :user_profile, only: [:edit, :update]
       resources :posts, only: [:new, :create, :edit, :update, :destroy]
       resources :post_members, only: [:new, :create, :edit, :update, :destroy]
       resources :attack_groups, only: [:index, :create, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]
       resources :social_profiles, only: :destroy
-      resources :requests, only: [:edit, :update]
+      resources :requests, only: [:index, :update]
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]
