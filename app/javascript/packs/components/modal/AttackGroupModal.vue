@@ -6,32 +6,35 @@
           <h3 class="attack-group-select__header-title">チームを選んでください</h3>
 
           <div v-swiper:mySwiper="swiperOption">
-            <div class="swiper-wrapper">
-              <clip-loader :loading="isLoading" :color="color"></clip-loader>
-              <div
-                v-for="(attackGroup, index) in attackGroups"
-                :key="`group-${index}`"
-                @click="selectGroup(attackGroup)"
-                v-bind:class="{ groupSelectActive: selectedGroupNumber == attackGroup.groupNumber }"
-                class="swiper-slide attack-group-item"
-              >
-                <p class="attack-group-item__team-name">
-                  チーム{{attackGroup.groupNumber}}
-                </p>
-                <div class="attacker-info-wrapper">
-                  <div class="attacker-info" v-for="(attacker, index) in attackGroup.attackers" :key="`attacker-${index}`">
-                    <img :src="attacker.image" class="attacker-info__user-img">
-                    <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
+              <div class="swiper-wrapper">
+                  <clip-loader :loading="isLoading" :color="color"></clip-loader>
+                  <div
+                    v-for="(attackGroup, index) in attackGroups"
+                    :key="`group-${index}`"
+                    @click="selectGroup(attackGroup)"
+                    v-bind:class="{ groupSelectActive: selectedGroupNumber == attackGroup.groupNumber }"
+                    class="swiper-slide attack-group-item"
+                  >
+                      <p class="attack-group-item__team-name">
+                        チーム{{attackGroup.groupNumber}}
+                      </p>
+
+                      <div class="attacker-info-wrapper">
+                        <div class="attacker-info" v-for="(attacker, index) in attackGroup.attackers" :key="`attacker-${index}`">
+                          <img :src="attacker.image" class="attacker-info__user-img">
+                          <span class="attacker-info__user-name text-ellipsis">{{attacker.name}}</span>
+                        </div>
+                      </div>
+
+                      <div v-bind:class="{ checkRound: selectedGroupNumber == attackGroup.groupNumber }" class="check-position">
+                        <span v-bind:class="{ checkMark: selectedGroupNumber == attackGroup.groupNumber }"></span>
+                      </div>
                   </div>
-                </div>
-                <div v-bind:class="{ checkRound: selectedGroupNumber == attackGroup.groupNumber }" class="check-position">
-                  <span v-bind:class="{ checkMark: selectedGroupNumber == attackGroup.groupNumber }"></span>
-                </div>
               </div>
-            </div>
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
+
+              <div class="swiper-pagination" slot="pagination"></div>
+              <div class="swiper-button-prev" slot="button-prev"></div>
+              <div class="swiper-button-next" slot="button-next"></div>
           </div>
 
           <button
