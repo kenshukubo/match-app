@@ -11,7 +11,7 @@ class Api::V1::AddPostMembersController < Api::ApplicationController
 
         # 通知作成用
         category = "invite"
-        message = "#{current_user.user_profile.name}さんに募集メンバーに招待されました"
+        message = "#{current_user.user_profile.name}さんから募集メンバーに招待されました"
 
         user_ids.each do |user_id|
 
@@ -32,6 +32,7 @@ class Api::V1::AddPostMembersController < Api::ApplicationController
       end
     rescue => error
       p error
+      status 400
     end
   end
 end

@@ -18,7 +18,7 @@ class Api::V1::AddAttackersController < Api::ApplicationController
 
         # 通知作成用
         category = "invite"
-        message = "#{current_user.user_profile.name}さんにアタックチームに招待されました"
+        message = "#{current_user.user_profile.name}さんからアタックチームに招待されました"
 
         # 通知作成
         Notification.create!(
