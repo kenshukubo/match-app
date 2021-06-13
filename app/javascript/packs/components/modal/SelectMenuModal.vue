@@ -6,7 +6,7 @@
           <h3 class="attack-select-header">アタック方法を選びましょう</h3>
           <div class="attack-select-btn-wrapper" style="margin-bottom:32px;">
             <span class="attack-select-title">新しいチームを作る</span>
-            <button class="modal-select-btn team-create-btn hover-opacity">
+            <button class="select-btn team-create-btn hover-opacity">
               <a href="/attack_groups/new" class="attack-select-link">新規チーム作成</a>
             </button>
           </div>
@@ -16,7 +16,7 @@
               v-bind:class="{ activeModalBtn: hasAnyAttackGropups }"
               v-bind:disabled="!hasAnyAttackGropups"
               @click="showFriendList"
-              class="modal-select-btn modal-select-disabled-btn"
+              class="select-btn modal-select-disabled-btn"
             >
               アタックチームを選択する
             </button>

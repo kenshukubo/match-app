@@ -38,7 +38,7 @@
             @click="submitRequest"
             v-bind:class="{ activeModalBtn: selectedGroupNumber }"
             v-bind:disabled="!selectedGroupNumber"
-            class="modal-select-btn modal-select-disabled-btn"
+            class="select-btn modal-select-disabled-btn"
           >
             チームを確定する
           </button>
