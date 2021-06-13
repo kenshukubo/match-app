@@ -4,7 +4,7 @@
       <div class="select-member__form-area form">
         <div class="select-member__form-wrapper">
           <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
-          <img :src="searchImage" @click="searchKeyword" class="search-img hover-opacity">
+          <i class="fas fa-search hover-opacity" @click="searchKeyword"></i>
         </div>
 
         <div class="select-member__list-wrapper">
@@ -87,7 +87,6 @@
 <script>
 import axios from 'packs/axios'
 import addFriendImage from 'packs/assets/images/add-friend.png'
-import searchImage from 'packs/assets/images/search.png'
 import megaphoneImage from 'packs/assets/images/megaphone.png'
 import ClipLoader from 'vue-spinner/src/ClipLoader'
 import DoneModal from './modal/DoneModal.vue'
@@ -100,7 +99,6 @@ export default {
   data() {
     return {
       addFriendImage,
-      searchImage,
       megaphoneImage,
       keyword: "",
       listedType: "",
@@ -178,9 +176,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.search-img{
-  width: 18px;
-  height: 18px;
+.fa-search{
+  font-size: 20px;
   padding: 8px;
   position: absolute;
   right: 12px;
