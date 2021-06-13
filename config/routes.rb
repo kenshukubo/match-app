@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :attack_groups, only: [:index, :create, :new, :destroy]
       resources :attackers, only: [:create, :edit, :update, :destroy]
       resources :social_profiles, only: :destroy
-      resources :requests, only: [:index, :update]
+      resources :requests, only: [:index, :edit, :update]
       resource  :ratings
       resource  :rooms, path: :chat, only: [:show]
       resource  :violation_reports, only: [:new, :create]

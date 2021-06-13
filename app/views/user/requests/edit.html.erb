@@ -23,6 +23,15 @@
           <%= button_to "承認する", root_path, class:"select-btn activeModalBtn" %>
         </div>
     </div>
+
+    <div class="attack-group__requests-link-wrapper">
+      <%= link_to requests_path, class:"attack-group__requests-link hover-opacity" do %>
+        <span class="attack-group__requests-link-text">アタック一覧へ</span>
+        <div>
+          <i class="fas fa-chevron-circle-right"></i>
+        </div>
+      <% end %>
+    </div>
 </div>
 
 <style>
@@ -52,5 +61,19 @@
 .attack-group__btn-wrapper{
   display: flex;
   justify-content: center;
+}
+.attack-group__requests-link-wrapper{
+  margin: 24px 12px 0px 12px;
+}
+.attack-group__requests-link{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.attack-group__requests-link-text{
+  margin-right: 8px;
+}
+.fa-chevron-circle-right:before{
+  width: 42px;
 }
 </style>
