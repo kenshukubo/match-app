@@ -72,16 +72,16 @@ class User::PostMembersController < ApplicationController
   end
 
   def update
-    @post_member = PostMember.find(params[:id])
-    @post = @post_member.post
+    post_member = PostMember.find(params[:id])
+    post = post_member.post
     begin
       ActiveRecord::Base.transaction do
-        @post_member.update(
+        post_member.update(
           status: post_member_params[:status],
           is_confirmed: true
         )
 
-        host_user_id = @post.user_id
+        host_user_id = post.user_id
         username = current_user.user_profile.name
 
         if post_member_params[:status] == "attend"
@@ -96,7 +96,7 @@ class User::PostMembersController < ApplicationController
           target_user_id: host_user_id,
           message: message,
           category: category,
-          url: post_path(@post.id)
+          url: post_path(post.id)
         )
 
         user_notification = UserNotification.find_by(user_id: host_user_id)
@@ -107,7 +107,7 @@ class User::PostMembersController < ApplicationController
     rescue => error
       p error
       flash[:alert] = "更新に失敗しました"
-      redirect_to edit_post_member_path(@post_member.id)
+      redirect_to edit_post_member_path(post_member.id)
     end
   end
 
