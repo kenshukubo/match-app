@@ -28,10 +28,6 @@
       <div class="top">
         <%= render "shared/top/profile" %>
 
-        <%# <div class="index-title-wrapper">
-          <span class="index-title">募集一覧</span>
-        </div> %>
-
         <%= render "shared/top/index" %>
       </div>
     <% end %>
@@ -46,39 +42,5 @@
   background-size: cover;
   padding: 20px;
   box-sizing: border-box;
-}
-
-/* .index-title-wrapper{
-  background: #fff;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  text-align: center;
-  padding: 8px 0;
-  box-shadow: 0 .5rem 1rem 0 rgba(0, 0, 0, 0.15);
-}
-.index-title{
-  display: flex;
-	justify-content: center;
-	align-items: center;
-  width: 100%;
-  font-weight: 700;
-  letter-spacing: 2.4px;
-} */
-
-.index-title::before,
-.index-title::after {
-	content: '';
-	width: 3px;
-	height: 18px;
-	background-color: #8bd3dd;
-}
-
-.index-title::before {
-	margin-right: 30px;
-	transform: rotate(-35deg)
-}
-.index-title::after {
-	margin-left: 30px;
-	transform: rotate(35deg)
 }
 </style>
