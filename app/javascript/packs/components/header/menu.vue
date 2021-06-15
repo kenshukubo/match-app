@@ -60,7 +60,7 @@ export default {
 .header-menu-modal{
   position: absolute;
   right: -54px;
-  top: 47px;
+  top: 44px;
   width: 300px;
   padding: 0px 12px;
   background-color: #fff;

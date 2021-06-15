@@ -1,5 +1,5 @@
 <template>
-  <div class="header-notification" ref="elRoot">
+  <div class="header-btn-wrapper" ref="elRoot">
     <div class="header-notification-wrapper">
       <i class="far fa-bell hover-opacity" @click="openNotificationList"></i>
       <span class="header-notification-dot" v-if="notificationCount > 0"></span>
@@ -198,12 +198,8 @@ export default {
   font-size: 20px;
   cursor: pointer;
 }
-.header-notification{
-  position: relative;
-}
 .header-notification-wrapper{
   position: relative;
-  margin-right: 8px;
   display: flex;
   align-items: center;
 }
