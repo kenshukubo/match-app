@@ -142,7 +142,8 @@ export default {
       try {
         const res = await axios.get("/api/v1/search_users", {
           params:{
-            keyword: self.keyword
+            keyword: self.keyword,
+            type: self.listedType
           },
         })
         self.searchedUsers = res.data.searchedUsers;
