@@ -103,6 +103,7 @@ export default {
 .close-btn-wrapper{
   padding: 16px 0px;
   cursor: pointer;
+  font-size: 12px;
   &:hover{
     background-color: #f7fafc;
   }
