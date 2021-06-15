@@ -7,7 +7,7 @@
       <span>メンバー追加</span>
     </button>
 
-    <div v-if="showList" class="friend-list">
+    <div v-if="showList" class="friend-list" ref="elRoot">
       <p class="friend-list__title">
         <span>メンバー選択</span>
         <span @click="closeFriendList" class="close-friend-list">✖️</span>
@@ -39,6 +39,15 @@ export default {
     }
   },
   created() {
+  },
+  mounted(){
+    //枠外クリックで非表示する処理
+    window.addEventListener('click', this._onBlurHandler = (event) => {
+      if (this.$refs.elRoot.contains(event.target)) {
+        return;
+      }
+      this.showList = false;
+    });
   },
   methods: {
     async showFriendsList(){
