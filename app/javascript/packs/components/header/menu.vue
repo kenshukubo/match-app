@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div ref="elRoot">
     <div class="header-menu-wrapper">
       <div @click="showMenuList = !showMenuList" class="header-btn-wrapper hover-opacity">
         <i class="fas fa-th-large"></i>
         <span class="header-btn-title">メニュー</span>
       </div>
 
-      <div v-if="showMenuList" class="header-menu-modal" ref="elRoot">
+      <div v-if="showMenuList" class="header-menu-modal">
         <div class="header-menu-modal__row">
           <a href="/posts/new" class="header-menu-modal__item">
             <i class="far fa-calendar-plus"></i>
@@ -42,9 +42,15 @@ export default {
       showMenuList: false,
     }
   },
-  methods: {
-
-  }
+  mounted(){
+    //枠外クリックで非表示する処理
+    window.addEventListener('click', this._onBlurHandler = (event) => {
+      if (this.$refs.elRoot.contains(event.target)) {
+        return;
+      }
+      this.showMenuList = false;
+    });
+  },
 }
 </script>
 
