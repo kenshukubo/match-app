@@ -216,7 +216,7 @@ export default {
 
 .notification-list-wrapper{
   position: absolute;
-  right: -54px;
+  right: -140px;
   top: 32px;
   min-width: 300px;
   max-height: 400px;

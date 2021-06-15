@@ -1,9 +1,8 @@
 <template>
   <div ref="elRoot">
     <div class="header-menu-wrapper">
-      <div @click="showMenuList = !showMenuList" class="header-btn-wrapper hover-opacity">
-        <i class="fas fa-th-large"></i>
-        <span class="header-btn-title">メニュー</span>
+      <div @click="showMenuList = !showMenuList" class="header-menu-btn hover-opacity">
+        <span>メニュー</span>
       </div>
 
       <div v-if="showMenuList" class="header-menu-modal">
@@ -58,27 +57,32 @@ export default {
 .header-menu-wrapper{
   position: relative;
 }
-.fa-th-large{
-  margin-top: 8px;
-  font-size: 20px;
+.header-menu-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 34px;
+  font-weight: 700;
+  color: #fff;
+  background: #8bd3dd;
+  border: 1px solid #8bd3dd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-right: 12px;
 }
 
 .header-menu-modal{
   position: absolute;
-  right: -54px;
-  top: 44px;
-  width: 300px;
+  right: 12px;
+  top: 40px;
+  width: 260px;
   padding: 0px 12px;
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
   z-index: 997;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  @media(max-width: 567px){
-    width: 260px;
-    right: -120px;
-  }
 }
 
 .header-menu-modal__row{

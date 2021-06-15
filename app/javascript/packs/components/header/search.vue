@@ -2,7 +2,6 @@
   <div>
     <div @click="openSearchModal" class="header-btn-wrapper hover-opacity">
       <img :src="addFriendImage" class="add-friend-img">
-      <span class="header-btn-title">フレンド</span>
     </div>
 
     <div class="search-modal" v-show="showSearchModal">
@@ -146,8 +145,8 @@ export default {
 </script>
 <style scoped lang="scss">
 .add-friend-img{
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
 .search-modal{
