@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="header-search-wrapper">
-      <img :src="addFriendImage" class="add-friend-img hover-opacity" @click="openSearchModal">
+    <div @click="openSearchModal" class="header-btn-wrapper hover-opacity">
+      <img :src="addFriendImage" class="add-friend-img">
+      <span class="header-btn-title">フレンド</span>
     </div>
 
     <div class="search-modal" v-show="showSearchModal">
@@ -144,16 +145,9 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.header-search-wrapper{
-  position: relative;
-  margin-right: 20px;
-  display: flex;
-  align-items: center;
-}
 .add-friend-img{
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 }
 
 .search-modal{
