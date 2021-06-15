@@ -27,62 +27,18 @@
         <%= javascript_pack_tag 'notification' %>
         <%= stylesheet_pack_tag 'notification' %>
 
-        <button type="button" class="drawer-toggle drawer-hamburger">
-          <span class="sr-only">toggle navigation</span>
-          <span class="drawer-hamburger-icon"></span>
-        </button>
+        <% props = {
+            username: current_user.user_profile.name,
+            user_image: current_user.user_profile.image.icon.url
+          }.to_json
+        %>
+        <div id="user-menu" data="<%= props %>">
+            <user-menu />
+        </div>
+        <%= javascript_pack_tag 'user_menu' %>
+        <%= stylesheet_pack_tag 'user_menu' %>
 
-        <nav class="drawer-nav" role="navigation">
-          <div class="drawer-menu">
-            <div>
-              <div class="drawer-menu__user-info">
-                <%= image_tag current_user.user_profile.image.icon.url, class:"drawer-menu__user-icon" %>
-                <span class="drawer-menu__user-name">
-                  <%= current_user.user_profile.name %>
-                </span>
-              </div>
-            </div>
-
-            <div class="drawer-menu__option-wrapper">
-              <div class="drawer-menu__title-wrapper">
-                <span class="drawer-menu__title">アタックメニュー</span>
-                <span class="drawer-menu__title-line"></span>
-              </div>
-
-              <div>
-                <%= link_to "チーム作成", new_attack_group_path, class:"drawer-menu-item" %>
-              </div>
-              <div>
-                <%= link_to "チーム一覧", attack_groups_path, class:"drawer-menu-item" %>
-              </div>
-            </div>
-
-            <div class="drawer-menu__option-wrapper">
-              <div class="drawer-menu__title-wrapper">
-                <span class="drawer-menu__title">募集メニュー</span>
-                <span class="drawer-menu__title-line"></span>
-              </div>
-
-              <div>
-                <%= link_to "募集作成", new_post_path, class:"drawer-menu-item" %>
-              </div>
-            </div>
-
-            <div>
-              <%= link_to "プロフィール編集", edit_user_profile_path, class:"drawer-menu-item" %>
-            </div>
-            <div>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"drawer-menu-item" %>
-            </div>
-          </div>
-        </nav>
       <% end %>
     </div>
   </div>
 </header>
-
-<script>
-$(document).ready(function() {
-  $('.drawer').drawer();
-});
-</script>
