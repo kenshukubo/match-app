@@ -8,12 +8,6 @@ class User::PostMembersController < ApplicationController
       return
     end
 
-    if current_user.sex == "male"
-      @sex = "男子"
-    else
-      @sex = "女子"
-    end
-
     post = current_user.post
     @invitable_number = post.number - PostMember.where(post: post).count
 

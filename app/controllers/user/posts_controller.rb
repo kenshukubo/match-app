@@ -9,12 +9,6 @@ class User::PostsController < ApplicationController
       @new_post = Post.new
     end
 
-    if current_user.sex == "male"
-      @sex = "男子"
-    else
-      @sex = "女子"
-    end
-
     @join_member = PostMember
     .includes(:user)
     .where(post: current_user.post, status: "attend")

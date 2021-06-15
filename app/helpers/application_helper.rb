@@ -16,4 +16,12 @@ module ApplicationHelper
     end
     doc.to_html.html_safe
   end
+
+  def user_sex
+    if current_user.sex == "male"
+      @sex = "男子"
+    else
+      @sex = "女子"
+    end
+  end
 end

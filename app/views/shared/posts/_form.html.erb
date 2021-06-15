@@ -14,7 +14,7 @@
     <div class="field">
       <div class="label">
         <label>
-          <%= @sex %>の人数（自分を合わせて）
+          <%= user_sex %>の人数（自分を合わせて）
         </label>
       </div>
       <%= f.select :number, options_for_select((2..10).to_a), {prompt: "選択してください"} %>
@@ -39,7 +39,7 @@
     -->
     <div class="field">
       <div class="button-wrapper">
-        <%= f.submit "次へ（#{@sex}メンバーを選ぶ）", class:"app-button conversion" %>
+        <%= f.submit "次へ（#{user_sex}メンバーを選ぶ）", class:"app-button conversion" %>
       </div>
     </div>
   </div>
