@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import HeaderMenu from './components/menu.vue'
+import HeaderMenu from './components/header/menu.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
