@@ -3,8 +3,9 @@ class User::PostMembersController < ApplicationController
   def new
     #募集を作成していない場合飛ばす
     unless current_user.post.present?
-      redirect_to root_path 
+      redirect_to new_post_path
       flash[:alert] = "募集を作成しましょう"
+      return
     end
 
     if current_user.sex == "male"
