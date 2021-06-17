@@ -56,6 +56,7 @@ export default {
 <style lang="scss" scoped>
 .header-menu-wrapper{
   position: relative;
+  cursor: pointer;
 }
 .header-menu-btn{
   display: flex;
