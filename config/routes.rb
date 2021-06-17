@@ -62,5 +62,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'static_pages#home'
+  root  'static_pages#home'
+  patch 'static_pages' => "static_pages#update"
 end

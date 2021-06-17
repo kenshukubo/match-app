@@ -25,20 +25,13 @@ class SocialUserCreator
     unless user.persisted?
       require 'open-uri'
       file = open(URI.parse(auth['info']['image']))
-      if auth.provider == "line"
-        user.build_user_profile(
-          name: auth.info.name,
-          remote_image_url: auth.info.image,
-          identified_char: SecureRandom.uuid
-        )
-      else
-        user.build_user_profile(
-          name: auth.info.name,
-          remote_image_url: auth.info.image,
-          identified_char: SecureRandom.uuid
-        )
-      end
-      user.create_data_for_signup
+      
+      user.build_user_profile(
+        name: auth.info.name,
+        remote_image_url: auth.info.image,
+        identified_char: SecureRandom.uuid
+      )
+      user.build_user_notification
       user.email = User.dummy_email(auth)
       user.skip_confirmation!
     end

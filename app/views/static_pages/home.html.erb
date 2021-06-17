@@ -29,6 +29,10 @@
         <%= render "shared/top/profile" %>
 
         <%= render "shared/top/index" %>
+
+        <% if current_user.sex.blank? %>
+          <%= render "shared/top/edit_sex" %>
+        <% end %>
       </div>
     <% end %>
   

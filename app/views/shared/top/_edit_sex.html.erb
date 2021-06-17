@@ -1,0 +1,35 @@
+<div class="modal modal-overlay" >
+  <div class="modal-window">
+    <div class="modal-content">
+      <h3>
+        性別を設定してください
+      </h3>
+
+      <%= form_with model: current_user, url: static_pages_path, local: true, method: :patch do |f| %>
+        <div class="form">
+          <div class="field">
+            <%= f.radio_button :sex, :male %>
+            <%= f.label :sex_male, "男性", class:"sex-radio-btn male-radio" %>
+            <%= f.radio_button :sex, :female %>
+            <%= f.label :sex_female, "女性", class:"sex-radio-btn female-radio" %>
+          </div>
+        </div>
+
+        <div>
+          <div class="button-wrapper">
+            <%= f.submit "設定完了する", class:"select-btn activeModalBtn" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style scoped>
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 32px;
+    width: 300px;
+}
+</style>
