@@ -8,12 +8,12 @@
       <div v-if="showMenuList" class="header-menu-modal">
         <ul class="header-menu__wrapper">
           <li class="header-menu__item">
-            <a>
-              <span>{{ userName }}</span>
+            <a href="/user_profile/edit" class="header-menu__item-link">
+              <span>プロフィール編集</span>
             </a>
           </li>
           <li class="header-menu__item">
-            <a>
+            <a class="header-menu__item-link">
               <span>ログアウト</span>
             </a>
           </li>
@@ -65,8 +65,8 @@ export default {
   position: absolute;
   right: 12px;
   top: 40px;
-  width: 220px;
-  padding: 8px 12px;
+  width: 180px;
+  padding: 8px 0px;
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
   z-index: 997;
@@ -81,9 +81,17 @@ export default {
 }
 
 .header-menu__item{
-  padding: 8px 16px;
   text-align: left;
   width: 100%;
-  font-size: 14px;
+  font-size: 12px;
+  box-sizing: border-box;
+  &:hover{
+    background-color: #f7f9f9;
+  }
+}
+
+.header-menu__item-link{
+  display: block;
+  padding: 8px 16px;
 }
 </style>
