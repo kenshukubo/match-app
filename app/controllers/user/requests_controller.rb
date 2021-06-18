@@ -9,7 +9,7 @@ class User::RequestsController < ApplicationController
 
     @attack_group = request.attack_group
     @request_id   = request.id
-    @attackers    = @attack_group.attackers
+    @attackers    = @attack_group.attackers.is_participant
   end
 
   def update
