@@ -5,21 +5,24 @@ class User::UserProfilesController < ApplicationController
 
   def update
     @user_profile = current_user.user_profile
-    if @user_profile.update(
-      name: user_profile_params[:name],
-      age: user_profile_params[:age],
-      job: user_profile_params[:job],
-      image: user_profile_params[:image],
-    )
-      if @user_profile.has_valid_profile?
-        flash[:notice] = "🥳プロフィール更新完了！"
-      else
-        flash[:notice] = "🤮プロフィール情報が不足しています"
+
+    begin
+      ActiveRecord::Base.transaction do
+        @user_profile.update(
+          name: user_profile_params[:name],
+          age: user_profile_params[:age],
+          job: user_profile_params[:job],
+          image: user_profile_params[:image],
+        )
+
+        raise unless @user_profile.has_valid_profile?
       end
+      flash[:notice] = "🥳プロフィール更新完了！"
       redirect_to root_path
-    else
-      flash[:alert] = "更新に失敗しました"
-      edit_user_profile_path
+    rescue => error
+      p error
+      flash[:notice] = "🤮プロフィール情報が不足しています"
+      redirect_to edit_user_profile_path
     end
   end
 
