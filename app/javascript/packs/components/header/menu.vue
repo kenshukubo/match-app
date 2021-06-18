@@ -78,7 +78,6 @@ export default {
   right: 12px;
   top: 40px;
   width: 260px;
-  padding: 0px 12px;
   background-color: #fff;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25);
   z-index: 997;
@@ -90,6 +89,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0px 12px;
 }
 
 .header-menu-modal__item{
