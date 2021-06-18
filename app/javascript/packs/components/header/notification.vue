@@ -254,6 +254,9 @@ export default {
   padding: 16px;
   border-top: 1px solid #f2f2f2;
   font-size: 12px;
+  &:hover{
+    background-color: #f7f9f9;
+  }
 }
 
 .notification-img-wrapper{
