@@ -57,8 +57,13 @@ Rails.application.routes.draw do
       resources :search_users, only: [:index]
       resources :add_post_members, only: [:create]
       resources :attack_groups, only: [:create]
-
       resources :add_attackers, only: [:index, :create]
+
+      #チャット
+      resources :rooms, only: [:show, :index], param: :identified_char do
+        resources :room_messages, only: [:show, :index]
+      end
+      resource  :current_user, only: [:show]
     end
   end
 
