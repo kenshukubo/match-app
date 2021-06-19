@@ -1,0 +1,20 @@
+<% props = {
+    currentUserId: current_user.id
+}.to_json
+%>
+
+<div class="container">
+    <% if Rails.env == "production" %>
+        <div id="rooms" data="<%= props %>">
+            <rooms />
+        </div>
+        <%= javascript_pack_tag 'rooms' %>
+        <%= stylesheet_pack_tag 'rooms' %>
+    <% else %>
+        <div id="rooms" data="<%= props %>">
+            <rooms />
+        </div>
+        <%= javascript_pack_tag 'local_rooms' %>
+        <%= stylesheet_pack_tag 'local_rooms' %>
+    <% end %>
+</div>
