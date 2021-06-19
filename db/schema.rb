@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_202425) do
+ActiveRecord::Schema.define(version: 2021_06_19_011122) do
 
   create_table "attack_groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -85,6 +85,33 @@ ActiveRecord::Schema.define(version: 2021_06_04_202425) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attack_group_id"], name: "index_requests_on_attack_group_id"
     t.index ["post_id"], name: "index_requests_on_post_id"
+  end
+
+  create_table "room_messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "message"
+    t.integer "message_type"
+    t.string "emoji"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_room_messages_on_room_id"
+    t.index ["user_id"], name: "index_room_messages_on_user_id"
+  end
+
+  create_table "room_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_room_users_on_room_id"
+    t.index ["user_id"], name: "index_room_users_on_user_id"
+  end
+
+  create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "identified_char"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "social_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -163,6 +190,10 @@ ActiveRecord::Schema.define(version: 2021_06_04_202425) do
   add_foreign_key "relationships", "users", column: "friend_id"
   add_foreign_key "requests", "attack_groups"
   add_foreign_key "requests", "posts"
+  add_foreign_key "room_messages", "rooms"
+  add_foreign_key "room_messages", "users"
+  add_foreign_key "room_users", "rooms"
+  add_foreign_key "room_users", "users"
   add_foreign_key "user_notifications", "users"
   add_foreign_key "user_profiles", "users"
 end
