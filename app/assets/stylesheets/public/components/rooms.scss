@@ -1,0 +1,60 @@
+.rooms{
+  position: relative;
+}
+
+.rooms-header{
+  background-color: #fff;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 8px;
+  border-bottom: 1px solid #e6e6e6;
+  z-index: 1;
+}
+
+.rooms-body{
+  height: 100%;
+  overflow: scroll;
+}
+
+.rooms-space-placeholder__header{
+  height: 50px;
+}
+
+.room-list-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 8px;
+  border-bottom: 1px solid #e6e6e6;
+  font-weight: 600;
+  &:hover{
+    background-color: #f7f9f9;
+  }
+}
+
+.room-user{
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover{
+    background-color: #f7f9f9;
+  }
+}
+
+.room-user__image-wrapper{
+  margin-right: 8px;
+}
+.room-user__image{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
