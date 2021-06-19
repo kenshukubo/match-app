@@ -56,29 +56,30 @@ export default {
   components: {
   },
   computed: {
-    // selectableRooms(){
-    //   if(!!this.selectedRoomIdentifiedCharByUrl){
-    //     return this.sortedRooms.filter(room => !!room.lastUsedAt && room.identifiedChar != this.selectedRoomIdentifiedCharByUrl);
-    //   }
-    //   return this.sortedRooms.filter(room => !!room.lastUsedAt);
-    // },
-    // uniqueRooms(){
-    //   return this.rooms.filter((v,i,a)=>a.findIndex(t=>(t.identifiedChar === v.identifiedChar))===i)      
-    // },
-    // sortedRooms(){
-    //   return this.uniqueRooms.sort(function(a, b) {
-    //     if (a.lastUsedAt > b.lastUsedAt) {
-    //         return -1;
-    //     } else {
-    //         return 1;
-    //     }
-    //   });
-    // },
+    selectableRooms(){
+      if(!!this.selectedRoomIdentifiedCharByUrl){
+        return this.sortedRooms.filter(room => !!room.lastUsedAt && room.identifiedChar != this.selectedRoomIdentifiedCharByUrl);
+      }
+      return this.sortedRooms.filter(room => !!room.lastUsedAt);
+    },
+    uniqueRooms(){
+      return this.rooms.filter((v,i,a)=>a.findIndex(t=>(t.identifiedChar === v.identifiedChar))===i)      
+    },
+    sortedRooms(){
+      return this.uniqueRooms.sort(function(a, b) {
+        if (a.lastUsedAt > b.lastUsedAt) {
+            return -1;
+        } else {
+            return 1;
+        }
+      });
+    },
   },
   data() {
     return {
       rooms: [],
       currentUser: "",
+      selectedRoomIdentifiedCharByUrl: "",
     }
   },
   created() {
