@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :reverse_friend_relationships, class_name: 'UserRelationship', foreign_key: 'friend_id'
   has_many :is_friend_users, through: :reverse_friend_relationships, source: :user
 
+  has_many :room_users, dependent: :destroy
+  has_many :rooms, through: :room_users
+  has_many :room_messages, dependent: :destroy
+
   validates :sex, presence: true
 
   enum sex: { male: 0, female: 1 }
