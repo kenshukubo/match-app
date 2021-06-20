@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="room-window" :class="`room-window--${roomMode}`">
       <div class="rooms">
         <div class="rooms-header">
           <span class="rooms-header__title">メッセージ一覧</span>
@@ -12,6 +12,7 @@
             <!-- 選択可能なRooms -->
             <template v-for="(room, index) in rooms">
                 <div
+                  @click="selectRoom(room.identifiedChar, currentRoomUser.unreadMessageCount)"
                   class="room-list-item"
                   :key="`room-list-${index}`" 
                 >
@@ -44,7 +45,10 @@
           </div>
         </div>
       </div>
-      <div class="room"></div>
+      <div class="room">
+
+
+      </div>
   </div>
 </template>
 
@@ -56,30 +60,13 @@ export default {
   components: {
   },
   computed: {
-    selectableRooms(){
-      if(!!this.selectedRoomIdentifiedCharByUrl){
-        return this.sortedRooms.filter(room => !!room.lastUsedAt && room.identifiedChar != this.selectedRoomIdentifiedCharByUrl);
-      }
-      return this.sortedRooms.filter(room => !!room.lastUsedAt);
-    },
-    uniqueRooms(){
-      return this.rooms.filter((v,i,a)=>a.findIndex(t=>(t.identifiedChar === v.identifiedChar))===i)      
-    },
-    sortedRooms(){
-      return this.uniqueRooms.sort(function(a, b) {
-        if (a.lastUsedAt > b.lastUsedAt) {
-            return -1;
-        } else {
-            return 1;
-        }
-      });
-    },
   },
   data() {
     return {
       rooms: [],
       currentUser: "",
       selectedRoomIdentifiedCharByUrl: "",
+      roomMode: "index",
     }
   },
   created() {
@@ -87,6 +74,28 @@ export default {
     this.fetchRooms();
   },
   methods: {
+    selectRoom(identifiedChar, unreadMessageCount){
+    //   this.autoscroll = true;
+    //   this.messageLoadable = false
+    //   this.isLoading = true
+      this.roomMode = "show"
+    //   if(unreadMessageCount > 0){
+    //     this.updateRoomUserLog(identifiedChar);
+    //   }else{
+    //     // console.log("nothing to update")
+    //   }
+    //   if(this.selectedRoomIdentifiedChar == identifiedChar){
+    //     // console.log("already selected")
+    //     return
+    //   }
+    //   this.selectedRoomIdentifiedChar = identifiedChar;
+    //   this.lastMessage = ""
+    //   this.messages = []
+    //   this.unsubscribe();
+    //   this.subscribe();
+    //   this.subscribeNotification();
+    //   this.fetchRoomMessages();
+    },
     fetchRooms(){
       var self = this;
       axios.get(`/api/v1/rooms`)
@@ -103,9 +112,8 @@ export default {
         self.currentUser = res.data.currentUser
         self.subscribeMyNotification();
       }).catch((err) => {
+        console.log(err)
       })
-    },
-    subscribeMyNotification(){
     },
   },
 }

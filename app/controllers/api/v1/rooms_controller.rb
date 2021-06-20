@@ -4,7 +4,6 @@ class Api::V1::RoomsController < Api::ApplicationController
   # before_action :set_offset, only:[:index]
   
   def index
-    all_rooms_count = current_user.rooms.count
     @rooms = current_user.rooms.order(last_used_at: :desc).limit(20)
   end
 

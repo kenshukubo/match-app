@@ -1,3 +1,29 @@
+// チャットページでユーザー一覧が表示されている場合のCSS
+.room-window--index{
+  .rooms{
+    display: block;
+  }
+  .room{
+    display: none;
+  }
+  .rooms, .room{
+    @media(max-width: 576px){
+      height: calc(100vh - 60px);
+      height: calc(var(--vh, 1vh) * 100 - 60px);
+    }
+  }
+}
+
+// チャットページでチャットメッセージ一覧が表示されている場合のCSS
+.room-window--show{
+  .rooms{
+    display: none;
+  }
+  .room{
+    display: block;
+  }
+}
+
 .rooms{
   position: relative;
 }
