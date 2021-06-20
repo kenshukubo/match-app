@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
   create_table "room_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
+    t.datetime "last_active_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_room_users_on_room_id"
