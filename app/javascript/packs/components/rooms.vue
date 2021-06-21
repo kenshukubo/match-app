@@ -52,6 +52,16 @@
             <img :src="selectedPartnerUser.image" class="room-user__image">
           </div>
         </div>
+
+        <div class="room-body">
+          <div>
+
+          </div>
+        </div>
+
+        <div class="room-footer">
+          <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
+        </div>
       </div>
   </div>
 </template>
