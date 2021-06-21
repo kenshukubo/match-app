@@ -89,6 +89,7 @@ export default {
       currentUser: "",
       roomMode: "index",
       selectedRoomIdentifiedChar: "",
+      newMessage: "",
     }
   },
   created() {
