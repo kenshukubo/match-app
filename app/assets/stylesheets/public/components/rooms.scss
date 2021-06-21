@@ -110,6 +110,19 @@
   }
 }
 
+.room-footer__nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-footer__send-btn{
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
 .room-footer__input{
   flex: 1 1;
   padding: 8px;

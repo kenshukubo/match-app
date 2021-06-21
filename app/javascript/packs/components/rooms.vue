@@ -71,6 +71,12 @@
         </div>
 
         <div class="room-footer">
+          <div class="room-footer__nav">
+            <div></div>
+            <button @click="speak" class="room-footer__send-btn">
+              送信
+            </button>
+          </div>
           <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
         </div>
       </div>
@@ -100,24 +106,47 @@ export default {
       messages: [],
       currentUser: "",
       roomMode: "index",
+      inputMode: "text",
       selectedRoomIdentifiedChar: "",
       newMessage: "",
+      lastMessage: "",
+      messageChannel: null,
     }
   },
   created() {
     this.fetchCurrentUser();
     this.fetchRooms();
+
+    if(!!this.selectedRoomIdentifiedChar){
+      this.roomMode = "show"
+      this.fetchRoomMessages();
+      this.subscribe();
+    }
   },
   methods: {
     selectRoom(identifiedChar){
       this.roomMode = "show"
       this.selectedRoomIdentifiedChar = identifiedChar;
+      this.messages = []
+      this.unsubscribe();
+      this.subscribe();
       this.fetchRoomMessages();
-    //   this.lastMessage = ""
-    //   this.messages = []
-    //   this.unsubscribe();
-    //   this.subscribe();
-    //   this.subscribeNotification();
+    },
+    speak() {
+      if (!this.messageChannel) return
+      switch (this.inputMode) {
+        case 'text':
+          if (this.newMessage == '') return
+          this.messageChannel.perform('speak', { 
+            identified_char: this.selectedRoomIdentifiedChar,
+            text: this.newMessage, 
+            message_type: "text"
+          });
+          this.newMessage = ""
+          break;
+        default:
+          console.log('invalid request');
+      }
     },
     fetchRooms(){
       var self = this;
@@ -145,6 +174,36 @@ export default {
       }).catch((err) => {
         console.log(err)
       })
+    },
+    subscribe(){
+      this.messageChannel = this.$cable.subscriptions.create( 
+          {
+            channel: "MessageChannel", 
+            room_id: this.selectedRoomIdentifiedChar,
+          } ,{
+        received: (data) => {
+          // console.log("MessageChannel received")
+          // 選択中の部屋のメッセージのみ反映
+          if(data.roomIdentifiedChar != this.selectedRoomIdentifiedChar) return
+
+          // 二重投稿防止
+          const duplicateMessage = this.messages.find(message => message.id == data.messageId);
+          if(!!duplicateMessage) return
+
+          this.messages.unshift(data)
+          this.lastMessage = data
+        },
+      })  
+    },
+    unsubscribe(){
+      var self = this
+      this.$cable.subscriptions.subscriptions.forEach(function (subscription) {
+          // メッセージチャンネルのサブスクリプションを削除
+          if(subscription.identifier.includes("MessageChannel")){
+            // console.log("message unsubsucribed")
+            self.$cable.subscriptions.remove(subscription);
+          }
+      });
     },
   },
 }
