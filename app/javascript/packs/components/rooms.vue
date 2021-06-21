@@ -11,36 +11,36 @@
             </div>
             <!-- 選択可能なRooms -->
             <template v-for="(room, index) in rooms">
-                <div
-                  @click="selectRoom(room.identifiedChar, currentRoomUser.unreadMessageCount)"
-                  class="room-list-item"
-                  :key="`room-list-${index}`" 
-                >
-                    <template v-for="(roomUser, index) in room.roomUsers">
-                        <div 
-                          v-if="!!currentUser && roomUser.identifiedChar !== currentUser.identifiedChar" 
-                          class="room-user"
-                          :key="`room-user-${index}`"
-                        >
-                            <div class="room-user-header">
-                                <div class="room-user__image-wrapper">
-                                    <img :src="roomUser.image" class="room-user__image">
-                                </div>
-                            </div>
-                            <div class="room-user-body">
-                                <span class="room-user__name">{{ roomUser.name || "ゲストさん" }}</span>
-                                <span class="room-user__last-msg">
-                                    <template v-if="showLastMessage">
-                                        {{ lastMessage.text }}
-                                    </template>
-                                    <template v-else>
-                                        {{ room.lastMessage }}
-                                    </template>
-                                </span>
-                            </div>
-                        </div>
-                    </template>
-                </div>
+              <div
+                @click="selectRoom(room.identifiedChar)"
+                class="room-list-item"
+                :key="`room-list-${index}`" 
+              >
+                <template v-for="(roomUser, index) in room.roomUsers">
+                  <div 
+                    v-if="!!currentUser && roomUser.identifiedChar !== currentUser.identifiedChar" 
+                    class="room-user"
+                    :key="`room-user-${index}`"
+                  >
+                    <div class="room-user-header">
+                      <div class="room-user__image-wrapper">
+                        <img :src="roomUser.image" class="room-user__image">
+                      </div>
+                    </div>
+                    <!-- <div class="room-user-body">
+                      <span class="room-user__name">{{ roomUser.name || "ゲストさん" }}</span>
+                      <span class="room-user__last-msg">
+                        <template v-if="showLastMessage">
+                            {{ lastMessage.text }}
+                        </template>
+                        <template v-else>
+                            {{ room.lastMessage }}
+                        </template>
+                      </span>
+                    </div> -->
+                  </div>
+                </template>
+              </div>
             </template>
           </div>
         </div>
@@ -66,6 +66,7 @@ export default {
       rooms: [],
       currentUser: "",
       roomMode: "index",
+      selectedRoomIdentifiedChar: "",
     }
   },
   created() {
@@ -73,21 +74,9 @@ export default {
     this.fetchRooms();
   },
   methods: {
-    selectRoom(identifiedChar, unreadMessageCount){
-    //   this.autoscroll = true;
-    //   this.messageLoadable = false
-    //   this.isLoading = true
+    selectRoom(identifiedChar){
       this.roomMode = "show"
-    //   if(unreadMessageCount > 0){
-    //     this.updateRoomUserLog(identifiedChar);
-    //   }else{
-    //     // console.log("nothing to update")
-    //   }
-    //   if(this.selectedRoomIdentifiedChar == identifiedChar){
-    //     // console.log("already selected")
-    //     return
-    //   }
-    //   this.selectedRoomIdentifiedChar = identifiedChar;
+      this.selectedRoomIdentifiedChar = identifiedChar;
     //   this.lastMessage = ""
     //   this.messages = []
     //   this.unsubscribe();
