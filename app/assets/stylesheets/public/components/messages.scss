@@ -1,0 +1,31 @@
+.message{
+  margin-top: 8px;
+  padding: 0 12px;
+}
+.message-body{
+  display: flex;
+  align-items: flex-end;
+}
+
+.message-user__image{
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.message-content{
+  flex: 1;
+  display: flex;
+}
+.message-bubble{
+  max-width: 80%;
+  display: inline-block;
+  word-break: break-all;
+  white-space: pre-wrap;
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 8px 16px 4px;
+  margin: 0 4px 4px;
+  border-bottom-left-radius: 0;
+}

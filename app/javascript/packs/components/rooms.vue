@@ -55,7 +55,18 @@
 
         <div class="room-body">
           <div class="messages">
-
+            <template v-for="(message, index) in messages">
+              <div class="message" :key="`room-msg-${index}`">
+                <div class="message-body">
+                  <div class="message-user">
+                    <img :src="message.userProfileImageUrl" class="message-user__image">
+                  </div>
+                  <span class="message-content">
+                    <div class="message-bubble">{{ message.text.trim() }}</div>
+                  </span>
+                </div>
+              </div>
+            </template>
           </div>
         </div>
 
@@ -86,6 +97,7 @@ export default {
   data() {
     return {
       rooms: [],
+      messages: [],
       currentUser: "",
       roomMode: "index",
       selectedRoomIdentifiedChar: "",
@@ -100,12 +112,12 @@ export default {
     selectRoom(identifiedChar){
       this.roomMode = "show"
       this.selectedRoomIdentifiedChar = identifiedChar;
+      this.fetchRoomMessages();
     //   this.lastMessage = ""
     //   this.messages = []
     //   this.unsubscribe();
     //   this.subscribe();
     //   this.subscribeNotification();
-    //   this.fetchRoomMessages();
     },
     fetchRooms(){
       var self = this;
@@ -113,6 +125,15 @@ export default {
       .then(function(res) {
         self.rooms.push(...res.data.rooms)
       }).catch((err) => {
+        console.log(err)
+      })
+    },
+    fetchRoomMessages(){
+      var self = this;
+      axios.get(`/api/v1/rooms/${this.selectedRoomIdentifiedChar}/room_messages`)
+      .then(function(res) {
+        self.messages = res.data.roomMessages;
+      }).catch((err) => {   
         console.log(err)
       })
     },
