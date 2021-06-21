@@ -27,17 +27,17 @@
                         <img :src="roomUser.image" class="room-user__image">
                       </div>
                     </div>
-                    <!-- <div class="room-user-body">
+                    <div class="room-user-body">
                       <span class="room-user__name">{{ roomUser.name || "ゲストさん" }}</span>
-                      <span class="room-user__last-msg">
+                      <!-- <span class="room-user__last-msg">
                         <template v-if="showLastMessage">
                             {{ lastMessage.text }}
                         </template>
                         <template v-else>
                             {{ room.lastMessage }}
                         </template>
-                      </span>
-                    </div> -->
+                      </span> -->
+                    </div>
                   </div>
                 </template>
               </div>
@@ -46,8 +46,9 @@
         </div>
       </div>
       <div class="room">
+        <div class="room-header">
 
-
+        </div>
       </div>
   </div>
 </template>
