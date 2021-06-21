@@ -65,7 +65,6 @@ export default {
     return {
       rooms: [],
       currentUser: "",
-      selectedRoomIdentifiedCharByUrl: "",
       roomMode: "index",
     }
   },
@@ -110,7 +109,6 @@ export default {
       axios.get("/api/v1/current_user")
       .then(function(res) {
         self.currentUser = res.data.currentUser
-        self.subscribeMyNotification();
       }).catch((err) => {
         console.log(err)
       })
