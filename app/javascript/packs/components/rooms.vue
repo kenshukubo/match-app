@@ -47,7 +47,9 @@
       </div>
       <div class="room">
         <div class="room-header">
-
+          <div>
+            <span>{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+          </div>
         </div>
       </div>
   </div>
@@ -61,6 +63,14 @@ export default {
   components: {
   },
   computed: {
+    selectedRoom: function(){
+      if(!this.selectedRoomIdentifiedChar) return ""
+      return this.rooms.find(room => room.identifiedChar == this.selectedRoomIdentifiedChar);
+    },
+    selectedPartnerUser: function(){
+      if(!this.selectedRoom || !this.currentUser) return ""
+      return this.selectedRoom.roomUsers.find(roomUser => roomUser.identifiedChar != this.currentUser.identifiedChar);
+    },
   },
   data() {
     return {

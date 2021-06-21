@@ -1,5 +1,6 @@
 json.rooms do
   json.array!(@rooms) do |room|
+    json.identifiedChar   room.identified_char
     json.lastUsedAt       room.last_used_at
     json.roomUsers do
       json.array!(room.room_users) do |room_user|
