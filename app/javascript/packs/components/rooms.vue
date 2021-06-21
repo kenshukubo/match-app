@@ -44,8 +44,12 @@
       </div>
       <div class="room">
         <div class="room-header">
-          <div>
-            <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+          <div class="rooms-header__title-wrapper">
+            <div>
+              <span><i class="fa fa-angle-left"></i></span>
+              <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+            </div>
+            <img :src="selectedPartnerUser.image" class="room-user__image">
           </div>
         </div>
       </div>
