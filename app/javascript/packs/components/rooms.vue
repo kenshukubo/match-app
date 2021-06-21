@@ -56,7 +56,7 @@
         <div class="room-body">
           <div class="messages">
             <template v-for="(message, index) in messages">
-              <div class="message" :key="`room-msg-${index}`">
+              <div class="message" :class="messageClass(message)" :key="`room-msg-${index}`">
                 <div class="message-body">
                   <div class="message-user">
                     <img :src="message.userProfileImageUrl" class="message-user__image">
@@ -98,6 +98,14 @@ export default {
     selectedPartnerUser: function(){
       if(!this.selectedRoom || !this.currentUser) return ""
       return this.selectedRoom.roomUsers.find(roomUser => roomUser.identifiedChar != this.currentUser.identifiedChar);
+    },
+    messageClass(){
+      return function(message) {
+        if(message.userIdentifiedChar == this.currentUser.identifiedChar){
+          return "my-message" 
+        }
+        return ""
+      }
     },
   },
   data() {

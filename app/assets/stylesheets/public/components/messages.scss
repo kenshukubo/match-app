@@ -29,3 +29,18 @@
   margin: 0 4px 4px;
   border-bottom-left-radius: 0;
 }
+
+.my-message{
+  .message-content, .message-footer{
+      justify-content: flex-end;
+  }
+  .message-user__image{
+      display: none;
+  }
+  .message-bubble{
+      background-color: #f582ae;
+      color: #fff;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 0;
+  }
+}
