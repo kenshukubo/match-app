@@ -6,9 +6,6 @@
         </div>
         <div class="rooms-body">
           <div class="room-list">
-            <div class="room-space-placeholder">
-              <div class="rooms-space-placeholder__header"></div>
-            </div>
             <!-- 選択可能なRooms -->
             <template v-for="(room, index) in rooms">
               <div
@@ -48,7 +45,7 @@
       <div class="room">
         <div class="room-header">
           <div>
-            <span>{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+            <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
           </div>
         </div>
       </div>

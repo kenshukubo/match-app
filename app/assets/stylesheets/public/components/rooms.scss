@@ -32,22 +32,17 @@
   height: 50px;
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   padding: 0 8px;
   border-bottom: 1px solid #e6e6e6;
   z-index: 1;
+}
+.rooms-header__title, .room-header__title{
+  font-weight: 700;
 }
 
 .rooms-body{
   height: 100%;
   overflow: scroll;
-}
-
-.rooms-space-placeholder__header{
-  height: 50px;
 }
 
 .room-list-item{
