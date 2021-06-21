@@ -54,7 +54,7 @@
         </div>
 
         <div class="room-body">
-          <div>
+          <div class="messages">
 
           </div>
         </div>
