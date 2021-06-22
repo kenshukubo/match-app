@@ -203,7 +203,7 @@ export default {
           const duplicateMessage = this.messages.find(message => message.id == data.messageId);
           if(!!duplicateMessage) return
 
-          this.messages.unshift(data)
+          this.messages.push(data)
           this.lastMessage = data
         },
       })  
