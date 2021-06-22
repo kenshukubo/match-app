@@ -113,6 +113,12 @@ export default {
       }
     },
   },
+  watch: {
+    messages: function(newValue) {
+      if(!this.autoscroll) return
+      this.scrollToEnd()
+    },
+  },
   data() {
     return {
       rooms: [],
@@ -124,6 +130,7 @@ export default {
       newMessage: "",
       lastMessage: "",
       messageChannel: null,
+      autoscroll: true,
     }
   },
   created() {
@@ -217,6 +224,13 @@ export default {
             self.$cable.subscriptions.remove(subscription);
           }
       });
+    },
+    scrollToEnd() {
+      this.$nextTick(() => {
+        const chatLog = this.$refs.messages
+        if (!chatLog) return
+        chatLog.scrollTop = chatLog.scrollHeight
+      })
     },
   },
 }
