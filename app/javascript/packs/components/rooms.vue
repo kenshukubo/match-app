@@ -96,11 +96,11 @@ export default {
   components: {
   },
   computed: {
-    selectedRoom: function(){
+    selectedRoom(){
       if(!this.selectedRoomIdentifiedChar) return ""
       return this.rooms.find(room => room.identifiedChar == this.selectedRoomIdentifiedChar);
     },
-    selectedPartnerUser: function(){
+    selectedPartnerUser(){
       if(!this.selectedRoom || !this.currentUser) return ""
       return this.selectedRoom.roomUsers.find(roomUser => roomUser.identifiedChar != this.currentUser.identifiedChar);
     },
