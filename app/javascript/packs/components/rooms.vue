@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div class="room-body">
+        <div class="room-body" ref="messages">
           <div class="messages">
             <template v-for="(message, index) in messages">
               <div class="message" :class="messageClass(message)" :key="`room-msg-${index}`">
