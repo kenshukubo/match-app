@@ -6,7 +6,7 @@ class Api::V1::RoomMessagesController < Api::ApplicationController
     # total_countだけ返して、vue側で処理も検討
     all_room_messages = @room.room_messages.includes(user: :user_profile)
 
-    @room_messages = all_room_messages.limit(20).order(created_at: :desc)
+    @room_messages = all_room_messages.limit(20).order(created_at: :asc)
   end
 
   private

@@ -65,6 +65,11 @@
                     <div class="message-bubble">{{ message.text.trim() }}</div>
                   </span>
                 </div>
+                <div class="message-footer"> 
+                  <span class="message-date">
+                    {{ message.formattedCreatedAt }}
+                  </span>
+                </div>
               </div>
             </template>
           </div>
