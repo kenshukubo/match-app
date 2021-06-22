@@ -110,42 +110,60 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  height: 120px;
-  padding: 0 12px;
+  height: 160px;
+  padding: 0 12px 8px;
   box-sizing: border-box;
   position: absolute;
   bottom: 0;
   border-top: 1px solid #eee;
   background-color: #fff;
   @media(max-width: 576px){
+    height: 100px;
     width: 100%;
     right: 0px;
     left: 0px;
   }
 }
 
-.room-footer__nav{
-  display: flex;
-  justify-content: space-between;
-}
-
-.room-footer__send-btn{
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 4px 8px;
+.room-footer-sp{
+  display: none;
+  @media(max-width: 576px){
+    display: block;
+  }
 }
 
 .room-footer__input{
   flex: 1 1;
-  padding: 8px;
   font-size: 16px;
   width: 100%;
   resize: none;
   box-sizing: border-box;
+  border: none;
+  &:focus{
+    border-color: #fff;
+  }
+}
+
+.room-footer__nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.room-footer__send-btn{
+  cursor: pointer;
+  color: #f7f9f9;
+  font-size: 12px;
+  font-weight: 700;
+  background: #8bd3dd;
+  border: 1px solid #8bd3dd;
+  padding: 4px 12px;
+  box-shadow: none;
 }
 
 .rooms-space-placeholder__input{
-  height: 180px;
+  height: 240px;
+  @media(max-width: 576px){
+    height: 180px;
+  }
 }

@@ -85,11 +85,21 @@
           <div class="room-footer">
             <div class="room-footer__nav">
               <div></div>
-              <button @click="speak" class="room-footer__send-btn">
+              <button @click="speak" class="room-footer__send-btn hover-opacity">
                 送信
               </button>
             </div>
             <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
+          </div>
+
+          <div class="room-footer room-footer-sp">
+            <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
+            <div class="room-footer__nav">
+              <div></div>
+              <button @click="speak" class="room-footer__send-btn hover-opacity">
+                送信
+              </button>
+            </div>
           </div>
         </div>
       </div>
