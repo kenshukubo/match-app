@@ -6,15 +6,14 @@
   .room{
     display: none;
   }
-  .rooms, .room{
-    @media(max-width: 576px){
-      height: calc(100vh - 60px);
-      height: calc(var(--vh, 1vh) * 100 - 60px);
-    }
-  }
 }
 // チャットページでチャットメッセージ一覧が表示されている場合のCSS
 .room-window--show{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
   .rooms{
     display: none;
   }
@@ -24,13 +23,9 @@
 }
 ////////////////////////////////////////////////
 .rooms, .room{
-  height: calc(100vh - 88px);
-  height: calc(var(--vh, 1vh) * 100 - 88px);
-  position: relative;
-  @media(max-width: 576px){
-    height: calc(100vh);
-    height: calc(var(--vh, 1vh) * 100);
-  }
+  height: calc(100vh);
+  // safariのメニューバー対策
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .rooms-header{
@@ -104,15 +99,18 @@
 .room-footer{
   display: flex;
   flex-direction: column;
+  width: 600px;
   height: 120px;
+  padding: 0 12px;
+  box-sizing: border-box;
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
   border-top: 1px solid #eee;
   background-color: #fff;
   @media(max-width: 576px){
-    height: 100px;
+    width: 100%;
+    right: 0px;
+    left: 0px;
   }
 }
 
@@ -136,4 +134,8 @@
   width: 100%;
   resize: none;
   box-sizing: border-box;
+}
+
+.rooms-space-placeholder__input{
+  height: 180px;
 }

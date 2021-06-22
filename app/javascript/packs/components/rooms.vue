@@ -43,46 +43,51 @@
         </div>
       </div>
       <div class="room">
-        <div class="room-header">
-          <div class="rooms-header__title-wrapper">
-            <div>
-              <span><i class="fa fa-angle-left"></i></span>
-              <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
-            </div>
-            <img :src="selectedPartnerUser.image" class="room-user__image">
-          </div>
-        </div>
-
-        <div class="room-body" ref="messages">
-          <div class="messages">
-            <template v-for="(message, index) in messages">
-              <div class="message" :class="messageClass(message)" :key="`room-msg-${index}`">
-                <div class="message-body">
-                  <div class="message-user">
-                    <img :src="message.userProfileImageUrl" class="message-user__image">
-                  </div>
-                  <span class="message-content">
-                    <div class="message-bubble">{{ message.text.trim() }}</div>
-                  </span>
-                </div>
-                <div class="message-footer"> 
-                  <span class="message-date">
-                    {{ message.formattedCreatedAt }}
-                  </span>
-                </div>
+        <div class="container">
+          <div class="room-header">
+            <div class="rooms-header__title-wrapper">
+              <div>
+                <span><i class="fa fa-angle-left"></i></span>
+                <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
               </div>
-            </template>
+              <img :src="selectedPartnerUser.image" class="room-user__image">
+            </div>
           </div>
-        </div>
 
-        <div class="room-footer">
-          <div class="room-footer__nav">
-            <div></div>
-            <button @click="speak" class="room-footer__send-btn">
-              送信
-            </button>
+          <div class="room-body" ref="messages">
+            <div class="messages">
+              <template v-for="(message, index) in messages">
+                <div class="message" :class="messageClass(message)" :key="`room-msg-${index}`">
+                  <div class="message-body">
+                    <div class="message-user">
+                      <img :src="message.userProfileImageUrl" class="message-user__image">
+                    </div>
+                    <span class="message-content">
+                      <div class="message-bubble">{{ message.text.trim() }}</div>
+                    </span>
+                  </div>
+                  <div class="message-footer"> 
+                    <span class="message-date">
+                      {{ message.formattedCreatedAt }}
+                    </span>
+                  </div>
+                </div>
+              </template>
+              <div class="room-space-placeholder">
+                <div class="rooms-space-placeholder__input"></div>
+              </div>
+            </div>
           </div>
-          <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
+
+          <div class="room-footer">
+            <div class="room-footer__nav">
+              <div></div>
+              <button @click="speak" class="room-footer__send-btn">
+                送信
+              </button>
+            </div>
+            <textarea v-model="newMessage" placeholder="ここにメッセージ内容を入力" class="room-footer__input"></textarea>
+          </div>
         </div>
       </div>
   </div>
@@ -136,6 +141,10 @@ export default {
   created() {
     this.fetchCurrentUser();
     this.fetchRooms();
+
+    // safariのメニューバー対策
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     if(!!this.selectedRoomIdentifiedChar){
       this.roomMode = "show"
