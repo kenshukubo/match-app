@@ -23,6 +23,7 @@
 }
 ////////////////////////////////////////////////
 .rooms, .room{
+  background: #fff;
   height: calc(100vh);
   // safariのメニューバー対策
   height: calc(var(--vh, 1vh) * 100);
@@ -110,7 +111,6 @@
   display: flex;
   flex-direction: column;
   width: 600px;
-  height: 160px;
   padding: 0 12px 8px;
   box-sizing: border-box;
   position: absolute;
@@ -118,7 +118,6 @@
   border-top: 1px solid #eee;
   background-color: #fff;
   @media(max-width: 576px){
-    height: 100px;
     width: 100%;
     right: 0px;
     left: 0px;
@@ -133,14 +132,19 @@
 }
 
 .room-footer__input{
-  flex: 1 1;
   font-size: 16px;
   width: 100%;
+  height: 120px;
+  padding: 8px;
   resize: none;
   box-sizing: border-box;
-  border: none;
-  &:focus{
-    border-color: #fff;
+  border: 1px solid #a9bace;
+  outline: none;
+  @media(max-width: 576px){
+    height: 32px;
+    padding: 2px;
+    margin-top: 4px;
+    border: none;
   }
 }
 
@@ -164,6 +168,6 @@
 .rooms-space-placeholder__input{
   height: 240px;
   @media(max-width: 576px){
-    height: 180px;
+    height: 160px;
   }
 }

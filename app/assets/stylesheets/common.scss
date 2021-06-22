@@ -6,7 +6,7 @@ body{
   height: 100%;
   min-height: 80vh;
   margin: 0;
-  background: #fffffe;
+  background: #d3eced;
   color: #172c66;
   font-family: 'Noto Sans', sans-serif;
   // font-family: -apple-system,BlinkMacSystemFont,\\6E38\30B4\30B7\30C3\30AF\4F53,Yu Gothic,YuGothic,sans-serif;
@@ -42,7 +42,8 @@ input, select {
   outline: 0;
 }
 
-input[type=text],input[type=password],input[type=email],input[type=submit],select{
+// safariのCSS初期化
+input[type=text],input[type=password],input[type=email],input[type=submit],select,textarea{
   -webkit-appearance: none;
 }
 
