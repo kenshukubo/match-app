@@ -45,12 +45,15 @@
       <div class="room">
         <div class="container">
           <div class="room-header">
-            <div class="rooms-header__title-wrapper">
-              <div>
+            <div class="room-header__title-wrapper">
+              <div class="room-header__back-btn" @click="backToIndex">
                 <span><i class="fa fa-angle-left"></i></span>
-                <span class="rooms-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+                <span class="room-header__title">一覧に戻る</span>
               </div>
-              <img :src="selectedPartnerUser.image" class="room-user__image">
+              <div class="room-header__selected-user">
+                <span class="room-header__title">{{ selectedPartnerUser.name || "ゲストさん" }}</span>
+                <img :src="selectedPartnerUser.image" class="room-user__image">
+              </div>
             </div>
           </div>
 
@@ -240,6 +243,9 @@ export default {
         if (!chatLog) return
         chatLog.scrollTop = chatLog.scrollHeight
       })
+    },
+    backToIndex(){
+      this.roomMode = "index"
     },
   },
 }
