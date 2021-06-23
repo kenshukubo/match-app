@@ -1,6 +1,24 @@
 <template>
   <div>
     <div class="select-member__invite-form-wrapper">
+      <div class="select-member__form-area">
+        <span class="select-member__list-title">招待するユーザー</span>
+        <div class="select-member__list-wrapper selected-users-list">
+          <template v-for="(user, index) in selectedUsers">
+            <div
+              class="select-member__list-selected-item"
+              :key="`user-${index}`"
+            >
+              <img :src="user.image" class="select-member__list-item-img">
+              <span class="select-member__list-item-name text-ellipsis">{{user.name}}</span>
+              <div class="check-position">
+                <i class="fas fa-times hover-opacity" @click="removeSelectedUser(user.id)"></i>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
       <div class="select-member__form-area form">
         <span class="select-member__list-title">招待するユーザーを探す</span>
         <div class="select-member__form-wrapper">
@@ -12,7 +30,7 @@
           <clip-loader :loading="isSearching" :color="color"></clip-loader>
           <template v-for="(user, index) in searchedUsers">
             <div
-              @click="selectUser(user.id)"
+              @click="selectUser(user)"
               v-bind:class="{ selectedUser: selectedUserIds.includes(user.id) }"
               class="select-member__list-item"
               :key="`friend-${index}`"
@@ -51,7 +69,7 @@
               <clip-loader :loading="isLoading" :color="color"></clip-loader>
               <template v-for="(friend, index) in listedFriends">
                 <div
-                  @click="selectUser(friend.id)"
+                  @click="selectUser(friend)"
                   v-bind:class="{ selectedUser: selectedUserIds.includes(friend.id) }"
                   class="select-member__list-item"
                   :key="`friend-${index}`"
@@ -110,6 +128,7 @@ export default {
       anyFriends: false,
       listedFriends: "",
       searchedUsers: "",
+      selectedUsers: [],
       selectedUserIds: [],
       isLoading: false,
       isSearching: false,
@@ -153,14 +172,35 @@ export default {
         console.log(e)
       }
     },
-    async selectUser(userId){
+    async selectUser(user){
       var self = this
-      
-      if(self.selectedUserIds.includes(userId)){
-        self.selectedUserIds = self.selectedUserIds.filter(n => n !== userId);
+
+      // すでに選択済みの場合
+      if(self.selectedUsers.includes(user)) return;
+      // 募集人数分選択している場合
+      if(self.selectedUsers.length >= self.invitableNumber) return;
+
+      self.selectedUsers.push(user)
+      if(self.listedFriends.includes(user)){
+        self.listedFriends = self.listedFriends.filter(n => n !== user);
       }else{
-        if(self.selectedUserIds.length >= self.invitableNumber) return;
-        self.selectedUserIds.push(userId)
+        self.searchedUsers = self.searchedUsers.filter(n => n !== user);
+      }
+    },
+    async removeSelectedUser(userId){
+      var self = this
+      const target = self.selectedUsers.find((user) => {
+          return (user.id == userId);
+      });
+
+      if(self.selectedUsers.includes(target)){
+        self.selectedUsers = self.selectedUsers.filter(n => n !== target);
+      }
+
+      if(target.isFriend){
+        self.listedFriends.push(target)
+      }else{
+        self.searchedUsers.push(target)
       }
     },
     async confirmMember(){
@@ -240,7 +280,7 @@ export default {
   white-space: nowrap;
   display: flex;
   padding: 4px;
-  width: 100%;
+  max-width: 100%;
 }
 
 .check-position{
@@ -249,11 +289,36 @@ export default {
   left: 6.7em;
 }
 
+.select-member__list-selected-item{
+  border: 1px solid #001858;
+  border-radius: 5rem;
+  padding: 4px;
+  min-width: 120px;
+  height: 44px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  position: relative;
+}
+
+.selected-users-list{
+  border: 2px solid #ddd;
+  min-height: 56px;
+  box-sizing: border-box;
+}
+
+.fa-times{
+  border-radius: 50%;
+  background: #fff;
+  padding: 4px;
+}
+
 .select-member__list-item{
   border: 1px solid #001858;
   border-radius: 5rem;
   padding: 4px;
-  width: 120px;
+  min-width: 120px;
   height: 44px;
   box-sizing: border-box;
   display: flex;
