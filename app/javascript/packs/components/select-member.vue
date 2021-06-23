@@ -40,7 +40,7 @@
           </p>
         </div>
         <div v-else>
-          <div v-if="!listedFriends && !isLoading">
+          <div v-if="listedFriends.length == 0 && !isLoading">
             <p class="select-member__exception-title">
               <span>全フレンド選択済みです</span>
             </p>
@@ -279,7 +279,6 @@ export default {
 }
 
 .selectedUser{
-  background: #ffc6c7;
   border: 1px solid #ffc6c7;
   box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
