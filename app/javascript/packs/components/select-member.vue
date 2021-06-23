@@ -2,6 +2,7 @@
   <div>
     <div class="select-member__invite-form-wrapper">
       <div class="select-member__form-area form">
+        <span class="select-member__list-title">招待するユーザーを探す</span>
         <div class="select-member__form-wrapper">
           <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
           <i class="fas fa-search hover-opacity" @click="searchKeyword"></i>
