@@ -246,29 +246,30 @@ export default {
 .check-position{
   position: absolute;
   top: -0.2em;
-  left: 7.7em;
+  left: 6.7em;
 }
 
 .select-member__list-item{
   border: 1px solid #001858;
   border-radius: 5rem;
   padding: 4px;
-  min-width: 140px;
+  width: 120px;
+  height: 44px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  margin-right: 12px;
+  margin-right: 8px;
   cursor: pointer;
   position: relative;
   &:hover{
-    background: #ffc6c7;
-    border: 1px solid #ffc6c7;
+    box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
+    border: none
   }
 }
 
 .select-member__list-item-img{
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 8px;
@@ -280,7 +281,7 @@ export default {
 }
 
 .selectedUser{
-  border: 1px solid #ffc6c7;
+  border: none;
   box-shadow: 0px 0px 0px 0.2rem rgba(0, 123, 255, 0.25);
 }
 </style>
