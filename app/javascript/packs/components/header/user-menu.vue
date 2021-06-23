@@ -8,8 +8,14 @@
       <div v-if="showMenuList" class="header-menu-modal">
         <ul class="header-menu__wrapper">
           <li class="header-menu__item">
-            <a href="/user_profile/edit" class="header-menu__item-link">
-              <span>プロフィール編集</span>
+            <a href="/user_profile/edit" class="header-menu__item-link header-menu__item-user-name">
+              <span>{{userName}}</span>
+              <span class="header-menu__profile-setting-text">プロフィールを編集</span>
+            </a>
+          </li>
+          <li class="header-menu__item">
+            <a href="/chat" class="header-menu__item-link">
+              <span>チャット</span>
             </a>
           </li>
           <li class="header-menu__item">
@@ -84,6 +90,7 @@ export default {
   text-align: left;
   width: 100%;
   font-size: 12px;
+  font-weight: 700;
   box-sizing: border-box;
   &:hover{
     background-color: #f7f9f9;
@@ -93,5 +100,16 @@ export default {
 .header-menu__item-link{
   display: block;
   padding: 8px 16px;
+}
+
+.header-menu__item-user-name{
+  display: flex;
+  flex-direction: column;
+}
+
+.header-menu__profile-setting-text{
+  font-size: 12px;
+  font-weight: 400;
+  color: #6f7372;
 }
 </style>
