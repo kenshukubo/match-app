@@ -46,7 +46,7 @@
         <div class="container">
           <div class="room-header">
             <div class="room-header__title-wrapper">
-              <div class="room-header__back-btn" @click="backToIndex">
+              <div class="room-header__back-btn hover-opacity" @click="backToIndex">
                 <span><i class="fa fa-angle-left"></i></span>
                 <span class="room-header__title">一覧に戻る</span>
               </div>
