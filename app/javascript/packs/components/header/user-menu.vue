@@ -99,7 +99,7 @@ export default {
 
 .header-menu__item-link{
   display: block;
-  padding: 8px 16px;
+  padding: 10px 16px;
 }
 
 .header-menu__item-user-name{
