@@ -45,10 +45,7 @@ class User::PostsController < ApplicationController
     @post = current_user.post
     begin
       ActiveRecord::Base.transaction do
-        @post.update!(
-          place: post_params[:place],
-          number: post_params[:number],
-        )
+        @post.update!(post_params)
 
         user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
         message = "#{current_user.user_profile.name}さんの募集が削除されました。"
@@ -66,7 +63,7 @@ class User::PostsController < ApplicationController
         end
       end
       flash[:notice] = "更新完了！"
-      redirect_to root_path
+      redirect_to new_post_path
     rescue => error
       p error
       flash[:alert] = "更新に失敗しました"
@@ -95,7 +92,7 @@ class User::PostsController < ApplicationController
 
         PostMember.where(post: @post).destroy_all
       end
-      redirect_to root_path, notice: '募集を削除しました'
+      redirect_to new_post_path, notice: '募集を削除しました'
     rescue => error
       p error
       redirect_to new_post_path, alert: '削除に失敗しました'
