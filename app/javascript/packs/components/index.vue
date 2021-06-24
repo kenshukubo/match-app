@@ -85,7 +85,7 @@
       <span slot="text" class="post-listed__popper-text">アタックを待ちましょう</span>
     </DoneModal>
 
-    <DoneModal v-if="attackDone" @close="closeModal">
+    <DoneModal v-if="attackDone" @close="closeAttackCompletedModal">
       <img :src="popperImage" slot="image" class="post-listed__popper-img">
       <span slot="title" class="post-listed__popper-title">💥 アタックしました</span>
       <span slot="text" class="post-listed__popper-text">反応を待ちましょう</span>
@@ -194,8 +194,11 @@ export default {
       self.showSelectMenuModal  = false;
       self.postListed           = false;
       self.showAttackGroupModal = false;
-      self.attackDone           = false;
       this.confettiStop();
+    },
+    closeAttackCompletedModal(){
+      this.attackDone = false;
+      window.location.href = '/'
     },
     async deletePost(postId){
       if(confirm('投稿を削除します。よろしいでしょうか？')){
