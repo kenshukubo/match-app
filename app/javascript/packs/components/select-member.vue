@@ -209,7 +209,7 @@ export default {
         console.log(e)
       }
     },
-    async selectUser(user){
+    selectUser(user){
       var self = this
 
       // すでに選択済みの場合
@@ -224,7 +224,7 @@ export default {
         self.searchedUsers = self.searchedUsers.filter(n => n !== user);
       }
     },
-    async removeSelectedUser(userId){
+    removeSelectedUser(userId){
       var self = this
       const target = self.selectedUsers.find((user) => {
           return (user.id == userId);
