@@ -47,6 +47,9 @@ class User::PostsController < ApplicationController
       ActiveRecord::Base.transaction do
         @post.update!(post_params)
 
+        # 既に招待されている人数より小さい値の場合
+        raise if PostMember.where(post: @post).count > post_params[:number].to_i
+
         user_ids = PostMember.where(post: @post).where.not(user: current_user).pluck(:user_id)
         message = "#{current_user.user_profile.name}さんの募集が削除されました。"
         category = "change"
