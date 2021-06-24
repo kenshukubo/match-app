@@ -118,6 +118,34 @@ export default {
     ClipLoader,
     DoneModal
   },
+  computed: {
+    // すでに選ばれているかどうかの判定
+    isSelected(){
+      return function(user) {
+        if(this.selectedUsers.length != 0){
+          for (let i = 0 ; i < this.selectedUsers.length ; i++){
+            if(this.selectedUsers[i].id == user.id){
+              return true
+            }
+          }
+        }
+        return false
+      }
+    },
+    // すでに検索されているかどうかの判定
+    isSearched(){
+      return function(user) {
+        if(this.searchedUsers.length != 0){
+          for (let i = 0 ; i < this.searchedUsers.length ; i++){
+            if(this.searchedUsers[i].id == user.id){
+              return true
+            }
+          }
+        }
+        return false
+      }
+    },
+  },
   data() {
     return {
       addFriendImage,
@@ -127,7 +155,7 @@ export default {
       invitableNumber: "",
       anyFriends: false,
       listedFriends: "",
-      searchedUsers: "",
+      searchedUsers: [],
       selectedUsers: [],
       selectedUserIds: [],
       isLoading: false,
@@ -166,7 +194,18 @@ export default {
             type: self.listedType
           },
         })
-        self.searchedUsers = res.data.searchedUsers;
+        
+        var users = res.data.searchedUsers
+        for (let i = 0 ; i < users.length ; i++){
+          var user = users[i]
+
+          // 選択済み or 検索済みのユーザーは取得しない
+          if(this.isSelected(user) || this.isSearched(user)){
+            continue
+          }else{
+            self.searchedUsers.push(user)
+          }
+        }
         self.isSearching = false;
       } catch(e) {
         console.log(e)
@@ -177,7 +216,7 @@ export default {
 
       // すでに選択済みの場合
       if(self.selectedUsers.includes(user)) return;
-      // 募集人数分選択している場合
+      // 募集人数分すでに選択している場合
       if(self.selectedUsers.length >= self.invitableNumber) return;
 
       self.selectedUsers.push(user)
