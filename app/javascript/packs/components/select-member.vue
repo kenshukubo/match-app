@@ -122,27 +122,25 @@ export default {
     // すでに選ばれているかどうかの判定
     isSelected(){
       return function(user) {
-        if(this.selectedUsers.length != 0){
-          for (let i = 0 ; i < this.selectedUsers.length ; i++){
-            if(this.selectedUsers[i].id == user.id){
-              return true
-            }
+        if(this.selectedUsers.length == 0) return false;
+
+        for (let i = 0 ; i < this.selectedUsers.length ; i++){
+          if(this.selectedUsers[i].id == user.id){
+            return true
           }
         }
-        return false
       }
     },
     // すでに検索されているかどうかの判定
     isSearched(){
       return function(user) {
-        if(this.searchedUsers.length != 0){
-          for (let i = 0 ; i < this.searchedUsers.length ; i++){
-            if(this.searchedUsers[i].id == user.id){
-              return true
-            }
+        if(this.searchedUsers.length == 0) return false;
+
+        for (let i = 0 ; i < this.searchedUsers.length ; i++){
+          if(this.searchedUsers[i].id == user.id){
+            return true
           }
         }
-        return false
       }
     },
   },
