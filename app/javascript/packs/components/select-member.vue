@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <DoneModal v-if="showModal" @close="showModal = false">
+    <DoneModal v-if="isShowModal" @close="closeModal">
       <img :src="megaphoneImage" slot="image" class="post-listed__popper-img">
       <span slot="title" class="post-listed__popper-title">招待完了しました</span>
       <span slot="text" class="post-listed__popper-text">招待の承認を待ちましょう</span>
@@ -166,7 +166,7 @@ export default {
       isLoading: false,
       isSearching: false,
       color: "#8bd3dd",
-      showModal: false,
+      isShowModal: false,
     }
   },
   created() {
@@ -256,7 +256,7 @@ export default {
           user_ids: this.selectedUserIds
         })
         .then( res => {
-          self.showModal = true
+          self.isShowModal = true
         })
         .catch( error => {
           console.log(error)
@@ -266,13 +266,17 @@ export default {
           user_ids: this.selectedUserIds
         })
         .then( res => {
-          self.showModal = true
+          self.isShowModal = true
         })
         .catch( error => {
           console.log(error)
         })
       }
-    }
+    },
+    closeModal(){
+      this.isShowModal = false
+      window.location.href = '/post_members/new'
+    },
   }
 }
 </script>
