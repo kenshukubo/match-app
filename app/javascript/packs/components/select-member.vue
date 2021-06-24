@@ -143,6 +143,14 @@ export default {
         }
       }
     },
+    // 選択されているユーザーIDを返す
+    selectedUserIds(){
+      var selectedUserIds = []
+      for (let i = 0 ; i < this.selectedUsers.length ; i++){
+        selectedUserIds.push(this.selectedUsers[i].id)
+      }
+      return selectedUserIds
+    }
   },
   data() {
     return {
@@ -155,7 +163,6 @@ export default {
       listedFriends: "",
       searchedUsers: [],
       selectedUsers: [],
-      selectedUserIds: [],
       isLoading: false,
       isSearching: false,
       color: "#8bd3dd",
@@ -242,11 +249,11 @@ export default {
     },
     async confirmMember(){
       var self = this
-      if(self.selectedUserIds.length == 0) return;
+      if(self.selectedUsers.length == 0) return;
 
       if(self.listedType == "post_member"){
         const res = await axios.post("/api/v1/add_post_members", {
-          user_ids: self.selectedUserIds
+          user_ids: this.selectedUserIds
         })
         .then( res => {
           self.showModal = true
@@ -256,7 +263,7 @@ export default {
         })
       }else if(self.listedType == "attack_group"){
         const res = await axios.post("/api/v1/attack_groups", {
-          user_ids: self.selectedUserIds
+          user_ids: this.selectedUserIds
         })
         .then( res => {
           self.showModal = true
