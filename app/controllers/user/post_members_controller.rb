@@ -62,6 +62,12 @@ class User::PostMembersController < ApplicationController
   end
 
   def edit
+    if PostMember.find_by_id(params[:id]).blank?
+      redirect_to root_path
+      flash[:alert] = "通知の期限が切れています"
+      return
+    end
+
     @post_member = PostMember.find(params[:id])
     @post = @post_member.post
   end
