@@ -87,7 +87,7 @@ class User::PostMembersController < ApplicationController
 
         if post_member_params[:status] == "attend"
           category = "attend"
-          message = "#{username}さんが参加しました"
+          message = "#{username}さんが参加表明しました"
         else #absent
           category = "absent"
           message = "#{username}さんは残念ながら参加できません"
