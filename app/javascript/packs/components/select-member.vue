@@ -22,7 +22,7 @@
       <div class="select-member__form-area form">
         <span class="select-member__list-title">招待するユーザーを探す</span>
         <div class="select-member__form-wrapper">
-          <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" placeholder="ユーザー名で検索">
+          <input v-bind="keyword" ref="input" type="text" v-on:keyup.enter="searchKeyword" class="select-member__form-input" placeholder="ユーザー名で検索">
           <i class="fas fa-search hover-opacity" @click="searchKeyword"></i>
         </div>
 
@@ -354,6 +354,7 @@ export default {
 
 .selected-users-list{
   border: 2px solid #ddd;
+  border-radius: 4px;
   min-height: 56px;
   box-sizing: border-box;
 }
