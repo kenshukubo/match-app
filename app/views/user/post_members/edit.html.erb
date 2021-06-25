@@ -4,6 +4,10 @@
       招待を確認する
     </h1>
 
+    <% if @host_user.invite_any? %>
+      <%= render "shared/inviting" %>
+    <% end %>
+
     <div class="post-info-wrapper">
       <div class="post-info">
         <span>時間</span>

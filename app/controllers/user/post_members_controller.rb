@@ -8,12 +8,12 @@ class User::PostMembersController < ApplicationController
       return
     end
 
-    post = current_user.post
-    @invitable_number = post.number - PostMember.where(post: post).count
+    @post = current_user.post
+    @invitable_number = @post.number - PostMember.where(post: @post).count
 
     @invited_user_exclude_me = PostMember
     .includes(user: [:user_profile])
-    .where(post: post)
+    .where(post: @post)
     .where.not(user: current_user)
 
     @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
@@ -30,6 +30,15 @@ class User::PostMembersController < ApplicationController
 
     @post_member = PostMember.find(params[:id])
     @post = @post_member.post
+
+    @host_user = @post.user
+    @invited_user_exclude_me = PostMember
+    .includes(user: [:user_profile])
+    .where(post: @post)
+    
+    @unconfirmed_members = @invited_user_exclude_me.where(is_confirmed: false)
+    @attend_members      = @invited_user_exclude_me.where(status: "attend")
+    @absent_members      = @invited_user_exclude_me.where(status: "absent")
   end
 
   def update
