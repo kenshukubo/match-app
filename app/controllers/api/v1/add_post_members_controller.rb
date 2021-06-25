@@ -17,7 +17,7 @@ class Api::V1::AddPostMembersController < Api::ApplicationController
 
           # PostMember作成
           current_user.invite_member(user_id, post)
-          post_member = PostMember.find_by(user_id: user_id)
+          post_member = PostMember.find_by(user_id: user_id, post: post)
 
           # 通知作成
           Notification.create!(

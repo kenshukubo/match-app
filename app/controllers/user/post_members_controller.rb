@@ -112,10 +112,11 @@ class User::PostMembersController < ApplicationController
   end
 
   def destroy
-    @invited_member = PostMember.find(params[:id])
-    invited_member_user_id = @invited_member.user_id
     begin
       ActiveRecord::Base.transaction do
+        @invited_member = PostMember.find(params[:id])
+        invited_member_user_id = @invited_member.user_id
+
         @invited_member.destroy
 
         message = "招待がキャンセルされました"
