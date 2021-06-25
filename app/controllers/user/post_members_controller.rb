@@ -21,46 +21,6 @@ class User::PostMembersController < ApplicationController
     @absent_members      = @invited_user_exclude_me.where(status: "absent")
   end
 
-  def create
-    @post = current_user.post
-    begin
-      ActiveRecord::Base.transaction do
-
-        invitable_number = @post.number - PostMember.where(post: @post).count
-
-        # 人数オーバーであればリターン
-        raise if select_member_params[:user_id].count > invitable_number
-
-        # 通知作成用
-        category = "invite"
-        message = "#{current_user.user_profile.name}さんに募集メンバーに招待されました"
-
-        select_member_params[:user_id].each do |user_id|
-
-          # PostMember作成
-          current_user.invite_member(user_id, @post)
-          post_member = PostMember.find_by(user_id: user_id)
-
-          # 通知作成
-          Notification.create!(
-            target_user_id: user_id,
-            message: message,
-            category: category,
-            url: edit_post_member_path(post_member.id)
-          )
-
-          UserNotification.find_by(user_id: user_id).add_unchecked_notification_count
-        end
-      end
-      redirect_to new_post_member_path
-      flash[:notice] = "招待完了しました"
-    rescue => error
-      p error
-      redirect_to new_post_member_path
-      flash[:alert] = "招待に失敗しました"
-    end
-  end
-
   def edit
     if PostMember.find_by_id(params[:id]).blank?
       redirect_to root_path
