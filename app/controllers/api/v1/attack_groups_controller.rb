@@ -12,7 +12,7 @@ class Api::V1::AttackGroupsController < Api::ApplicationController
         attack_group = AttackGroup.create!(
           user: current_user,
           group_number: group_number
-        ) if AttackGroup.find_by(group_number: group_number).blank?
+        ) if AttackGroup.find_by(user: current_user, group_number: group_number).blank?
 
         # 自分用に作成
         Attacker.create!(
