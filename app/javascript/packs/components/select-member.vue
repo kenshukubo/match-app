@@ -309,6 +309,8 @@ export default {
   text-align: center;
   padding: 28px 0px;
   font-size: 14px;
+  background: #f9f9f9;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
 }
