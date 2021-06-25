@@ -37,9 +37,9 @@
         <div class="form">
           <div class="field">
             <%= f.radio_button :status, :attend %>
-            <%= f.label :status_attend, "参加" %>
+            <%= f.label :status_attend, "参加", class:"sex-radio-btn male-radio" %>
             <%= f.radio_button :status, :absent %>
-            <%= f.label :status_absent, "不参加" %>
+            <%= f.label :status_absent, "不参加", class:"sex-radio-btn female-radio" %>
           </div>
           <div class="field">
             <div class="button-wrapper">
