@@ -61,9 +61,6 @@ class User::PostMembersController < ApplicationController
           category = "absent"
           message = "#{username}さんは残念ながら参加できません"
         end
-        
-        # メンバー揃ったら募集公開
-        post.update!( is_modal: true ) if post.all_member_here?
 
         Notification.create!(
           target_user_id: host_user_id,
@@ -73,6 +70,9 @@ class User::PostMembersController < ApplicationController
         )
 
         UserNotification.find_by(user_id: host_user_id).add_unchecked_notification_count
+
+        # メンバー揃ったら募集公開
+        post.update!( is_modal: true ) if post.all_member_here?
       end
       flash[:notice] = "更新完了！"
       redirect_to root_path
