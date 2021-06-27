@@ -27,6 +27,8 @@ gem 'omniauth-oauth2', '~> 1.6'
 gem 'line-bot-api'
 gem 'rack-cors'
 gem 'enum_help'
+gem 'cloudinary'
+gem 'meta-tags'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
