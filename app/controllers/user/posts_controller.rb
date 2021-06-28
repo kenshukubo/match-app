@@ -15,7 +15,14 @@ class User::PostsController < ApplicationController
   end
 
   def show
+    if Post.find_by_id(params[:id]).blank?
+      redirect_to root_path
+      return
+    end
+    
     @post = Post.find(params[:id])
+    post_text = "#{@post.place}で#{@post.time.strftime("%-m月%-d日 %H:%M")}から一緒にご飯いきませんか？"
+    @post_url = "https://res.cloudinary.com/dvtpktk39/image/upload/l_text:Sawarabi%20Gothic_64:#{@post_text},co_rgb:000,w_1000,y_-100,c_fit/v1624887961/loubjdivz8e7awbfezgj.png"
     @post_members = @post.post_members
   end
 
