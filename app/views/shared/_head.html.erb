@@ -1,10 +1,22 @@
-<title>MatchApp</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 
 <%= stylesheet_link_tag 'application', media: 'all' %>
 <%= javascript_pack_tag 'application' %>
+
+<% if content_for?(:ogp) %>
+  <%= yield(:ogp) %>
+<% else %>
+  <title>MatchApp</title>
+  <meta property="og:title" content="match_app" />
+  <meta property="og:description" content="testtestest" />
+  <meta property="og:image" content="">
+<% end %>
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:site_name" content="match_app" />
+<meta property="og:type" content="website">
 
 <!-- Google Font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
