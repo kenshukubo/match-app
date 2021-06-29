@@ -1,2 +1,2 @@
-class User::RatingsController < User::ApplicationController
+class User::RatingsController < ApplicationController
 end
