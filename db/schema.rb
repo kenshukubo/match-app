@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2021_06_19_011122) do
 
-  create_table "attack_groups", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "attack_groups", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_attack_groups_on_user_id"
   end
 
-  create_table "attackers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "attackers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "attack_group_id", null: false
     t.boolean "is_confirmed", default: false
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_attackers_on_user_id"
   end
 
-  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer "target_user_id"
     t.text "message"
     t.string "image"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
   end
 
-  create_table "post_members", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "post_members", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
     t.boolean "is_confirmed", default: false
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_post_members_on_user_id"
   end
 
-  create_table "posts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "detail"
     t.integer "number"
@@ -67,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "relationships", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
     t.datetime "created_at", precision: 6, null: false
@@ -77,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
-  create_table "requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "requests", force: :cascade do |t|
     t.bigint "attack_group_id", null: false
     t.bigint "post_id", null: false
     t.boolean "is_confirmed", default: false
@@ -87,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["post_id"], name: "index_requests_on_post_id"
   end
 
-  create_table "room_messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "room_messages", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.text "message"
@@ -99,7 +102,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_room_messages_on_user_id"
   end
 
-  create_table "room_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "room_users", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
     t.datetime "last_active_at"
@@ -109,14 +112,14 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_room_users_on_user_id"
   end
 
-  create_table "rooms", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "rooms", force: :cascade do |t|
     t.string "identified_char"
     t.datetime "last_used_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "social_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "social_profiles", force: :cascade do |t|
     t.string "uid"
     t.string "provider"
     t.bigint "user_id", null: false
@@ -129,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "user_notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "unchecked_num", default: 0, null: false
     t.datetime "message_last_emailed_at"
@@ -139,7 +142,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_user_notifications_on_user_id"
   end
 
-  create_table "user_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "user_profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
     t.string "image"
@@ -154,7 +157,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_011122) do
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
