@@ -3,7 +3,7 @@ import ActionCable from 'actioncable';
 import Rooms from './components/rooms.vue'
 
 // TODO ドメイン決まったら変更
-const cable = ActionCable.createConsumer('wss:match-app.jp/cable');
+const cable = ActionCable.createConsumer('wss:https://match-app.onrender.com/cable');
 Vue.prototype.$cable = cable;
 
 document.addEventListener('DOMContentLoaded', () => {
