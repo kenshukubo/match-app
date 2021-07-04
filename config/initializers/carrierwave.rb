@@ -18,6 +18,7 @@ CarrierWave.configure do |config|
     config.fog_directory  = ENV["S3_BUCKET_NAME"]
     # config.asset_host = 'https://d3a3jeglo6h485.cloudfront.net' #cloudfront用
   elsif Rails.env.production?
+    config.fog_public = false
     config.fog_directory  = ENV["S3_BUCKET_NAME"]
     # config.asset_host = 'https://d2zsxcb1sxm997.cloudfront.net' #cloudfront用
   end
